@@ -18,30 +18,6 @@
 
   var scene1 = hero.querySelector('.scene1');
   var scene2 = hero.querySelector('.scene2');
-  var pauseBtn = hero.querySelector('.pause');
-  var pauseLabel = pauseBtn.querySelector('.pause-label');
-  var iconPause = pauseBtn.querySelector('.icon-pause');
-  var iconPlay = pauseBtn.querySelector('.icon-play');
-  var PAUSE_KEY = 'sulifest-hero-paused';
-
-  /* ---------- Pause button (for the always-moving parts) ---------- */
-  function showPaused(paused) {
-    root.classList.toggle('is-paused', paused);
-    pauseBtn.setAttribute('aria-pressed', paused ? 'true' : 'false');
-    pauseLabel.textContent = paused ? 'Play' : 'Pause';
-    iconPause.hidden = paused;
-    iconPlay.hidden = !paused;
-  }
-  showPaused(root.classList.contains('is-paused'));
-  pauseBtn.addEventListener('click', function () {
-    var paused = !root.classList.contains('is-paused');
-    showPaused(paused);
-    try {
-      window.sessionStorage.setItem(PAUSE_KEY, paused ? '1' : '0');
-    } catch (e) {
-      /* storage blocked: the choice is kept only until reload */
-    }
-  });
 
   /* ---------- No GSAP: fall back to the two normal sections ---------- */
   var gsap = window.gsap;
@@ -69,7 +45,6 @@
 
   mm.add('(prefers-reduced-motion: no-preference)', function () {
     root.classList.add('motion');
-    pauseBtn.hidden = false;
 
     var tl = gsap.timeline({
       defaults: { ease: 'none' },
@@ -116,7 +91,6 @@
     }
     function onFocusScene1(event) {
       var st = tl.scrollTrigger;
-      if (event.target === pauseBtn) return;
       if (st && st.progress > 0) window.scrollTo(0, st.start);
     }
     scene2.addEventListener('focusin', onFocusScene2);
@@ -128,7 +102,6 @@
       scene1.removeEventListener('focusin', onFocusScene1);
       hero.classList.remove('is-ready');
       root.classList.remove('motion');
-      pauseBtn.hidden = true;
     };
   }, hero);
 

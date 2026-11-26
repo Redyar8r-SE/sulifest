@@ -480,27 +480,6 @@ button:focus-visible {
 .ground-fill { position: absolute; left: 0; right: 0; bottom: 0; top: 10%; background: #E9EDF4; }
 .ground-top  { position: absolute; left: 0; right: 0; top: 0; height: 20%; border-radius: 50%; background: #F7F9FC; }
 
-/* ---------- Pause button ---------- */
-.pause {
-  position: absolute;
-  z-index: 10;
-  left: 20px;
-  bottom: 16px;
-  height: 44px;
-  min-width: 96px;
-  padding: 0 18px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border-radius: 22px;
-  border: 1px solid #FFFFFF;
-  background: var(--ink);
-  color: #FFFFFF;
-  font: 600 14px/1 var(--font-ui);
-  cursor: pointer;
-}
-
 /* ---------- After the hero ---------- */
 .after {
   padding: 72px 24px 96px;
@@ -574,7 +553,7 @@ button:focus-visible {
 @keyframes k-fadein { from { opacity: 0; } to { opacity: 1; } }
 @keyframes k-rise { from { transform: translateY(36px); } to { transform: none; } }
 
-/* Always-moving parts: only in motion mode, and they can be paused */
+/* Always-moving parts: only in motion mode, they always play */
 .motion .twinkle-a { animation: k-twinkle 3.2s ease-in-out infinite alternate; }
 .motion .twinkle-b { animation: k-twinkle 4.6s ease-in-out infinite alternate-reverse; }
 .motion .drift-a   { animation: k-drift 13s ease-in-out infinite alternate; }
@@ -589,8 +568,6 @@ button:focus-visible {
 .motion .snow-a    { animation: k-snow 13s linear infinite; }
 .motion .snow-b    { animation: k-snow 8.5s linear infinite; }
 .motion .snow-c    { animation: k-snow 21s linear infinite; }
-
-.is-paused .loop { animation-play-state: paused !important; }
 
 @keyframes k-twinkle { from { opacity: .25; } to { opacity: 1; } }
 @keyframes k-drift { from { transform: translateX(-16px); } to { transform: translateX(18px); } }

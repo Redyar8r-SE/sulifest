@@ -23,7 +23,7 @@ Then open http://127.0.0.1:8765/ and scroll down and up.
 | `index.html` | All layers and both scenes. A real `<h1>`. No `style="..."`, no inline script. |
 | `hero.css` | Layout, phone layout, intro, always-moving parts (stars, snow, clouds, sleigh, reindeer legs), reduced motion |
 | `boot.js` | Tiny script in `<head>`: sets classes on `<html>` before the first paint (so the layout does not jump) |
-| `hero.js` | One GSAP timeline with ScrollTrigger (`scrub: 0.6`), `gsap.matchMedia()` for reduced motion, the pause button |
+| `hero.js` | One GSAP timeline with ScrollTrigger (`scrub: 0.6`), `gsap.matchMedia()` for reduced motion |
 | `vendor/` | `gsap.min.js` + `ScrollTrigger.min.js` from npm `gsap@3.15.1` (hashes in `vendor/README.md`) |
 | `assets/*.webp` | Copies of the layers in `docs/design/hero-free-photos/layers/` (licences in `docs/design/hero-free-photos/SOURCES.md`) |
 | `assets/fonts/` | Great Vibes, Space Grotesk 700, Vazirmatn 500 (Arabic letters) from the `@fontsource` npm packages 5.3.0, SIL Open Font License (licence files next to them) |
@@ -68,8 +68,15 @@ Add `markers: true` to the `scrollTrigger` object only while testing.
 ## Without JavaScript, or with "reduce motion"
 
 No sticky stage, no scrub, no loops: scene 1 and scene 2 are two normal sections, one under the other,
-and scene 2 shows the final state (lights on). The pause button is hidden because nothing moves.
+and scene 2 shows the final state (lights on).
 If the GSAP files do not load, the page falls back to the same two sections.
+
+## No pause button (user decision, 2026-11-26)
+
+The user asked that the hero animations always play, so there is no pause button.
+Visitors with "reduce motion" turned on still get a still page (no loops, no scroll animation).
+Note for later: the accessibility rule WCAG 2.2.2 asks for a way to pause moving content that lasts
+more than 5 seconds. The PM should decide this again before the real site goes live.
 
 ## Security
 
