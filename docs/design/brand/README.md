@@ -14,7 +14,8 @@ The PDF files themselves are **not** in this repository: they hold prices and co
 | Deep green | `#16452E` | Dark boxes | Dark sections |
 | Red | `#BE3428` | Small labels, bullets, Zin places, arrows | Buttons, bullets, side lines, the last light |
 | Red for small text | `#A32B20` | (made for the website) | Small red text on Paper. The brand red is only 4.2:1 on Paper, this one is 5:1 |
-| Gold | `#A07A35` | Khaj places | Khaj places, ornaments. Not for text on Paper (2.9:1) |
+| Gold | `#A07A35` | Khaj places | Ornaments and lines. Not for text on Paper (2.9:1) |
+| Deep gold | `#8A6630` | (made for the website by the Worker) | Khaj places and the parking sign on the map, because Ivory letters on Gold were only 3.9:1. On Deep gold they are 5.1:1 |
 | Bright gold | `#D9A441` | Star, stage outline | Lights, text on green and on the night sky |
 | Tan | `#C9AE78` | Thin lines | Thin lines, panel borders |
 | Ink | `#3A2A1B` | Body text | Body text |

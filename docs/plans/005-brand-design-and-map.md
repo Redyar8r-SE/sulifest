@@ -1,6 +1,6 @@
 # 005 — Brand design, the map, no box, Santa's reins (in the demo)
 
-Status: Approved by the user on 2026-11-27 ("don't ask for permission, when everything is ready send it to the Worker")
+Status: Done on 2026-11-27 (commit `e335877`, pull request #1, not merged). Approved by the user on 2026-11-27 ("don't ask for permission, when everything is ready send it to the Worker"). The About section is changed again by plan 006
 Date: 2026-11-27
 Builds on: plan 002 Part 0 and plan 004 (the demo in `prototypes/home-hero/`, pull request #1)
 Brand notes: `docs/design/brand/README.md`

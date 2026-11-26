@@ -563,3 +563,133 @@ body { font-family: var(--font-text); background: var(--paper); }
   .footer-line { flex-direction: column; gap: 8px; letter-spacing: .14em; }
   .map-panel { padding: 6px; }
 }
+
+/* =====================================================================
+   7. The story in three steps: SuliFest, italk, Christmas Nights
+   A green wire runs down the side, from step to step, and ends in the
+   16 lights. Each step has a stamp that drops onto the page.
+   ===================================================================== */
+.section-paper .kicker { color: var(--red-text); }
+.story-wrap { position: relative; }
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: 72px;
+  align-items: center;
+  padding-inline-start: 64px;
+  padding-bottom: 104px;
+}
+.step-rev { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); }
+.step-rev .step-art { order: -1; }
+.step-text > :last-child { margin-bottom: 0; }
+.step::before { /* the wire */
+  content: "";
+  position: absolute;
+  inset-inline-start: 11px;
+  top: 14px;
+  bottom: -14px;
+  width: 1.5px;
+  background: var(--green);
+  opacity: .7;
+  transform-origin: 50% 0;
+}
+.step-mark {
+  position: absolute;
+  inset-inline-start: 4.5px;
+  top: 7px;
+  width: 14px;
+  height: 14px;
+  background: var(--red);
+  border: 1.5px solid var(--red);
+  transform: rotate(45deg);
+  z-index: 1;
+}
+
+.stats { display: flex; flex-wrap: wrap; gap: 16px 36px; margin-top: 28px; }
+.page-section .stat { margin: 0; }
+.stat { padding-inline-start: 14px; border-inline-start: 1.5px solid var(--red); font-size: 18px; line-height: 1.3; color: var(--ink-soft); }
+.stat strong { display: block; font-family: var(--font-caps); font-weight: 700; font-size: 30px; line-height: 1.15; color: var(--green); font-variant-numeric: tabular-nums; }
+
+/* a stamp made in CSS, for the two steps that have no stamp picture */
+.stamp-drop { position: relative; max-width: 310px; margin-inline: auto; filter: drop-shadow(0 10px 14px rgba(58, 42, 27, .28)); }
+.stamp-drop .stamp { filter: none; }
+.paper-stamp {
+  --r: 7px;
+  position: relative;
+  padding: 38px 28px 32px;
+  background: #F3E6C4;
+  text-align: center;
+  -webkit-mask:
+    linear-gradient(#000 0 0) center / calc(100% - 2 * var(--r)) calc(100% - 2 * var(--r)) no-repeat,
+    radial-gradient(circle, transparent 0 4px, #000 4.6px) calc(-1 * var(--r)) calc(-1 * var(--r)) / calc(2 * var(--r)) calc(2 * var(--r)) round;
+  mask:
+    linear-gradient(#000 0 0) center / calc(100% - 2 * var(--r)) calc(100% - 2 * var(--r)) no-repeat,
+    radial-gradient(circle, transparent 0 4px, #000 4.6px) calc(-1 * var(--r)) calc(-1 * var(--r)) / calc(2 * var(--r)) calc(2 * var(--r)) round;
+}
+.paper-stamp::before { content: ""; position: absolute; inset: 18px; border: 1px solid var(--tan); pointer-events: none; }
+.paper-stamp img { width: 76%; height: auto; margin-inline: auto; }
+.paper-stamp-italk { padding-block: 54px 44px; }
+.paper-stamp-italk img { width: 44%; }
+.page-section .ps-name, .page-section .ps-line { margin: 0; }
+.ps-name { margin-top: 14px; font-family: var(--font-word); font-weight: 900; font-size: 34px; line-height: 1.15; color: var(--green); }
+.page-section .ps-name { margin-top: 14px; }
+.ps-italk { font-family: var(--font-text); font-weight: 600; font-size: 56px; line-height: 1; color: #3B1A16; }
+.ps-line { font-family: var(--font-caps); font-weight: 700; font-size: 11px; letter-spacing: .2em; color: var(--red-text); }
+.page-section .ps-line { margin-top: 8px; }
+.postmark {
+  position: absolute;
+  inset-inline-start: -20px;
+  top: -16px;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(190, 52, 40, .8);
+  background: radial-gradient(circle, transparent 0 31px, rgba(190, 52, 40, .7) 31px 32.5px, transparent 32.5px);
+}
+.postmark::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: 78%;
+  top: 34%;
+  width: 60px;
+  height: 27px;
+  background: repeating-linear-gradient(to bottom, rgba(190, 52, 40, .7) 0 1.5px, transparent 1.5px 6.4px);
+}
+
+/* the wire goes on, down into the row of 16 lights */
+.story-end .nights { position: relative; margin-top: 0; padding-top: 44px; }
+.story-end .nights::before { content: ""; position: absolute; inset-inline-start: 11px; top: -90px; height: 147px; width: 1.5px; background: var(--green); opacity: .7; }
+.step:nth-last-child(2) { padding-bottom: 90px; }
+.step:nth-last-child(2)::before { bottom: 0; }
+
+@media (max-width: 900px) {
+  .step, .step-rev { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-inline-start: 34px; padding-bottom: 72px; }
+  .step-rev .step-art { order: 0; }
+  .step::before { inset-inline-start: 6px; }
+  .step-mark { inset-inline-start: -.5px; }
+  .story-end .nights::before { inset-inline-start: 6px; }
+  .stamp-drop { max-width: 230px; }
+  .ps-name { font-size: 26px; }
+  .ps-italk { font-size: 42px; }
+  .stat strong { font-size: 26px; }
+}
+
+/* movement, once per step (story.js adds .story-on and .is-seen) */
+.motion.story-on .step::before { transform: scaleY(0); transition: transform 1.2s cubic-bezier(.3, .7, .2, 1) .15s; }
+.motion.story-on .step.is-seen::before { transform: none; }
+.motion.story-on .step-mark { background: var(--paper); border-color: var(--green); transform: rotate(45deg) scale(.6); transition: background .3s ease, border-color .3s ease, transform .5s cubic-bezier(.2, 1.6, .3, 1); }
+.motion.story-on .is-seen .step-mark { background: var(--red); border-color: var(--red); transform: rotate(45deg); }
+.motion.story-on .stamp-drop { opacity: 0; transform: translateY(-38px) rotate(-12deg) scale(1.16); transition: opacity .3s ease .3s, transform .7s cubic-bezier(.2, 1.35, .3, 1) .3s; }
+.motion.story-on .is-seen .stamp-drop { opacity: 1; transform: none; }
+.motion.story-on .postmark { opacity: 0; transform: scale(1.5) rotate(-25deg); transition: opacity .15s ease .95s, transform .35s cubic-bezier(.2, 1.5, .3, 1) .95s; }
+.motion.story-on .is-seen .postmark { opacity: 1; transform: none; }
+.motion.reveal-on.story-on .step:not(.is-seen) .reveal-line { transform: translateY(100%); }
+.motion.story-on .stats { opacity: 0; transition: opacity .5s ease .45s; }
+.motion.story-on .is-seen .stats { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .step::before, .step-mark, .stamp-drop, .postmark, .stats { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .step-mark { transform: rotate(45deg) !important; }
+  .step::before { opacity: .7 !important; }
+}
