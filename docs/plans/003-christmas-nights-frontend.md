@@ -2,7 +2,8 @@
 
 Status: Draft (waiting for the user's answers and "yes")
 Date: 2026-11-26
-Source text: `docs/brief/christmas-nights-brief.md` (the organiser's Word document)
+Source text: `docs/brief/christmas-nights-brief.md` (the organiser's Word document). English website text since 2026-11-27: `docs/brief/website-copy-en.md`
+**Design direction replaced on 2026-11-27:** the colours and fonts in the "Design direction" part below are out of date. The site uses the organiser's brand (paper, green, red, gold; Cinzel and EB Garamond; stamps; the map). See plan 005 and `docs/design/brand/README.md`
 Main plan section: 1 "What the website does", 5 "Three languages", 6 "Scroll animations"
 Builds on: plan 002 (the hero demo in `prototypes/home-hero/`)
 

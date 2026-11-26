@@ -2,7 +2,8 @@
 
 Status: Done on 2026-11-26 (approved by the user: "plan it and send it to the Worker"). **Changed** the same day by four design choices of the user, see "Changes after the first build"
 Date: 2026-11-26
-Source text: `docs/brief/christmas-nights-brief.md`
+Source text: `docs/brief/christmas-nights-brief.md`. Since 2026-11-27 the page uses `docs/brief/website-copy-en.md` (7 plain-English edits the user accepted; the organiser still has to approve it)
+Next: the style and the hero card of this plan are replaced by plan 005 (brand design)
 Builds on: plan 002 Part 0 (the demo in `prototypes/home-hero/`, pull request #1)
 
 ## Goal
