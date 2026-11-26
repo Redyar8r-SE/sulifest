@@ -4,7 +4,8 @@ A static page that shows the Sulifest home hero with **real scrolling**:
 scene 1 (night, moon, Santa's sleigh, mountains, snow) → scene 2 (card, tree whose lights turn on, gifts).
 Plain HTML + CSS + JavaScript. No framework, no build step, no backend.
 Under the hero: the Home page sections of "Christmas Nights by SuliFest" (plan 004), with the text
-copied word for word from `docs/brief/christmas-nights-brief.md`.
+from `docs/brief/website-copy-en.md` (the brief `docs/brief/christmas-nights-brief.md` with 7 small
+edits; the organiser still has to approve them).
 It is a prototype. **Do not deploy it.**
 
 ## How to open it
