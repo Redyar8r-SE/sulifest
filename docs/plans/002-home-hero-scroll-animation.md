@@ -142,7 +142,7 @@ The website project does not exist yet (no Next.js, no Payload, Ubuntu is not se
 |---|---|
 | `index.html` | The layers and both scenes. A real `<h1>`. No inline `style="..."` and no inline `<script>`. |
 | `hero.css` | Layout, intro, the always-moving parts (stars, snow, clouds, sleigh, reindeer legs), reduced motion |
-| `hero.js` | One GSAP timeline with ScrollTrigger (`scrub: 0.6`), `gsap.matchMedia()` for reduced motion, the pause button |
+| `hero.js` | One GSAP timeline with ScrollTrigger (`scrub: 0.6`), `gsap.matchMedia()` for reduced motion |
 | `assets/` | Copies of the layers from `docs/design/hero-free-photos/layers/` that the page uses |
 | `vendor/` | `gsap.min.js` and `ScrollTrigger.min.js` copied from the official `gsap` npm package, plus a short `README.md` with the exact version and the SHA-256 of each file |
 | `README.md` | How to open the demo, and what is still different from the real site |
@@ -155,7 +155,10 @@ The website project does not exist yet (no Next.js, no Payload, Ubuntu is not se
 2. It must work on a phone. The preview is a fixed 1280 × 720 picture. The demo must fill the screen at 375 px wide (portrait) and on desktop. The title, the card and the button must stay readable.
 3. Fonts are loaded from our own folder or are system fonts. No request to Google Fonts or any other site.
 
-**Rules that stay the same** (details are in the sections below): sleigh forward only and very slow, reindeer legs move (`steps(12)`), mountains never cover the sleigh, snow falls, tree lights come on at the end, title and sky visible at first paint, transform and opacity only, pause button, reduced motion, no Lenis.
+**Rules that stay the same** (details are in the sections below): sleigh forward only and very slow, reindeer legs move (`steps(12)`), mountains never cover the sleigh, snow falls, tree lights come on at the end, title and sky visible at first paint, transform and opacity only, reduced motion, no Lenis.
+
+**No pause button (user decision, 2026-11-26):** the user asked the Worker to remove the pause button, because the animations must always play. It was removed in commit `7a51b9f`. "Reduce motion" in the visitor's system settings still gives a still page.
+Open point before launch: the accessibility rule WCAG 2.2.2 (Pause, Stop, Hide) asks for a way to stop movement that starts by itself and lasts more than 5 seconds. The snow, the stars and the sleigh do that. The main plan aims for WCAG 2.2 AA, so the team must decide this again before the real site goes live (for example a small "stop motion" link in the footer, or stopping the loops after some time).
 
 **Security rules for the demo (websec):**
 
@@ -177,7 +180,7 @@ The website project does not exist yet (no Next.js, no Payload, Ubuntu is not se
 - [ ] Works at 375 px wide and on desktop, in Chrome and one other browser.
 - [ ] Browser network tab: every request goes to the local server only. Console: no errors, no CSP errors.
 - [ ] With "reduce motion" on: nothing moves and both scenes are readable. With JavaScript off: both scenes are readable.
-- [ ] Keyboard: the links and the pause button can be reached and show a focus ring.
+- [ ] Keyboard: the links can be reached and show a focus ring.
 - [ ] Total size of the pictures the page loads, and the JavaScript size, are written in the report.
 - [ ] Screenshots of scene 1 and scene 2 at phone and desktop width are attached to the pull request.
 
@@ -220,7 +223,7 @@ Part 1 — movement with placeholder shapes
 
 8. Load the GSAP code only on the Home page (dynamic import of the client component). The page must be readable before GSAP arrives.
 9. Without JavaScript, and with `prefers-reduced-motion: reduce`: no sticky stage, no scrub, no loops. Show scene 1 and scene 2 as two normal sections, one under the other. Use `gsap.matchMedia()` for this in JavaScript and a media query in CSS.
-10. Add a small "pause animations" button for the always-moving parts (stars, flying shape). Save the choice for the visit.
+10. No pause button (user decision, 2026-11-26; see Part 0). The animations always play, except when the visitor's system asks for reduced motion. The WCAG 2.2.2 question stays open until launch.
 11. RTL: in `ckb` and `ar` the flying shape moves the other way (multiply `x` by −1). The header order follows `dir`. Use logical CSS only.
 12. Test Part 1 on a mid-range Android phone and an iPhone. Report frames per second and any jumps before starting Part 2.
 
@@ -284,7 +287,7 @@ None.
 - [ ] Home page JavaScript stays inside the budget (about 150–170 kB gzip). All hero pictures together ≤ about 350 kB on a phone; the sky ≤ 150 kB.
 - [ ] With "reduce motion" on: no movement, both scenes are readable.
 - [ ] With JavaScript off: both scenes are readable.
-- [ ] Keyboard only: the header links, the pause button and "Book a booth" can be reached and have a visible focus ring.
+- [ ] Keyboard only: the header links and "Book a booth" can be reached and have a visible focus ring.
 - [ ] The page looks right in `ckb`, `ar` and `en` at 375 px and at desktop width.
 - [ ] Text contrast on the dark sky is at least 4.5:1.
 - [ ] No request goes to another domain for scripts, fonts or pictures (check the network tab).
