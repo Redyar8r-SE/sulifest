@@ -21,7 +21,7 @@ The **Worker** session builds a plan only after the user says yes to it.
 | # | Plan | Status |
 |---|---|---|
 | 001 | Project setup (weeks 0–1) | Not written yet |
-| 002 | [Home hero with scroll animation](002-home-hero-scroll-animation.md) | Draft |
+| 002 | [Home hero with scroll animation](002-home-hero-scroll-animation.md) | Part 0 (stand-alone demo): In progress, sent to the Worker on 2026-11-26. Parts 1–2: wait for 001 |
 
 ---
 
