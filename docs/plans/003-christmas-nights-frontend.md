@@ -147,6 +147,14 @@ The festival is 16 nights, 16–31 December. Under the header there is a string 
 | During the festival | Bulbs for past nights and tonight are lit (Lantern). Tonight glows. |
 | 31 December | The last bulb is Berry: New Year's night. |
 
+**Decided (2026-11-26):** the user said yes to the sixteen lights. A first version is built in the demo (plan 004, commit `a2b1f02`). It differs from the description above in three points, and the user must choose before step C:
+
+| Point | Described above | Built in the demo |
+|---|---|---|
+| Place | Its own section under the hero | Inside About, after the text and before the facts |
+| Dates | The date under each bulb | Only "16 December" at the start and "31 December / New Year" at the end |
+| Today's date | Bulbs follow the date; "The first light goes on in N days." | All 16 are on; no date logic |
+
 This replaces a normal countdown with big numbers. It is real information (which night it is, how many are left), and it belongs only to this festival. In right-to-left languages the string runs the other way.
 
 ### Rules that keep it from looking like a template
@@ -168,7 +176,8 @@ The hero is the one big moment. After it, the site is still.
 |---|---|
 | Hero | The GSAP scroll scene (plan 002) |
 | String of nights | When it first comes into view, the lit bulbs turn on one after another, once (about 1 second, CSS) |
-| Everything else | None. No fade-in on every section, no moving cards, no sparks. |
+| Section headings | Each heading slides up once when its section comes into view (user choice "one moment", 2026-11-26; built in the demo) |
+| Everything else | None. No fade-in of paragraphs or lists, no moving cards, no sparks. |
 | Hover and focus | Colour changes only |
 
 Snow falls only in the hero.
@@ -344,3 +353,4 @@ Booth booking, admin panel, Payload, database, contact form, daily programme, ga
 5. **Digits in Kurdish and Arabic:** Arabic-Indic (١٢٣) or Western (123)?
 6. **Brand:** is there a logo and are there brand colours?
 7. **Domain:** `sulifest.krd`, or another name? Is it bought?
+8. **Sixteen lights:** keep the demo version (all on, inside About), or the date version (shows which night it is, with "The first light goes on in N days.")?

@@ -1,6 +1,6 @@
 # 004 — Home page under the animation (in the demo)
 
-Status: Approved by the user on 2026-11-26 ("plan it and send it to the Worker") — Done on 2026-11-26, checked by the PM
+Status: Done on 2026-11-26 (approved by the user: "plan it and send it to the Worker"). **Changed** the same day by four design choices of the user, see "Changes after the first build"
 Date: 2026-11-26
 Source text: `docs/brief/christmas-nights-brief.md`
 Builds on: plan 002 Part 0 (the demo in `prototypes/home-hero/`, pull request #1)
@@ -21,6 +21,34 @@ What the user asked for:
 | "Add another animation, for example showing the text" | A simple text reveal when a section scrolls into view |
 
 This is still the stand-alone demo (plain HTML, CSS, JavaScript). It moves into the real Next.js project later (plan 003).
+
+## Changes after the first build (user decisions, 2026-11-26)
+
+The user looked at a comparison page in the Worker session and chose four changes. They are built (commit `a2b1f02`, pull request #1). Where this section and the text below disagree, **this section wins**.
+
+| # | Choice | What changed in this plan |
+|---|---|---|
+| 1 | **16 lights = 16 nights** in the About section | New. It was under "Not in this plan". See "The sixteen lights" below |
+| 2 | **One moment**: paragraphs and lists do not fade in any more | The second row of the text-animation table is cancelled. Headings still slide up, once |
+| 3 | **No ALL-CAPS text** | "by SuliFest", the place on the card and "Scroll for a surprise" are in normal letters |
+| 4 | **English is marked as the current language** in the header | The page is in English, so this is correct |
+
+### The sixteen lights
+
+| Part | Rule |
+|---|---|
+| Place | In About, after the three paragraphs and before the facts list |
+| What | One row of 16 small round lights on a thin line, one light per night (16–31 December). Lantern colour. The last light is bigger and Berry red: the New Year night |
+| Labels | "16 December" at the start, "31 December" and "New Year" at the end |
+| Movement | When the row comes into view, the lights turn on one by one (120 ms apart), once. They change colour and glow only; they do not move |
+| Without motion | With "reduce motion" on, or JavaScript off, all 16 lights are simply on |
+| For screen readers | The row is one picture with one description. The single lights and labels are hidden from screen readers |
+| In the demo | All 16 lights are on. The demo does not look at today's date. The real site can show which night it is (plan 003) |
+
+Two notes for later:
+
+- The description for screen readers and the labels are new short English texts. They are not in the brief. They need Kurdish and Arabic versions from a native speaker.
+- The lights change `background` and `box-shadow`, not only `transform` and `opacity` (rule 3 of the text animation). This is fine for 16 small dots that change once.
 
 ## The page, from top to bottom
 
@@ -79,7 +107,7 @@ One simple effect, used the same way in every section:
 | Element | Effect |
 |---|---|
 | Section heading | It slides up from behind an invisible line (the heading sits in a box with `overflow: hidden` and moves from 100% down to its place). 0.6 seconds |
-| Paragraphs, list items, facts | They fade in and rise 16 px, one after another, 80 ms apart. 0.5 seconds each |
+| ~~Paragraphs, list items, facts~~ | ~~They fade in and rise 16 px, one after another, 80 ms apart.~~ **Cancelled** on 2026-11-26 (choice 2): this text is simply there |
 
 Rules:
 
@@ -120,7 +148,8 @@ The audit of 2026-11-26 found no problem in the demo code. Keep it that way:
 - [ ] The animation is still the first thing on the page and moves exactly as before.
 - [ ] Under it: About first, then sections 2–8, with the brief's text word for word.
 - [ ] No placeholder like `[PLACE]` is left. "Book a booth" is gone.
-- [ ] The text reveal plays once per section, and looks the same in every section.
+- [ ] Each section heading slides up once. Paragraphs and lists do not move (changed by choice 2).
+- [ ] The 16 lights in About turn on one by one, once (added by choice 1).
 - [ ] With "reduce motion" on, and with JavaScript off, all text is visible and nothing moves.
 - [ ] Console: no errors and no CSP errors. Network: local requests only.
 - [ ] 375 px and desktop both look right; no sideways scrolling.
@@ -129,7 +158,7 @@ The audit of 2026-11-26 found no problem in the demo code. Keep it that way:
 
 ## Not in this plan
 
-- The string of sixteen lights (from the design direction in plan 003): the user has not said yes to it yet.
+- The sixteen lights that follow today's date (which night it is, how many days are left). The demo shows all 16 lights on. The date version comes with plan 003.
 - Kurdish and Arabic text, right-to-left layout.
 - Separate pages (About, Experience, …): the demo is one long page. They come with plan 003.
 - The six open polish points of the hero (left-over moon at the top of scene 2, the dark shape around the tree, and so on).
