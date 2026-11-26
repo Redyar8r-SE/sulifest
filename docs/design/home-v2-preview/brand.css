@@ -185,14 +185,24 @@ body { font-family: var(--font-text); background: var(--paper); }
 .btn-card { font-size: max(14px, calc(15 * var(--v))); }
 .s-card a:focus-visible { outline-color: var(--cream); }
 
-/* The ground is the paper. Its top edge is cut like the edge of a stamp. */
-.ground-fill { top: 12px; background: var(--paper); }
-.ground-top {
-  top: 0;
-  height: 13px;
-  border-radius: 0;
-  background: radial-gradient(circle at 11px 0, transparent 7px, var(--paper) 7.6px) 0 0 / 22px 13px repeat-x;
+/* Where the night meets the paper: three snow hills in the paper colour.
+   The far ones are thin (the night shows through), the front one is the paper itself,
+   so the page under the hero starts with no line. A warm glow rises above them. */
+.s-ground { height: calc(var(--ground-h) * 1.6); } /* in the hills drawing, y = 60 is the line the tree and the gifts stand on */
+.ground-glow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 30%;
+  height: 420%;
+  background: linear-gradient(to top, rgba(237, 221, 179, .22) 0%, rgba(217, 164, 65, .10) 30%, rgba(217, 164, 65, 0) 100%);
+  pointer-events: none;
 }
+.ground-hills { position: absolute; left: 0; bottom: -1px; width: 100%; height: 100%; }
+.hill { fill: var(--paper); }
+.hill-far { opacity: .16; }
+.hill-mid { opacity: .42; }
+.hill-edge { fill: none; stroke: var(--ivory); stroke-width: 2; opacity: .75; vector-effect: non-scaling-stroke; }
 
 @media (max-aspect-ratio: 1/1), (max-width: 700px) {
   .site-header { padding: 14px 18px; }

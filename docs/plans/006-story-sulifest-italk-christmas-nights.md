@@ -117,3 +117,24 @@ Do not add a visitor number for SuliFest. The public numbers are a forecast (500
 - Photos of SuliFest 2026 (none are in the project; ask italk).
 - Kurdish and Arabic text.
 - Separate "About SuliFest" and "About italk" pages (plan 003).
+
+## Addition (2026-11-27): the join between the night and the paper
+
+The user looked at the end of the hero and said the two background colours do not match: the dark night stops with a hard cut and the cream paper starts. The row of small half circles (the stamp edge) made the cut even harder.
+
+New rule for the bottom of scene 2 (built in the preview, see `screenshots/join-night-to-paper-*.jpg`):
+
+| Part | Rule |
+|---|---|
+| The stamp edge under the hero | Removed here. It stays on the two green sections |
+| Snow hills | One inline `<svg class="ground-hills">` inside `.s-ground` (view box `0 0 1440 160`, `preserveAspectRatio="none"`) with three hills, all in the Paper colour `#EDDDB3`: the far hill at 16% opacity, the middle hill at 42%, the front hill at 100%. So the colour steps from night to paper in three tones, and the page under the hero starts with no line |
+| White edge | A 2 px Ivory line on top of the front hill (75% opacity, `vector-effect: non-scaling-stroke`), like light on snow |
+| Height | `.s-ground` is `1.6 ×` the old ground height. In the drawing, y = 60 is the line the tree and the gifts stand on. The front hill stays between y = 44 and y = 62, so it always covers their bottom edge |
+| Warm glow | `.ground-glow`: a soft gradient that rises from the hills, from Paper at 22% to Bright gold at 10% to nothing. It warms the dark blue near the ground, so the night and the paper share a tone |
+| Movement | None of its own. The hills and the glow are inside `.s-ground`, which the GSAP timeline already moves |
+
+Security: inline SVG with classes only, no inline style, no new file. The CSP line does not change.
+
+Add to the done-when list:
+
+- [ ] At the end of the hero there is no hard line between the night and the paper, at 375 px, 768 px and 1440 px. The tree and the gifts stand on the front hill; their bottom edges are not visible.
