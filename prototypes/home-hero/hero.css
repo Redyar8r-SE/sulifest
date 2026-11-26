@@ -323,10 +323,8 @@ button:focus-visible {
   text-align: center;
 }
 .eyebrow {
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 500;
-  letter-spacing: .34em;
-  text-transform: uppercase;
   color: #D5DDEC;
 }
 .title {
@@ -355,10 +353,8 @@ button:focus-visible {
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
-  letter-spacing: .3em;
-  text-transform: uppercase;
   color: #C9D3E6;
   text-align: center;
 }
@@ -439,10 +435,8 @@ button:focus-visible {
   line-height: 1.1;
 }
 .card-place {
-  font-size: max(13px, calc(14 * var(--v)));
+  font-size: max(15px, calc(16 * var(--v)));
   font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
 }
 .card-place span { display: block; }
 .card-line { width: max(24px, calc(28 * var(--v))); height: 2px; background: var(--ink); }
@@ -508,7 +502,8 @@ button:focus-visible {
   .title { font-size: clamp(48px, 15vw, 72px); }
   .tagline { font-size: 15px; padding-inline: 20px; }
   .title-block { margin-top: max(8px, 2cqh); }
-  .eyebrow { font-size: 12px; letter-spacing: .28em; }
+  .eyebrow { font-size: 14px; }
+  .title-block { gap: 2px; }
   .hint { bottom: 80px; }
 
   .s2-box { inset: 0; width: auto; height: auto; margin: 0; }

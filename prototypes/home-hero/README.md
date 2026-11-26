@@ -26,7 +26,7 @@ Then open http://127.0.0.1:8765/ and scroll down and up.
 | `hero.css` | Layout, phone layout, intro, always-moving parts (stars, snow, clouds, sleigh, reindeer legs), reduced motion |
 | `boot.js` | Tiny script in `<head>`: sets classes on `<html>` before the first paint (so the layout does not jump) |
 | `page.css` | The sections under the hero: one text column, snow and midnight colours, lists, facts, footer, the text reveal look (plan 004) |
-| `reveal.js` | The text reveal: IntersectionObserver adds `.is-revealed` once per section (no GSAP) |
+| `reveal.js` | The one moment: IntersectionObserver slides each heading in once and turns on the 16 lights (no GSAP) |
 | `hero.js` | One GSAP timeline with ScrollTrigger (`scrub: 0.6`), `gsap.matchMedia()` for reduced motion |
 | `vendor/` | `gsap.min.js` + `ScrollTrigger.min.js` from npm `gsap@3.15.1` (hashes in `vendor/README.md`) |
 | `assets/*.webp` | Copies of the layers in `docs/design/hero-free-photos/layers/` (licences in `docs/design/hero-free-photos/SOURCES.md`) |
@@ -85,15 +85,20 @@ Add `markers: true` to the `scrollTrigger` object only while testing.
 The snow ground at the end of the hero has the same colour as the About section, so they join without a line.
 The skip link and both "About the festival" buttons go to `#about`.
 
-**Text reveal:** when a section comes into view (once only), its heading slides up from behind a line (0.6 s),
-then its paragraphs, list items and facts fade in and rise 16 px, 80 ms apart (0.5 s each).
-Only `transform` and `opacity`. Text is never split into letters. The text is hidden before the reveal
-only when `<html>` has the `motion` class and `reveal.js` has run (`reveal-on`).
+**One moment (design choice of 2026-11-26):** every section heading slides up from behind a line once (0.6 s)
+when its section comes into view. Paragraphs are not animated. In About, a row of **16 lights = 16 nights**
+(16–31 December; the last, bigger red light is the New Year night) turns on one by one when the row itself is
+in view. Only `transform`, `background` and `box-shadow` change; text is never split. Things are "off" before
+the moment only when `<html>` has the `motion` class and `reveal.js` has run (`reveal-on`). Without JavaScript,
+or with "reduce motion", every heading is in place and every light is on.
+
+Other design choices of 2026-11-26: no ALL-CAPS lines ("by SuliFest", the card place and the scroll hint are
+in normal letters, so the capital F of SuliFest stays), and "English" is marked as the current language.
 
 ## Without JavaScript, or with "reduce motion"
 
 No sticky stage, no scrub, no loops: scene 1 and scene 2 are two normal sections, one under the other,
-and scene 2 shows the final state (lights on). All section text is visible at once (no reveal).
+and scene 2 shows the final state (lights on). All section text is visible and all 16 lights are on.
 If the GSAP files do not load, the page falls back to the same two sections.
 
 ## No pause button (user decision, 2026-11-26)
