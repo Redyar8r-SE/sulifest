@@ -21,7 +21,7 @@ The **Worker** session builds a plan only after the user says yes to it.
 | # | Plan | Status |
 |---|---|---|
 | 001 | Project setup (weeks 0–1) | Not written yet |
-| 004 | [Home page under the animation, in the demo](004-home-page-under-hero-demo.md) | In progress, sent to the Worker on 2026-11-26 |
+| 004 | [Home page under the animation, in the demo](004-home-page-under-hero-demo.md) | Done on 2026-11-26 (built by the Worker, checked by the PM, in pull request #1, not merged) |
 | 003 | [Christmas Nights website, front end only](003-christmas-nights-frontend.md) | Draft |
 | 002 | [Home hero with scroll animation](002-home-hero-scroll-animation.md) | Part 0 (stand-alone demo): In progress, sent to the Worker on 2026-11-26. Parts 1–2: wait for 001 |
 

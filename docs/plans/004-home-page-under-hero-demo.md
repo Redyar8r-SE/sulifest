@@ -1,6 +1,6 @@
 # 004 — Home page under the animation (in the demo)
 
-Status: Approved by the user on 2026-11-26 ("plan it and send it to the Worker")
+Status: Approved by the user on 2026-11-26 ("plan it and send it to the Worker") — Done on 2026-11-26, checked by the PM
 Date: 2026-11-26
 Source text: `docs/brief/christmas-nights-brief.md`
 Builds on: plan 002 Part 0 (the demo in `prototypes/home-hero/`, pull request #1)
