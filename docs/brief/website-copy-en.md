@@ -5,6 +5,7 @@ This is the English text on the website (Home page demo, `prototypes/home-hero/i
 - Source: `docs/brief/christmas-nights-brief.md` (the organiser's brief). The brief is not changed.
 - Changes: 7 small edits for plain, shorter English, accepted by the site owner on 27 November 2026. The list is at the end.
 - Updated for plan 005 (brand design and map, 27 November 2026): the hero card is gone, and there are new short texts for the map, the "From SuliFest" section and the footer. They are marked **(new, plan 005)**.
+- Updated for plan 006 (27 November 2026): the About section is now a story in three steps (SuliFest, italk, Christmas Nights). The new text comes word for word from `docs/brief/sulifest-and-italk.md` and is marked **(new, plan 006, needs italk's approval)**.
 - Status: **the organiser (italk) still has to approve this text.**
 - Kurdish (ckb) and Arabic (ar) versions come only from a native speaker.
 
@@ -14,7 +15,7 @@ This is the English text on the website (Home page demo, `prototypes/home-hero/i
 - Small line under the title: by SuliFest
 - Title: Christmas Nights
 - Tagline: A Season of Lights, Joy & Celebration
-- Button: About the festival
+- (The "About the festival" button in the header was removed on 27 November 2026, at the site owner's request. The same button at the end of the scroll stays.)
 - Scroll hint: Scroll for a surprise
 - Skip link (only shown to keyboard users): Skip the animation
 
@@ -29,13 +30,45 @@ Since plan 005 there is no card here. "See you there!" and the card sentence wer
 
 ## Page sections
 
-### About Christmas Nights
+### About: the story in three steps **(new, plan 006, needs italk's approval)**
+
+For screen readers, the section is called: SuliFest, italk and Christmas Nights
+
+#### Step 1 — small label "The brand", heading "SuliFest"
+
+SuliFest takes its name from "Suli", the short, loving name people use for Sulaimani.
+
+The first SuliFest opened on 26 June 2026 at Hawary Shar Park: eight days of culture, music, food, family entertainment and local business in one place.
+
+It is a celebration of the city's energy and culture, made for locals and for visitors.
+
+Numbers: 8 days · 100+ activities · 200+ brands · 60 sponsors and partners
+
+On the stamp (decoration, hidden from screen readers): SuliFest · Sulaimani, since 2026
+
+#### Step 2 — small label "The organizer", heading "italk"
+
+italk is a youth-led, non-profit organization from Sulaimani, founded in 2019.
+
+It began with small gatherings in coffee shops. Today it runs conferences, seminars and workshops where people share knowledge and ideas.
+
+italk organizes SuliFest, and now Christmas Nights.
+
+Numbers: 2019 founded · Youth-led team · Non-profit organization
+
+On the stamp (decoration, hidden from screen readers): italk · Organizer, since 2019
+
+#### Step 3 — small label "The festival", heading "About Christmas Nights"
 
 Christmas Nights is a large-scale Christmas and New Year festival organized by italk under the SuliFest brand. Taking place from 16 to 31 December 2026 at Magma Square, the festival aims to transform Sulaimani into a vibrant festive destination filled with lights, entertainment, creativity, and celebration.
 
 Bringing together families, young people, children, businesses, artists, and visitors, Christmas Nights offers entertainment, culture, food, shopping, educational activities, and seasonal celebrations.
 
 It is a gathering that brings the community together throughout the holiday season.
+
+Numbers **(new, plan 006)**: 16 nights · 66 market places · 1 New Year fireworks show
+
+Then the 16 lights and these facts:
 
 - Dates: 16–31 December 2026
 - Location: Magma Square
@@ -165,6 +198,7 @@ Both events reflect a shared ambition: developing memorable experiences, support
 - Screen-reader text for the lights: "16 lights for 16 nights: 16 to 31 December 2026. The last light is the New Year celebration."
 - "Scroll for a surprise", "Skip the animation" and "About the festival" (buttons and links).
 - Plan 005: "Dates and place", "Where it began", "June 2026, 8 days", "Next", "Market places", "Zin Place", "Shirin Place", "Khaj Place", "7 places, 4 × 4 m", "21 places, 3 × 3 m", "38 places, 3 × 3 m", "Entrance", "two entrances", "Show the whole map", the map note, the map labels, and the map's title and description for screen readers.
+- Plan 006: the whole story text above (steps 1 and 2, the small labels, the numbers, the stamp text). No visitor number for SuliFest until italk gives the final one.
 - Please check one fact: "June 2026" for SuliFest. The brief only says "an eight-day summer festival".
 
 ## The 7 edits (brief → website)

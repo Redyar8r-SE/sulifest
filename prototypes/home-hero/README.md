@@ -1,4 +1,4 @@
-# Home page demo: hero animation (plan 002, Part 0) + the page under it (plans 004 and 005)
+# Home page demo: hero animation (plan 002, Part 0) + the page under it (plans 004, 005 and 006)
 
 A static page that shows the Sulifest home hero with **real scrolling**:
 scene 1 (night, moon, Santa's sleigh, mountains, snow) → scene 2 (the dates in the brand ring, tree whose lights turn on, gifts).
@@ -29,6 +29,7 @@ Then open http://127.0.0.1:8765/ and scroll down and up. Stop the server when yo
 | `boot.js` | Tiny script in `<head>`: sets classes on `<html>` before the first paint (so the layout does not jump) |
 | `hero.js` | One GSAP timeline with ScrollTrigger (`scrub: 0.6`), `gsap.matchMedia()` for reduced motion |
 | `reveal.js` | The one moment: IntersectionObserver slides each heading in once and turns on the 16 lights (no GSAP) |
+| `story.js` | The About story (plan 006): IntersectionObserver marks each step once; the numbers count up with `requestAnimationFrame` (no GSAP) |
 | `map.js` | The map list: a button highlights one part of the map (`data-focus` on `#map`, CSS does the rest) |
 | `vendor/` | `gsap.min.js` + `ScrollTrigger.min.js` from npm `gsap@3.15.1` (hashes in `vendor/README.md`) |
 | `assets/*.webp` | The hero layers, from `docs/design/hero-free-photos/layers/` (licences in `docs/design/hero-free-photos/SOURCES.md`). Clouds made smaller (760 px), all re-saved at quality 72 |
@@ -58,8 +59,10 @@ Then open http://127.0.0.1:8765/ and scroll down and up. Stop the server when yo
   is left at the top of scene 2.
 - The tree in scene 2 is two copies of the same photo: a dark copy (CSS filter, never animated)
   and a bright copy on top whose opacity goes 0 → 1 at the end = lights on. A CSS mask fades the sides of the photo.
-- The ground at the end of scene 2 is the brand paper, with the edge of a stamp on top (CSS gradient, no picture),
-  so it joins the About section without a line.
+- The end of scene 2 is three snow hills in the paper colour (16%, 42% and 100%), with a thin Ivory line on the
+  front hill and a warm glow above them (one inline SVG, plan 006). So the night fades into the paper with no hard line,
+  and the front hill covers the bottom edges of the tree and the gifts. The header has no button (removed at the
+  site owner's request); the "About the festival" button at the end of the scroll stays.
 
 ### Scroll timeline (progress of the scroll inside the hero)
 
@@ -72,7 +75,7 @@ Then open http://127.0.0.1:8765/ and scroll down and up. Stop the server when yo
 | Dates in the ring (`.s-card`) | 0.60 – 0.90 | from below the screen to its place |
 | Tree | 0.70 – 0.90 | from below, faster than the dates |
 | Gift boxes | 0.80 – 0.92 | from below |
-| Paper ground | 0.85 – 0.97 | rises from the bottom edge |
+| Snow hills + warm glow | 0.85 – 0.97 | rise from the bottom edge |
 | Tree lights | 0.92 – 1.00 | on |
 | (hold) | 1.00 – 1.08 | nothing moves, so the lit tree is seen before the page moves on |
 
@@ -86,7 +89,7 @@ Colours and fonts come from the organiser's vendor guide (`docs/design/brand/REA
 
 | # | Section | Background | Layout |
 |---|---|---|---|
-| 1 | About Christmas Nights (`#about`) | Paper `#EDDDB3` | Text + tree stamp, then the 16 lights and four facts |
+| 1 | About (`#about`): the story SuliFest → italk → Christmas Nights | Paper `#EDDDB3` | Three steps (text + stamp) on a green wire, then the 16 lights and four facts |
 | 2 | The festival experience | Paper | Heading + gifts stamp, the four experiences in 2 × 2 |
 | 3 | Family & children's experiences | Paper | Carousel stamp + text and list |
 | 4 | Youth, creativity & learning | Paper | Text + the list in a light panel |
@@ -104,6 +107,27 @@ when its section comes into view. Paragraphs are not animated. In About, a row o
 (16–31 December; the last, bigger red light is the New Year night) turns on one by one when the row itself is
 in view. Things are "off" before the moment only when `<html>` has the `motion` class and `reveal.js` has run
 (`reveal-on`). Without JavaScript, or with "reduce motion", every heading is in place and every light is on.
+
+### The About story (plan 006)
+
+The About section tells three things, in this order: **SuliFest** (the brand), **italk** (the organizer),
+**About Christmas Nights** (the festival). The text is in `docs/brief/website-copy-en.md`, waiting for italk's approval.
+
+- A thin green wire runs down the start side, with a red diamond at each step. After step 3 it goes down into the
+  row of 16 lights and ends in the middle of the row (padding + half the tallest light), so the join holds at every width.
+- Each step is text + a stamp. Steps 1 and 2 have a stamp made in CSS: a cream card with a cut edge (`mask`, two layers,
+  `round`), a thin inner line and a red postmark. Without mask support it is a plain card. Step 3 uses the tree stamp picture.
+  The stamps are decoration (`aria-hidden`); the three step headings are `<h2>`.
+- Under each text: short facts with a big green number (`tabular-nums`, so the row does not jump while counting).
+- **Once per step**, when its top passes 72% of the screen: the wire grows (1.2 s), the diamond turns red with a small pop,
+  the heading slides up, the stamp drops and lands (0.7 s, after 0.3 s), the postmark is pressed (after 0.95 s),
+  the numbers count up (0.9 s; 2019 only runs through its last 25 numbers). The last piece of wire grows into the lights
+  when they turn on. Scrolling back up does not replay it.
+- Hidden before its moment only with `motion` **and** `story-on` on `<html>`. Without JavaScript, with "reduce motion",
+  or without IntersectionObserver, the whole story is there with the final numbers (they are in the HTML).
+- The story section has `overflow-x: clip`: a stamp is bigger and turned before it lands, and this stops the page
+  from scrolling sideways on phones.
+- No visitor number for SuliFest (only a forecast and a four-day count are public). No person's name. No outside links.
 
 ### The map (plan 005)
 
@@ -138,7 +162,8 @@ more than 5 seconds. The whip is one more thing that moves. The PM should decide
 - Content-Security-Policy in a `<meta>` tag: `default-src 'self'` (plus stricter `script-src`, `style-src`,
   `img-src`, `font-src`, `connect-src 'none'`, `object-src 'none'`, `base-uri 'none'`, `form-action 'none'`).
 - No CDN and no outside requests: every file comes from this folder. No embedded map from another site.
-- No `eval`, no `innerHTML`, no inline event handlers. `map.js` reads nothing from the URL, cookies or storage.
+- No `eval`, no `innerHTML`, no inline event handlers. `map.js` and `story.js` read nothing from the URL, cookies or storage;
+  `story.js` writes the numbers with `textContent` only.
   All links are `#` anchors inside the page. No forms.
 - The organiser's vendor PDFs are not in the repository (they hold prices and commercial terms).
 - No files from `docs/plans/refs/` or from the template site.

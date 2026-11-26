@@ -356,7 +356,6 @@ button:focus-visible {
   white-space: nowrap;
 }
 .btn:hover { background: var(--red-text); color: var(--ivory); }
-.btn-head { height: 44px; padding: 0 22px; font-size: 14px; }
 
 .title-block {
   display: flex;
@@ -536,18 +535,27 @@ button:focus-visible {
   left: 0;
   right: 0;
   bottom: 0;
-  height: var(--ground-h);
+  height: calc(var(--ground-h) * 1.6); /* in the hills drawing, y = 60 is the line the tree and the gifts stand on */
 }
-/* The ground is the paper. Its top edge is cut like the edge of a stamp (no picture). */
-.ground-fill { position: absolute; left: 0; right: 0; bottom: 0; top: 12px; background: var(--paper); }
-.ground-top {
+/* Where the night meets the paper (plan 006): three snow hills in the paper colour.
+   The far ones are thin, so the night shows through; the front one is the paper itself,
+   so the page under the hero starts with no line. In the drawing (view box 0 0 1440 160)
+   the front hill stays between y 44 and 62: it covers the bottom edges of the tree and the gifts.
+   A warm glow rises above the hills, so the night and the paper share a tone. */
+.ground-glow {
   position: absolute;
   left: 0;
   right: 0;
-  top: 0;
-  height: 13px;
-  background: radial-gradient(circle at 11px 0, transparent 7px, var(--paper) 7.6px) 0 0 / 22px 13px repeat-x;
+  bottom: 30%;
+  height: 420%;
+  background: linear-gradient(to top, rgba(237, 221, 179, .22) 0%, rgba(217, 164, 65, .1) 30%, rgba(217, 164, 65, 0) 100%);
+  pointer-events: none;
 }
+.ground-hills { position: absolute; left: 0; bottom: -1px; width: 100%; height: 100%; }
+.hill { fill: var(--paper); }
+.hill-far { opacity: .16; }
+.hill-mid { opacity: .42; }
+.hill-edge { fill: none; stroke: var(--ivory); stroke-width: 2; opacity: .75; vector-effect: non-scaling-stroke; }
 
 /* =====================================================================
    Phone and tall screens (portrait)
@@ -558,19 +566,12 @@ button:focus-visible {
     gap: 10px 16px;
     padding: 14px 18px;
   }
-  .langs {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    margin-inline-start: 0;
-    gap: 22px;
-  }
+  .langs { gap: 18px; font-size: 16px; }
   .logo img { width: 40px; }
   .logo-name { font-size: 15px; }
   .logo-by { font-size: 9px; }
   .title-block { gap: 6px; }
   .eyebrow { text-shadow: 0 0 6px rgba(6, 9, 20, .95), 0 1px 14px rgba(6, 9, 20, .8); }
-  .btn-head { margin-inline-start: auto; height: 44px; padding: 0 14px; font-size: 13px; }
   .title-block { margin-top: max(8px, 2cqh); }
   .title { font-size: clamp(40px, 12.4vw, 64px); }
   .title span { display: block; } /* "Christmas" / "Nights" */
@@ -607,9 +608,9 @@ button:focus-visible {
   }
 }
 
-/* Narrow phones: the ring alone is the logo, so the logo and the button fit on one row.
+/* Narrow phones: the ring alone is the logo, so the logo and the language links fit on one row.
    The name stays in the link for screen readers, and the big title says it right below. */
-@media (max-width: 420px) {
+@media (max-width: 460px) {
   .logo-text {
     position: absolute;
     width: 1px;

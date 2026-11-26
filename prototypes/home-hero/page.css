@@ -166,6 +166,160 @@ body { background: var(--paper); }
 }
 .fact dd { margin: 2px 0 0; font-size: 21px; }
 
+/* =====================================================================
+   The story in three steps (About, plan 006): SuliFest, italk, Christmas Nights
+   A thin green wire runs down the start side, with a red diamond at each step,
+   and goes on down into the row of 16 lights. Each step is text + a stamp.
+   Logical properties only, so the wire moves to the right side in RTL.
+   ===================================================================== */
+.section-paper .kicker { color: var(--red-text); }
+.story { overflow-x: clip; } /* a stamp is bigger and turned before it lands: no sideways scroll */
+.story-wrap { position: relative; }
+
+.step {
+  --wire-x: 11px;  /* the wire's start-side position; the diamond is centred on it */
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: 72px;
+  align-items: center;
+  padding-inline-start: 64px;
+  padding-bottom: 104px;
+}
+.step-rev { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); }
+.step-rev .step-art { order: -1; } /* stamp first; flips by itself in RTL */
+.step-text > :last-child { margin-bottom: 0; }
+
+.step::before { /* the wire: from this diamond down to the next one */
+  content: "";
+  position: absolute;
+  inset-inline-start: var(--wire-x);
+  top: 14px;
+  bottom: -14px;
+  width: 1.5px;
+  background: var(--green);
+  opacity: .7;
+  transform-origin: 50% 0;
+}
+.step-last::before { bottom: 0; } /* the row of lights takes it from here */
+.step-mark {
+  position: absolute;
+  z-index: 1;
+  inset-inline-start: calc(var(--wire-x) - 6.25px); /* 14 px diamond centred on the 1.5 px wire */
+  top: 7px;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--red);
+  background: var(--red);
+  transform: rotate(45deg);
+}
+
+/* Short facts under each step: a big green number and a small label */
+.stats { display: flex; flex-wrap: wrap; gap: 16px 36px; margin-top: 28px; }
+.page-section .stat {
+  margin: 0;
+  padding-inline-start: 14px;
+  border-inline-start: 1.5px solid var(--red);
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--ink-soft);
+}
+.stat strong {
+  display: block;
+  font-family: var(--font-caps);
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1.15;
+  color: var(--green);
+  font-variant-numeric: tabular-nums; /* the row does not jump while counting */
+}
+
+/* The stamp of a step. Steps 1 and 2 have no stamp picture, so it is made in CSS:
+   a cream card with the cut edge (mask), a thin inner line and a red postmark. */
+.stamp-drop {
+  position: relative;
+  max-width: 310px;
+  margin-inline: auto;
+  filter: drop-shadow(0 10px 14px rgba(58, 42, 27, .28));
+}
+.stamp-drop .stamp { filter: none; } /* one shadow is enough */
+.paper-stamp {
+  --r: 7px; /* half of one cut in the edge */
+  position: relative;
+  padding: 38px 28px 32px;
+  background: #F3E6C4;
+  text-align: center;
+  /* a full card minus the edge, plus a row of holes along the edge. Without mask support: a plain card */
+  -webkit-mask:
+    linear-gradient(#000 0 0) center / calc(100% - 2 * var(--r)) calc(100% - 2 * var(--r)) no-repeat,
+    radial-gradient(circle, transparent 0 4px, #000 4.6px) calc(-1 * var(--r)) calc(-1 * var(--r)) / calc(2 * var(--r)) calc(2 * var(--r)) round;
+  mask:
+    linear-gradient(#000 0 0) center / calc(100% - 2 * var(--r)) calc(100% - 2 * var(--r)) no-repeat,
+    radial-gradient(circle, transparent 0 4px, #000 4.6px) calc(-1 * var(--r)) calc(-1 * var(--r)) / calc(2 * var(--r)) calc(2 * var(--r)) round;
+}
+.paper-stamp::before { /* thin inner line */
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid var(--tan);
+  pointer-events: none;
+}
+.paper-stamp img { width: 76%; height: auto; margin-inline: auto; }
+.paper-stamp-italk { padding-block: 54px 44px; }
+.paper-stamp-italk img { width: 44%; }
+.page-section .ps-name {
+  margin: 14px 0 0;
+  font-family: var(--font-word);
+  font-weight: 900;
+  font-size: 34px;
+  line-height: 1.15;
+  color: var(--green);
+}
+.page-section .ps-italk { font-family: var(--font-text); font-weight: 600; font-size: 56px; line-height: 1; color: #3B1A16; }
+.page-section .ps-line {
+  margin: 8px 0 0;
+  font-family: var(--font-caps);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .2em;
+  color: var(--red-text);
+}
+.postmark {
+  position: absolute;
+  inset-inline-start: -20px;
+  top: -16px;
+  width: 86px;
+  height: 86px;
+  border: 1.5px solid rgba(190, 52, 40, .8);
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 0 31px, rgba(190, 52, 40, .7) 31px 32.5px, transparent 32.5px);
+}
+.postmark::after { /* the wavy cancel lines, here straight */
+  content: "";
+  position: absolute;
+  inset-inline-end: 78%;
+  top: 34%;
+  width: 60px;
+  height: 27px;
+  background: repeating-linear-gradient(to bottom, rgba(190, 52, 40, .7) 0 1.5px, transparent 1.5px 6.4px);
+}
+
+/* The wire goes on, down into the row of 16 lights. It ends in the middle of the row
+   (padding-top + half the tallest light), so the join holds at every width. */
+.story-end { --wire-x: 11px; }
+.story-end .nights { position: relative; margin-top: 0; padding-top: 44px; }
+.story-end .nights::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: var(--wire-x);
+  top: 0;
+  height: calc(44px + 13px); /* the last light is 26 px tall */
+  width: 1.5px;
+  background: var(--green);
+  opacity: .7;
+  transform-origin: 50% 0;
+}
+
 /* ---------- 16 lights = 16 nights (About) ---------- */
 .nights { margin: 56px 0 0; }
 .lights {
@@ -448,6 +602,14 @@ body { background: var(--paper); }
   .split, .split-rev, .split-items, .map { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .split-rev .split-art { order: 2; }
   .facts { grid-template-columns: 1fr 1fr; }
+  /* the story: one column, text first, stamp under it */
+  .step, .step-rev { --wire-x: 6px; grid-template-columns: minmax(0, 1fr); gap: 36px; padding-inline-start: 34px; padding-bottom: 72px; }
+  .step-rev .step-art { order: 0; }
+  .story-end { --wire-x: 6px; }
+  .stamp-drop { max-width: 230px; }
+  .page-section .ps-name { font-size: 26px; }
+  .page-section .ps-italk { font-size: 42px; }
+  .stat strong { font-size: 26px; }
 }
 @media (max-width: 700px) {
   .page-section { padding-block: 60px; font-size: 19px; }
@@ -463,6 +625,7 @@ body { background: var(--paper); }
   .stamp-small { max-width: 180px; }
   .bulb { width: 10px; height: 10px; }
   .bulb-last { width: 18px; height: 18px; }
+  .story-end .nights::before { height: calc(44px + 9px); } /* the last light is 18 px here */
   .motto { font-size: 22px; }
   .panel { padding: 22px 20px; }
   .footer-line { flex-direction: column; gap: 8px; letter-spacing: .14em; }
@@ -478,6 +641,7 @@ body { background: var(--paper); }
    - The 16 lights in About turn on one by one, once.
    Everything is visible by default; it is only "off" before the moment
    in motion mode (html.motion) after reveal.js has run.
+   (The story steps in About have their own moment, below.)
    ===================================================================== */
 .reveal-heading { overflow: hidden; padding-bottom: .08em; }
 .reveal-line { display: block; }
@@ -505,7 +669,42 @@ body { background: var(--paper); }
   box-shadow: 0 0 16px 5px rgba(190, 52, 40, .45);
 }
 
+/* The story: once per step, when story.js adds .is-seen (order as in plan 006) */
+.motion.story-on .step::before {
+  transform: scaleY(0);
+  transition: transform 1.2s cubic-bezier(.3, .7, .2, 1) .15s;
+}
+.motion.story-on .step.is-seen::before { transform: none; }
+.motion.story-on .step-mark {
+  background: var(--paper);
+  border-color: var(--green);
+  transform: rotate(45deg) scale(.6);
+  transition: background .3s ease, border-color .3s ease, transform .5s cubic-bezier(.2, 1.6, .3, 1);
+}
+.motion.story-on .is-seen .step-mark { background: var(--red); border-color: var(--red); transform: rotate(45deg); }
+/* the section is tall: its headings wait for their own step, not for the section */
+.motion.reveal-on.story-on .step:not(.is-seen) .reveal-line { transform: translateY(100%); }
+.motion.story-on .stamp-drop {
+  opacity: 0;
+  transform: translateY(-38px) rotate(-12deg) scale(1.16);
+  transition: opacity .3s ease .3s, transform .7s cubic-bezier(.2, 1.35, .3, 1) .3s;
+}
+.motion.story-on .is-seen .stamp-drop { opacity: 1; transform: none; }
+.motion.story-on .postmark {
+  opacity: 0;
+  transform: scale(1.5) rotate(-25deg);
+  transition: opacity .15s ease .95s, transform .35s cubic-bezier(.2, 1.5, .3, 1) .95s;
+}
+.motion.story-on .is-seen .postmark { opacity: 1; transform: none; }
+.motion.story-on .stats { opacity: 0; transition: opacity .5s ease .45s; }
+.motion.story-on .is-seen .stats { opacity: 1; }
+/* the last piece of wire grows into the lights when they turn on */
+.motion.story-on .story-end .nights::before { transform: scaleY(0); transition: transform .5s ease-out; }
+.motion.story-on .story-end .nights.is-lit::before { transform: none; }
+
 @media (prefers-reduced-motion: reduce) {
   .reveal-line { transform: none !important; transition: none !important; }
+  .step::before, .story-end .nights::before, .stamp-drop, .postmark, .stats { opacity: 1; transform: none !important; transition: none !important; }
+  .step-mark { background: var(--red) !important; border-color: var(--red) !important; transform: rotate(45deg) !important; transition: none !important; }
   .bulb, .m { transition: none !important; }
 }
