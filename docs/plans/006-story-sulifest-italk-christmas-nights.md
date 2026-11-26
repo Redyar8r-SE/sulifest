@@ -138,3 +138,43 @@ Security: inline SVG with classes only, no inline style, no new file. The CSP li
 Add to the done-when list:
 
 - [ ] At the end of the hero there is no hard line between the night and the paper, at 375 px, 768 px and 1440 px. The tree and the gifts stand on the front hill; their bottom edges are not visible.
+
+## Result (2026-11-27)
+
+Built by the Worker in commit `d5f7cdb` (pull request #1, not merged) and checked by the PM in Chrome: CSP line unchanged, no outside requests, story text the same as the copy file, numbers end on the right values, no sideways scrolling, map still works.
+
+Changed by the user during the build: the red "About the festival" button in the **header** is removed (the user told the Worker "delete this about for me"). The same button at the end of scene 2 stays. Plans 004 and 005 still describe the header button; this note replaces them on that point.
+
+## Addition 2 (2026-11-27): two repeats found by the Worker
+
+| Repeat | Decision by the PM |
+|---|---|
+| The big ring is at the end of the hero, and one short scroll later the step 1 stamp shows the same ring | The step 1 stamp becomes a stamp made of letters only. No ring |
+| Step 1, the last section's second paragraph, and the "SuliFest" box all say "eight days, summer, Hawary Shar Park" | Cut the first half of that paragraph in the last section. Step 1 and the box stay |
+
+### The step 1 stamp (letters only)
+
+Inside the same CSS stamp card, top to bottom, centred:
+
+| Line | Style |
+|---|---|
+| "Suli" | Cinzel Decorative Black, about 76 px (56 px on phones), Green |
+| "Fest" | Cinzel Bold, about 20 px, letter spacing 0.5em, small-text red `#A32B20` |
+| A thin Tan line, 40 px wide | |
+| "Sulaimani, since 2026" | As now |
+
+This shows the point of the text next to it: the name comes from "Suli". Remove the ring picture from this stamp (and its `srcset` files if nothing else uses them).
+
+### The last section's text
+
+In "From SuliFest to Christmas Nights", the second paragraph changes from
+
+> Following SuliFest 2026, an eight-day summer festival held at Hawary Shar Park, Christmas Nights continues the same vision of bringing people together through large-scale cultural, entertainment, and community experiences.
+
+to
+
+> Christmas Nights continues the same vision of bringing people together through large-scale cultural, entertainment, and community experiences.
+
+Join it with the first sentence in one paragraph. It is a cut only, with no new words. Record it in `website-copy-en.md` as edit 8, waiting for italk's approval like the others. The statue stamp and the two boxes stay.
+
+Done when: the ring is seen once in the scroll from scene 2 to step 1 (plus the small logo in the header); the facts "eight days" and "Hawary Shar Park" are each said once in sentences (step 1) and once in the box; contrast and no-sideways-scroll checks still pass.

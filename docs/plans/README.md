@@ -21,7 +21,7 @@ The **Worker** session builds a plan only after the user says yes to it.
 | # | Plan | Status |
 |---|---|---|
 | 001 | Project setup (weeks 0–1) | Not written yet |
-| 006 | [The story in three steps: SuliFest, italk, Christmas Nights](006-story-sulifest-italk-christmas-nights.md) | In progress, sent to the Worker on 2026-11-27 |
+| 006 | [The story in three steps: SuliFest, italk, Christmas Nights](006-story-sulifest-italk-christmas-nights.md) | Built on 2026-11-27 (pull request #1, not merged), checked by the PM. One small follow-up ("Addition 2") is with the Worker |
 | 005 | [Brand design, the map, no box, Santa's reins](005-brand-design-and-map.md) | Done on 2026-11-27 (built by the Worker, in pull request #1, not merged) |
 | 004 | [Home page under the animation, in the demo](004-home-page-under-hero-demo.md) | Done on 2026-11-26 (built by the Worker, checked by the PM, in pull request #1, not merged). Changed the same day by four design choices of the user (16 lights, headings-only movement, no ALL-CAPS, language mark) |
 | 003 | [Christmas Nights website, front end only](003-christmas-nights-frontend.md) | Draft |
