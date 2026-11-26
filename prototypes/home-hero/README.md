@@ -5,7 +5,7 @@ scene 1 (night, moon, Santa's sleigh, mountains, snow) → scene 2 (the dates in
 Plain HTML + CSS + JavaScript. No framework, no build step, no backend.
 Under the hero: the Home page sections of "Christmas Nights by SuliFest" in the organiser's brand (plan 005),
 with the Magma Square map. The text is in `docs/brief/website-copy-en.md` (the brief
-`docs/brief/christmas-nights-brief.md` with 7 small edits and some new short texts; the organiser still has to approve them).
+`docs/brief/christmas-nights-brief.md` with 8 small edits and some new short texts; the organiser still has to approve them).
 It is a prototype. **Do not deploy it.**
 
 ## How to open it
@@ -115,7 +115,7 @@ The About section tells three things, in this order: **SuliFest** (the brand), *
 
 - A thin green wire runs down the start side, with a red diamond at each step. After step 3 it goes down into the
   row of 16 lights and ends in the middle of the row (padding + half the tallest light), so the join holds at every width.
-- Each step is text + a stamp. Steps 1 and 2 have a stamp made in CSS: a cream card with a cut edge (`mask`, two layers,
+- Each step is text + a stamp. Step 1's stamp is letters only ("Suli" / "Fest"), so the ring is not shown twice. Steps 1 and 2 have a stamp made in CSS: a cream card with a cut edge (`mask`, two layers,
   `round`), a thin inner line and a red postmark. Without mask support it is a plain card. Step 3 uses the tree stamp picture.
   The stamps are decoration (`aria-hidden`); the three step headings are `<h2>`.
 - Under each text: short facts with a big green number (`tabular-nums`, so the row does not jump while counting).

@@ -3,7 +3,7 @@
 This is the English text on the website (Home page demo, `prototypes/home-hero/index.html`).
 
 - Source: `docs/brief/christmas-nights-brief.md` (the organiser's brief). The brief is not changed.
-- Changes: 7 small edits for plain, shorter English, accepted by the site owner on 27 November 2026. The list is at the end.
+- Changes: 7 small edits for plain, shorter English, accepted by the site owner on 27 November 2026, and edit 8 (plan 006, a cut that removes a repeat). The list is at the end.
 - Updated for plan 005 (brand design and map, 27 November 2026): the hero card is gone, and there are new short texts for the map, the "From SuliFest" section and the footer. They are marked **(new, plan 005)**.
 - Updated for plan 006 (27 November 2026): the About section is now a story in three steps (SuliFest, italk, Christmas Nights). The new text comes word for word from `docs/brief/sulifest-and-italk.md` and is marked **(new, plan 006, needs italk's approval)**.
 - Status: **the organiser (italk) still has to approve this text.**
@@ -44,7 +44,7 @@ It is a celebration of the city's energy and culture, made for locals and for vi
 
 Numbers: 8 days · 100+ activities · 200+ brands · 60 sponsors and partners
 
-On the stamp (decoration, hidden from screen readers): SuliFest · Sulaimani, since 2026
+On the stamp (decoration, hidden from screen readers): Suli / Fest · Sulaimani, since 2026
 
 #### Step 2 — small label "The organizer", heading "italk"
 
@@ -170,9 +170,7 @@ Small label above the heading: Where it began **(new, plan 005)**
 
 One Vision. Different Seasons. Endless Experiences.
 
-Christmas Nights represents the next chapter of the SuliFest journey.
-
-Following SuliFest 2026, an eight-day summer festival held at Hawary Shar Park, Christmas Nights continues the same vision of bringing people together through large-scale cultural, entertainment, and community experiences.
+Christmas Nights represents the next chapter of the SuliFest journey. Christmas Nights continues the same vision of bringing people together through large-scale cultural, entertainment, and community experiences.
 
 While SuliFest celebrates the energy of summer, Christmas Nights brings that spirit into the festive season, creating a new destination for celebration in Sulaimani.
 
@@ -201,7 +199,7 @@ Both events reflect a shared ambition: developing memorable experiences, support
 - Plan 006: the whole story text above (steps 1 and 2, the small labels, the numbers, the stamp text). No visitor number for SuliFest until italk gives the final one.
 - Please check one fact: "June 2026" for SuliFest. The brief only says "an eight-day summer festival".
 
-## The 7 edits (brief → website)
+## The edits (brief → website)
 
 | # | Section | Brief | Website |
 |---|---|---|---|
@@ -212,3 +210,4 @@ Both events reflect a shared ambition: developing memorable experiences, support
 | 5 | Youth, last ¶ | "These experiences will add an educational and developmental dimension to the festival while giving young people opportunities to connect, express themselves, and discover new interests." | "These activities will give young people the chance to learn, connect, express themselves, and discover new interests." |
 | 6 | New Year, last ¶ | "Designed to be one of the memorable moments of the festival, the celebration will mark the conclusion of two weeks of activities and festive experiences." | "The celebration will close two weeks of activities." |
 | 7 | Venue, last ¶ | "The venue layout is designed to accommodate different activities and provide visitors with an enjoyable festival environment." | (removed) |
+| 8 | From SuliFest, ¶1 and ¶2 (plan 006, waiting for italk) | "Christmas Nights represents the next chapter of the SuliFest journey." / "Following SuliFest 2026, an eight-day summer festival held at Hawary Shar Park, Christmas Nights continues the same vision of bringing people together through large-scale cultural, entertainment, and community experiences." | One paragraph: "Christmas Nights represents the next chapter of the SuliFest journey. Christmas Nights continues the same vision of bringing people together through large-scale cultural, entertainment, and community experiences." (a cut only: the facts are already in step 1 and in the SuliFest box) |

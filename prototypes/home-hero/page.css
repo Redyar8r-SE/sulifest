@@ -275,6 +275,26 @@ body { background: var(--paper); }
   line-height: 1.15;
   color: var(--green);
 }
+/* Step 1: a stamp of letters only (the name comes from "Suli"), so the ring is not shown twice */
+.paper-stamp-suli { padding-block: 52px 44px; }
+.page-section .ps-suli {
+  margin: 0;
+  font-family: var(--font-word);
+  font-weight: 900;
+  font-size: 76px;
+  line-height: 1;
+  color: var(--green);
+}
+.page-section .ps-fest {
+  margin: 6px 0 0;
+  font-family: var(--font-caps);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: .5em;
+  margin-inline-end: -.5em; /* keeps the spaced word centred */
+  color: var(--red-text);
+}
+.ps-rule { display: block; width: 40px; height: 1px; margin: 18px auto 0; background: var(--tan); }
 .page-section .ps-italk { font-family: var(--font-text); font-weight: 600; font-size: 56px; line-height: 1; color: #3B1A16; }
 .page-section .ps-line {
   margin: 8px 0 0;
@@ -609,6 +629,7 @@ body { background: var(--paper); }
   .stamp-drop { max-width: 230px; }
   .page-section .ps-name { font-size: 26px; }
   .page-section .ps-italk { font-size: 42px; }
+  .page-section .ps-suli { font-size: 56px; }
   .stat strong { font-size: 26px; }
 }
 @media (max-width: 700px) {
