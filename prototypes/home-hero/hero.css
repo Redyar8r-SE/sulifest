@@ -1,0 +1,615 @@
+/* =====================================================================
+   Sulifest home hero – stand-alone demo (plan 002, Part 0)
+
+   Numbers like calc(540 * var(--u)) are the positions of the moving
+   preview (docs/design/hero-preview/preview-source.html, a 1280 x 720
+   stage). They are scaled to the real screen:
+     --u  "cover" unit: the night picture always fills the screen
+     --v  "contain" unit: scene 2 and the texts always fit on the screen
+   Both use container units of .scene1 / .scene2 (container-type: size).
+
+   Layouts:
+     default (no JavaScript, or "reduce motion"): two normal sections
+     html.motion (set by boot.js): 300svh wrapper + sticky stage,
+                                   GSAP moves the layers (hero.js)
+   ===================================================================== */
+
+/* ---------- Fonts: our own files only (OFL, see assets/fonts) ---------- */
+@font-face {
+  font-family: "Great Vibes";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/great-vibes-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/vazirmatn-arabic-500-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+200C-200F, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+:root {
+  --accent: #F2B84B;
+  --night: #05070F;
+  --ink: #141413;
+  --u: max(calc(100cqw / 1280), calc(100cqh / 720));
+  --v: min(calc(100cqw / 1280), calc(100cqh / 720));
+  --font-ui: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-script: "Great Vibes", "Segoe Script", "Brush Script MT", cursive;
+  --font-display: "Space Grotesk", var(--font-ui);
+  --font-arabic: Vazirmatn, "Noto Sans Arabic", Tahoma, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html { background: var(--night); }
+body {
+  margin: 0;
+  background: var(--night);
+  color: #FFFFFF;
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; }
+p { margin: 0; }
+
+a { color: #E6ECF7; }
+a:hover { color: #FFFFFF; }
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -80px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus { top: 12px; color: var(--ink); }
+
+/* =====================================================================
+   Wrapper, stage and the two scenes
+   ===================================================================== */
+.hero { position: relative; }
+.stage { position: relative; }
+
+.scene1,
+.scene2 {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+  container-type: size;
+}
+.scene1 { background: linear-gradient(180deg, #060914 0%, #0E1830 50%, #20355A 100%); }
+.scene2 { background: var(--night); }
+
+/* Scroll mode (motion allowed + JavaScript) */
+.motion .hero { height: 300vh; height: 300svh; }
+.motion .stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+.motion .scene1,
+.motion .scene2 {
+  position: absolute;
+  inset: 0;
+  height: auto;
+  min-height: 0;
+}
+.motion .scene2 { background: transparent; pointer-events: none; }
+.motion .scene2 .s-card { pointer-events: auto; }
+/* Scene 2 waits until GSAP has put its parts below the screen. */
+.motion .hero:not(.is-ready) .scene2 { visibility: hidden; }
+
+/* Only the layers that GSAP really moves */
+.motion .l-stars, .motion .l-cloudfar, .motion .l-moon, .motion .l-cloudnear,
+.motion .l-mount, .motion .l-front, .motion .l-top,
+.motion .s-mist, .motion .s-card, .motion .s-tent, .motion .s-boxes, .motion .s-ground {
+  will-change: transform;
+}
+
+/* =====================================================================
+   Scene 1 – the night picture (all in preview pixels x --u)
+   ===================================================================== */
+.art {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(1280 * var(--u));
+  height: calc(720 * var(--u));
+  margin-left: calc(-640 * var(--u));
+  margin-top: calc(-360 * var(--u));
+  pointer-events: none;
+}
+.art img { position: absolute; max-width: none; height: auto; }
+
+.l-stars, .l-cloudfar, .l-moon, .l-cloudnear, .fill {
+  position: absolute;
+  inset: 0;
+}
+.stars { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.cloud-far   { left: calc(760 * var(--u));  top: calc(-70 * var(--u)); width: calc(640 * var(--u)); opacity: .8; }
+.cloud-near-a{ left: calc(-120 * var(--u)); top: calc(300 * var(--u)); width: calc(700 * var(--u)); opacity: .85; }
+.cloud-near-b{ left: calc(60 * var(--u));   top: calc(250 * var(--u)); width: calc(420 * var(--u)); opacity: .8; }
+
+.moon-glow {
+  position: absolute;
+  left: calc(540 * var(--u));
+  top: calc(254 * var(--u));
+  width: calc(200 * var(--u));
+  height: calc(200 * var(--u));
+  border-radius: 50%;
+  box-shadow: 0 0 calc(90 * var(--u)) calc(10 * var(--u)) rgba(246, 225, 190, .34);
+}
+.art .moon {
+  left: calc(536 * var(--u));
+  top: calc(250 * var(--u));
+  width: calc(208 * var(--u));
+  height: calc(208 * var(--u));
+}
+
+/* Santa's sleigh: flies forward only, 40 s, linear, fades in and out */
+.sleigh {
+  position: absolute;
+  left: calc(495 * var(--u));
+  top: calc(286 * var(--u));
+  width: calc(300 * var(--u));
+  height: calc(90 * var(--u));
+}
+.art .santa { left: 0; top: calc(16 * var(--u)); width: calc(104 * var(--u)); }
+.harness {
+  position: absolute;
+  left: calc(98 * var(--u));
+  top: calc(35 * var(--u));
+  width: calc(150 * var(--u));
+  height: 2px;
+  background: #060A14;
+  transform: rotate(-2deg);
+}
+/* Reindeer: 12-frame strip (2772 x 200), one frame visible at a time */
+.deer {
+  position: absolute;
+  width: calc(69 * var(--u));
+  height: calc(60 * var(--u));
+  background: url("assets/reindeer-sprite.webp") 0 0 / 1200% 100% no-repeat;
+}
+.deer-1 { left: calc(104 * var(--u)); top: calc(8 * var(--u)); }
+.deer-2 { left: calc(164 * var(--u)); top: calc(5 * var(--u)); }
+.deer-3 { left: calc(224 * var(--u)); top: calc(2 * var(--u)); }
+
+.l-mount {
+  position: absolute;
+  left: 0;
+  top: calc(415 * var(--u));
+  width: 100%;
+  height: calc(310 * var(--u));
+}
+.mountains { left: calc(-60 * var(--u)); top: 0; width: calc(1400 * var(--u)); }
+
+.l-front {
+  position: absolute;
+  left: 0;
+  top: calc(420 * var(--u));
+  width: 100%;
+  height: calc(1200 * var(--u));
+}
+.front-trees { left: calc(-40 * var(--u)); top: 0; width: calc(1360 * var(--u)); }
+.front-fill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(380 * var(--u));
+  height: calc(820 * var(--u));
+  background: var(--night);
+}
+
+/* Falling snow: three CSS layers, 720px = a multiple of every tile size */
+.snow-wrap { position: absolute; inset: 0; pointer-events: none; }
+.snow {
+  position: absolute;
+  left: -40px;
+  top: -720px;
+  width: calc(100% + 80px);
+  height: calc(100% + 720px);
+  background-repeat: repeat;
+}
+.snow-a {
+  background-size: 240px 240px;
+  opacity: .85;
+  background-image:
+    radial-gradient(circle at 22px 34px, #fff 0 1.3px, transparent 2px),
+    radial-gradient(circle at 96px 12px, #fff 0 1px, transparent 1.7px),
+    radial-gradient(circle at 168px 88px, #fff 0 1.4px, transparent 2.1px),
+    radial-gradient(circle at 60px 150px, #fff 0 1.1px, transparent 1.8px),
+    radial-gradient(circle at 204px 196px, #fff 0 1.2px, transparent 1.9px),
+    radial-gradient(circle at 128px 222px, #fff 0 1px, transparent 1.7px);
+}
+.snow-b {
+  background-size: 360px 360px;
+  opacity: .6;
+  background-image:
+    radial-gradient(circle at 48px 70px, #fff 0 2px, transparent 3.4px),
+    radial-gradient(circle at 210px 30px, #fff 0 2.4px, transparent 4px),
+    radial-gradient(circle at 310px 170px, #fff 0 1.9px, transparent 3.2px),
+    radial-gradient(circle at 130px 250px, #fff 0 2.6px, transparent 4.4px),
+    radial-gradient(circle at 268px 322px, #fff 0 2.1px, transparent 3.6px);
+}
+.snow-c {
+  background-size: 180px 180px;
+  opacity: .5;
+  background-image:
+    radial-gradient(circle at 16px 20px, #fff 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 104px 58px, #fff 0 .9px, transparent 1.5px),
+    radial-gradient(circle at 150px 132px, #fff 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 58px 164px, #fff 0 .9px, transparent 1.5px);
+}
+
+/* ---------- Header + title ---------- */
+.l-top { position: absolute; left: 0; right: 0; top: 0; }
+
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 28px 44px;
+}
+.logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+.langs {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-inline-start: auto;
+  font-size: 15px;
+  font-weight: 500;
+}
+.langs a { color: #C9D3E6; text-decoration: none; }
+.langs a[lang="ckb"], .langs a[lang="ar"] { font-family: var(--font-arabic); }
+.langs a[aria-current="true"] {
+  color: #FFFFFF;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn:hover { background: #F6C870; color: var(--ink); }
+.btn-head { height: 44px; padding: 0 22px; font-weight: 600; font-size: 15px; }
+
+.title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: max(12px, calc(32 * var(--v)));
+  text-align: center;
+}
+.eyebrow {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: #D5DDEC;
+}
+.title {
+  margin: 0;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(72px, calc(112 * var(--v)), 180px);
+  line-height: 1.05;
+  color: #FFFFFF;
+  text-shadow: 0 2px 24px rgba(6, 9, 20, .6);
+}
+
+.hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: max(14px, calc(14 * var(--v)));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: #C9D3E6;
+  text-align: center;
+}
+
+/* =====================================================================
+   Scene 2 – card, tree, gifts, ground (preview pixels x --v)
+   ===================================================================== */
+.scene2 { --ground-h: max(56px, calc(78 * var(--v))); }
+
+.s-mist { position: absolute; inset: 0; pointer-events: none; }
+.mist { position: absolute; border-radius: 50%; }
+/* Soft "blur" made with gradients (cheaper than filter: blur on phones) */
+.mist-1 {
+  left: calc(50% + 72 * var(--u));  top: calc(50% - 78 * var(--u));
+  width: calc(716 * var(--u));      height: calc(356 * var(--u));
+  background: radial-gradient(closest-side, rgba(124, 143, 181, .2) 50%, rgba(124, 143, 181, 0));
+}
+.mist-2 {
+  left: calc(50% - 808 * var(--u)); top: calc(50% - 28 * var(--u));
+  width: calc(616 * var(--u));      height: calc(316 * var(--u));
+  background: radial-gradient(closest-side, rgba(124, 143, 181, .16) 50%, rgba(124, 143, 181, 0));
+}
+.mist-3 {
+  left: calc(50% + 310 * var(--u)); top: calc(50% + 30 * var(--u));
+  width: calc(320 * var(--u));      height: calc(180 * var(--u));
+  background: radial-gradient(closest-side, rgba(201, 211, 230, .16) 50%, rgba(201, 211, 230, 0));
+}
+
+/* Desktop: the preview's 1280 x 720 layout, scaled to fit, standing on the ground */
+.s2-box {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: calc(1280 * var(--v));
+  height: calc(720 * var(--v));
+  margin-left: calc(-640 * var(--v));
+}
+
+.s-card {
+  position: absolute;
+  z-index: 1;
+  left: calc(450 * var(--v));
+  top: calc(140 * var(--v));
+  width: calc(380 * var(--v));
+  min-width: 300px;
+  min-height: calc(474 * var(--v));
+  padding: calc(34 * var(--v)) calc(34 * var(--v)) calc(30 * var(--v));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: max(8px, calc(14 * var(--v)));
+  background: #F1EFE8;
+  color: var(--ink);
+  border: 1px solid #D9D5C8;
+  outline: 1px solid #F1EFE8;
+  outline-offset: 5px;
+  text-align: center;
+}
+.s-card svg { width: max(24px, calc(30 * var(--v))); height: auto; }
+.card-title {
+  margin: 0;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: max(40px, calc(58 * var(--v)));
+  line-height: 1;
+}
+.card-text {
+  max-width: max(230px, calc(260 * var(--v)));
+  font-size: max(14px, calc(14 * var(--v)));
+  line-height: 1.5;
+  color: #4A4A45;
+}
+.card-dates {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: max(24px, calc(32 * var(--v)));
+  line-height: 1.1;
+}
+.card-place {
+  font-size: max(13px, calc(14 * var(--v)));
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.card-line { width: max(24px, calc(28 * var(--v))); height: 2px; background: var(--ink); }
+.btn-card {
+  height: max(44px, calc(48 * var(--v)));
+  padding: 0 max(24px, calc(30 * var(--v)));
+  font-weight: 700;
+  font-size: max(15px, calc(16 * var(--v)));
+}
+.s-card a:focus-visible { outline-color: var(--ink); }
+.card-note { font-size: max(13px, calc(13 * var(--v))); color: #4A4A45; }
+
+/* The tree: a dark copy under a bright copy. GSAP fades the bright one in = lights on. */
+.s-tent {
+  position: absolute;
+  z-index: 2;
+  left: calc(232 * var(--v));
+  top: calc(216 * var(--v));
+  width: calc(222 * var(--v));
+  height: calc(448 * var(--v));
+}
+.s-tent img { position: absolute; left: 0; top: 0; width: 100%; height: auto; }
+.tree-dark { filter: brightness(.16) saturate(.3); }
+.tree-lit  { filter: brightness(1.12) saturate(1.1) drop-shadow(0 0 16px rgba(255, 200, 120, .5)); }
+
+.s-boxes {
+  position: absolute;
+  z-index: 3;
+  left: calc(792 * var(--v));
+  top: calc(552 * var(--v));
+  width: calc(250 * var(--v));
+}
+.s-boxes img { width: 100%; height: auto; }
+
+.s-ground {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--ground-h);
+}
+.ground-fill { position: absolute; left: 0; right: 0; bottom: 0; top: 10%; background: #E9EDF4; }
+.ground-top  { position: absolute; left: 0; right: 0; top: 0; height: 20%; border-radius: 50%; background: #F7F9FC; }
+
+/* ---------- Pause button ---------- */
+.pause {
+  position: absolute;
+  z-index: 10;
+  left: 20px;
+  bottom: 16px;
+  height: 44px;
+  min-width: 96px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 22px;
+  border: 1px solid #FFFFFF;
+  background: var(--ink);
+  color: #FFFFFF;
+  font: 600 14px/1 var(--font-ui);
+  cursor: pointer;
+}
+
+/* ---------- After the hero ---------- */
+.after {
+  padding: 72px 24px 96px;
+  max-width: 720px;
+  margin: 0 auto;
+  color: #C9D3E6;
+  line-height: 1.6;
+}
+.after h2 { margin: 0 0 8px; color: #FFFFFF; font-family: var(--font-display); }
+.after:focus { outline: none; }
+
+/* =====================================================================
+   Phone and tall screens (portrait)
+   ===================================================================== */
+@media (max-aspect-ratio: 1/1), (max-width: 700px) {
+  .site-header {
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    padding: 16px 20px;
+  }
+  .langs {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-inline-start: 0;
+    gap: 22px;
+  }
+  .btn-head { margin-inline-start: auto; height: 44px; padding: 0 18px; font-size: 14px; }
+  .title-block { margin-top: max(24px, 6cqh); }
+  .eyebrow { font-size: 12px; letter-spacing: .28em; }
+  .hint { bottom: 80px; }
+
+  .s2-box { inset: 0; width: auto; height: auto; margin: 0; }
+  .s-card {
+    left: 0;
+    right: 0;
+    top: max(20px, 4cqh);
+    margin-inline: auto;
+    width: min(360px, calc(100cqw - 32px));
+    min-width: 0;
+    min-height: 0;
+    padding: 24px 22px 22px;
+    gap: 10px;
+  }
+  .s-tent {
+    z-index: 0;
+    left: 4%;
+    top: auto;
+    bottom: calc(var(--ground-h) - 14px);
+    width: clamp(80px, calc((100cqh - 470px) * .495), 150px);
+    height: auto;
+  }
+  .s-tent .tree-dark { position: relative; }
+  .s-boxes {
+    left: auto;
+    right: 4%;
+    top: auto;
+    bottom: calc(var(--ground-h) - 12px);
+    width: min(170px, 40cqw);
+  }
+}
+
+/* =====================================================================
+   Movement
+   ===================================================================== */
+
+/* Intro at page load. The title and the sky are visible at once (LCP);
+   the title only rises a little, the other layers fade in. */
+.intro-fade { animation: k-fadein .8s ease-out both; }
+.top-in { animation: k-rise 1.1s cubic-bezier(.45, 0, .25, 1) both; }
+@keyframes k-fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes k-rise { from { transform: translateY(36px); } to { transform: none; } }
+
+/* Always-moving parts: only in motion mode, and they can be paused */
+.motion .twinkle-a { animation: k-twinkle 3.2s ease-in-out infinite alternate; }
+.motion .twinkle-b { animation: k-twinkle 4.6s ease-in-out infinite alternate-reverse; }
+.motion .drift-a   { animation: k-drift 13s ease-in-out infinite alternate; }
+.motion .drift-b   { animation: k-drift 17s ease-in-out infinite alternate-reverse; }
+.motion .sleigh    { animation: k-sleigh 40s linear -12s infinite; }
+.motion .sway      { animation: k-sway 1.44s ease-in-out infinite alternate; }
+.motion .deer      { animation: k-run .72s steps(12) infinite; }
+.motion .deer-1    { animation-delay: -.1s; }
+.motion .deer-2    { animation-delay: -.36s; }
+.motion .deer-3    { animation-delay: -.6s; }
+.motion .bob       { animation: k-bob 1.6s ease-in-out infinite alternate; }
+.motion .snow-a    { animation: k-snow 13s linear infinite; }
+.motion .snow-b    { animation: k-snow 8.5s linear infinite; }
+.motion .snow-c    { animation: k-snow 21s linear infinite; }
+
+.is-paused .loop { animation-play-state: paused !important; }
+
+@keyframes k-twinkle { from { opacity: .25; } to { opacity: 1; } }
+@keyframes k-drift { from { transform: translateX(-16px); } to { transform: translateX(18px); } }
+@keyframes k-bob { from { transform: translateY(0); } to { transform: translateY(5px); } }
+/* Forward only (no alternate). Opacity 0 at both ends hides the restart. */
+@keyframes k-sleigh {
+  0%   { transform: translate(calc(-260 * var(--u)), calc(16 * var(--u))); opacity: 0; }
+  6%   { opacity: 1; }
+  94%  { opacity: 1; }
+  100% { transform: translate(calc(300 * var(--u)), calc(-22 * var(--u))); opacity: 0; }
+}
+@keyframes k-sway {
+  from { transform: translateY(-1.5px) rotate(-1deg); }
+  to   { transform: translateY(1.5px) rotate(1deg); }
+}
+/* 12 frames: frame k is at k/11 = 100%; steps(12) over 0..12/11 hits each one */
+@keyframes k-run { from { background-position: 0 0; } to { background-position: 109.0909% 0; } }
+@keyframes k-snow { from { transform: translateY(0); } to { transform: translateY(720px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-fade, .top-in, .loop { animation: none !important; }
+}

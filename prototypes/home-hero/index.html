@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex">
+<title>Sulifest – home hero demo</title>
+<link rel="preload" href="assets/fonts/great-vibes-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="hero.css">
+<!-- boot.js only sets classes on <html> before the first paint (no layout jump). -->
+<script src="boot.js"></script>
+<script src="vendor/gsap.min.js" defer></script>
+<script src="vendor/ScrollTrigger.min.js" defer></script>
+<script src="hero.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#after-hero">Skip the animation</a>
+
+<main>
+<div class="hero" id="hero">
+<div class="stage">
+
+  <!-- ===== Scene 1: the night scene ===== -->
+  <div class="scene1">
+    <div class="art" aria-hidden="true">
+
+      <div class="l-stars">
+        <svg class="stars loop twinkle-a" viewBox="0 0 1280 720" preserveAspectRatio="none" focusable="false">
+          <g fill="#FFFFFF">
+            <circle cx="48" cy="92" r="1.6"/><circle cx="160" cy="58" r="1.3"/><circle cx="262" cy="290" r="1.1"/>
+            <circle cx="352" cy="196" r="1.5"/><circle cx="436" cy="318" r="1.3"/><circle cx="528" cy="66" r="1.1"/>
+            <circle cx="650" cy="96" r="1"/><circle cx="770" cy="128" r="1.2"/><circle cx="846" cy="76" r="1"/>
+            <circle cx="930" cy="176" r="1.9"/><circle cx="1016" cy="224" r="1.4"/><circle cx="1110" cy="262" r="1.6"/>
+            <circle cx="1204" cy="238" r="1.3"/><circle cx="76" cy="340" r="1.4"/><circle cx="330" cy="400" r="1.3"/>
+            <circle cx="1090" cy="420" r="1"/>
+          </g>
+        </svg>
+        <svg class="stars loop twinkle-b" viewBox="0 0 1280 720" preserveAspectRatio="none" focusable="false">
+          <g fill="#FFFFFF">
+            <circle cx="112" cy="210" r="1.1"/><circle cx="214" cy="148" r="2"/><circle cx="300" cy="84" r="1.2"/>
+            <circle cx="398" cy="40" r="1"/><circle cx="470" cy="118" r="1.8"/><circle cx="586" cy="24" r="1.4"/>
+            <circle cx="704" cy="52" r="1.7"/><circle cx="812" cy="250" r="1.5"/><circle cx="890" cy="338" r="1.2"/>
+            <circle cx="978" cy="300" r="1.1"/><circle cx="1064" cy="330" r="1"/><circle cx="1158" cy="352" r="1.2"/>
+            <circle cx="1248" cy="310" r="1"/><circle cx="186" cy="380" r="1"/><circle cx="960" cy="410" r="1.2"/>
+            <circle cx="1226" cy="404" r="1.5"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="l-cloudfar">
+        <div class="fill intro-fade">
+          <div class="fill loop drift-a">
+            <img class="cloud-far" src="assets/cloud-1.webp" width="1100" height="465" alt="" decoding="async">
+          </div>
+        </div>
+      </div>
+
+      <div class="l-moon">
+        <div class="fill intro-fade">
+          <div class="moon-glow"></div>
+          <img class="moon" src="assets/moon.webp" width="560" height="560" alt="" decoding="async">
+          <div class="sleigh loop">
+            <img class="santa loop sway" src="assets/santa-sleigh.webp" width="346" height="240" alt="" decoding="async">
+            <div class="harness"></div>
+            <div class="deer loop deer-1"></div>
+            <div class="deer loop deer-2"></div>
+            <div class="deer loop deer-3"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="l-cloudnear">
+        <div class="fill intro-fade">
+          <div class="fill loop drift-b">
+            <img class="cloud-near-a" src="assets/cloud-3.webp" width="1100" height="414" alt="" decoding="async">
+            <img class="cloud-near-b" src="assets/cloud-2.webp" width="1100" height="352" alt="" decoding="async">
+          </div>
+        </div>
+      </div>
+
+      <div class="l-mount">
+        <div class="fill intro-fade">
+          <img class="mountains" src="assets/mountains.webp" width="2000" height="442" alt="" decoding="async">
+        </div>
+      </div>
+
+      <div class="l-front">
+        <img class="front-trees" src="assets/trees.webp" width="1632" height="483" alt="" decoding="async">
+        <div class="front-fill"></div>
+      </div>
+    </div>
+
+    <div class="snow-wrap loop drift-a" aria-hidden="true">
+      <div class="snow loop snow-c"></div>
+      <div class="snow loop snow-a"></div>
+      <div class="snow loop snow-b"></div>
+    </div>
+
+    <div class="l-top">
+      <div class="top-in">
+        <header class="site-header">
+          <a class="logo" href="#">Sulifest</a>
+          <nav class="langs" aria-label="Language">
+            <a href="#" lang="ckb" dir="rtl" aria-current="true">کوردی</a>
+            <a href="#" lang="ar" dir="rtl">العربية</a>
+            <a href="#">English</a>
+          </nav>
+          <a class="btn btn-head" href="#">Book a booth</a>
+        </header>
+        <div class="title-block">
+          <p class="eyebrow">Sulaymaniyah festival</p>
+          <h1 class="title">Sulifest</h1>
+        </div>
+      </div>
+    </div>
+
+    <p class="hint">
+      <span>Scroll for a surprise</span>
+      <svg class="loop bob" aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#C9D3E6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7 L9 12 L14 7"/></svg>
+    </p>
+  </div>
+
+  <!-- ===== Scene 2: the card and the tree ===== -->
+  <section class="scene2" aria-labelledby="card-title">
+    <div class="s-mist" aria-hidden="true">
+      <div class="mist mist-1"></div>
+      <div class="mist mist-2"></div>
+      <div class="mist mist-3"></div>
+    </div>
+
+    <div class="s2-box">
+      <article class="s-card">
+        <svg aria-hidden="true" focusable="false" width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#141413" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 13 L15 5 L26 13"/><path d="M7 13 L7 25 L23 25 L23 13"/><path d="M12.5 25 L12.5 18 L17.5 18 L17.5 25"/><path d="M15 5 L15 2"/>
+        </svg>
+        <h2 class="card-title" id="card-title">See you there!</h2>
+        <p class="card-text">Sulifest is the festival of Sulaymaniyah. Come and visit, or show your work at your own booth.</p>
+        <p class="card-dates">[FESTIVAL DATES]</p>
+        <p class="card-place">[PLACE] · Sulaymaniyah</p>
+        <div class="card-line" aria-hidden="true"></div>
+        <a class="btn btn-card" href="#">Book a booth</a>
+        <p class="card-note">Booth booking is free</p>
+      </article>
+
+      <div class="s-tent" aria-hidden="true">
+        <img class="tree-dark" src="assets/night-tree.webp" width="495" height="1000" alt="" loading="lazy" decoding="async">
+        <img class="tree-lit" src="assets/night-tree.webp" width="495" height="1000" alt="" loading="lazy" decoding="async">
+      </div>
+
+      <div class="s-boxes" aria-hidden="true">
+        <img src="assets/gifts.webp" width="590" height="255" alt="" loading="lazy" decoding="async">
+      </div>
+    </div>
+
+    <div class="s-ground" aria-hidden="true">
+      <div class="ground-fill"></div>
+      <div class="ground-top"></div>
+    </div>
+  </section>
+
+  <button class="pause" type="button" aria-pressed="false" hidden>
+    <svg class="icon-pause" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 14 14" fill="#FFFFFF"><path d="M2 1 L5.5 1 L5.5 13 L2 13 Z"/><path d="M8.5 1 L12 1 L12 13 L8.5 13 Z"/></svg>
+    <svg class="icon-play" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 14 14" fill="#FFFFFF" hidden><path d="M3 1 L12 7 L3 13 Z"/></svg>
+    <span class="pause-label">Pause</span>
+  </button>
+
+</div>
+</div>
+
+<section class="after" id="after-hero" tabindex="-1">
+  <h2>The rest of the Home page</h2>
+  <p>This is only a demo of the top part (the hero). The real page continues here.</p>
+</section>
+</main>
+</body>
+</html>
