@@ -5,18 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="robots" content="noindex">
-<title>Sulifest – home hero demo</title>
+<title>Christmas Nights by SuliFest (demo)</title>
 <link rel="preload" href="assets/fonts/great-vibes-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="hero.css">
+<link rel="stylesheet" href="page.css">
 <!-- boot.js only sets classes on <html> before the first paint (no layout jump). -->
 <script src="boot.js"></script>
 <script src="vendor/gsap.min.js" defer></script>
 <script src="vendor/ScrollTrigger.min.js" defer></script>
 <script src="hero.js" defer></script>
+<script src="reveal.js" defer></script>
 </head>
 <body>
-<a class="skip-link" href="#after-hero">Skip the animation</a>
+<a class="skip-link" href="#about">Skip the animation</a>
 
 <main>
 <div class="hero" id="hero">
@@ -101,17 +103,18 @@
     <div class="l-top">
       <div class="top-in">
         <header class="site-header">
-          <a class="logo" href="#">Sulifest</a>
+          <a class="logo" href="#">Christmas Nights</a>
           <nav class="langs" aria-label="Language">
             <a href="#" lang="ckb" dir="rtl" aria-current="true">کوردی</a>
             <a href="#" lang="ar" dir="rtl">العربية</a>
             <a href="#">English</a>
           </nav>
-          <a class="btn btn-head" href="#">Book a booth</a>
+          <a class="btn btn-head" href="#about">About the festival</a>
         </header>
         <div class="title-block">
-          <p class="eyebrow">Sulaymaniyah festival</p>
-          <h1 class="title">Sulifest</h1>
+          <p class="eyebrow">by SuliFest</p>
+          <h1 class="title">Christmas Nights</h1>
+          <p class="tagline">A Season of Lights, Joy &amp; Celebration</p>
         </div>
       </div>
     </div>
@@ -136,12 +139,11 @@
           <path d="M4 13 L15 5 L26 13"/><path d="M7 13 L7 25 L23 25 L23 13"/><path d="M12.5 25 L12.5 18 L17.5 18 L17.5 25"/><path d="M15 5 L15 2"/>
         </svg>
         <h2 class="card-title" id="card-title">See you there!</h2>
-        <p class="card-text">Sulifest is the festival of Sulaymaniyah. Come and visit, or show your work at your own booth.</p>
-        <p class="card-dates">[FESTIVAL DATES]</p>
-        <p class="card-place">[PLACE] · Sulaymaniyah</p>
+        <p class="card-text">Christmas Nights brings together different elements of the festive season to create a complete experience for visitors.</p>
+        <p class="card-dates">16–31 December 2026</p>
+        <p class="card-place"><span>Magma Square</span> <span>Sulaimani</span></p>
         <div class="card-line" aria-hidden="true"></div>
-        <a class="btn btn-card" href="#">Book a booth</a>
-        <p class="card-note">Booth booking is free</p>
+        <a class="btn btn-card" href="#about">About the festival</a>
       </article>
 
       <div class="s-tent" aria-hidden="true">
@@ -164,10 +166,131 @@
 </div>
 </div>
 
-<section class="after" id="after-hero" tabindex="-1">
-  <h2>The rest of the Home page</h2>
-  <p>This is only a demo of the top part (the hero). The real page continues here.</p>
+<!-- ===== The rest of the Home page (plan 004). Text copied word for word from docs/brief/christmas-nights-brief.md ===== -->
+
+<section class="page-section section-snow" id="about" aria-labelledby="about-title" tabindex="-1">
+  <div class="column">
+    <h2 class="reveal-heading" id="about-title"><span class="reveal-line">About Christmas Nights</span></h2>
+    <p class="lead">Christmas Nights is a large-scale Christmas and New Year festival organized by italk under the SuliFest brand. Taking place from 16 to 31 December 2026 at Magma Square, the festival aims to transform Sulaimani into a vibrant festive destination filled with lights, entertainment, creativity, and celebration.</p>
+    <p>Bringing together families, young people, children, businesses, artists, and visitors, Christmas Nights offers a diverse range of experiences combining entertainment, culture, food, shopping, educational activities, and seasonal celebrations.</p>
+    <p>More than a Christmas celebration, it is a gathering that brings the community together and creates memorable experiences throughout the holiday season.</p>
+    <dl class="facts">
+      <div class="fact"><dt>Dates</dt><dd>16–31 December 2026</dd></div>
+      <div class="fact"><dt>Location</dt><dd>Magma Square</dd></div>
+      <div class="fact"><dt>City</dt><dd>Sulaimani, Kurdistan Region, Iraq</dd></div>
+      <div class="fact"><dt>Organizer</dt><dd>italk</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="page-section section-snow" id="experience" aria-labelledby="experience-title">
+  <div class="column">
+    <h2 class="reveal-heading" id="experience-title"><span class="reveal-line">The festival experience</span></h2>
+    <p>Christmas Nights brings together different elements of the festive season to create a complete experience for visitors.</p>
+    <div class="item">
+      <h3>Christmas Atmosphere &amp; Decorations</h3>
+      <p>A festive environment featuring Christmas lights, seasonal decorations, illuminated installations, a Christmas tree, and dedicated spaces for photography and celebration.</p>
+    </div>
+    <div class="item">
+      <h3>Live Entertainment &amp; Performances</h3>
+      <p>A central stage and entertainment program featuring live music, artistic performances, cultural presentations, and special entertainment throughout the festival.</p>
+    </div>
+    <div class="item">
+      <h3>Food &amp; Seasonal Experiences</h3>
+      <p>A variety of food experiences, seasonal treats, festive refreshments, and dining opportunities that complement the atmosphere of Christmas Nights.</p>
+    </div>
+    <div class="item">
+      <h3>Shopping &amp; Christmas Gifts</h3>
+      <p>A seasonal shopping experience where visitors can discover Christmas gifts, decorations, seasonal products, and unique offerings.</p>
+    </div>
+  </div>
+</section>
+
+<section class="page-section section-snow" id="family" aria-labelledby="family-title">
+  <div class="column">
+    <h2 class="reveal-heading" id="family-title"><span class="reveal-line">Family &amp; children's experiences</span></h2>
+    <p>Christmas Nights places special importance on creating experiences that families and children can enjoy together.</p>
+    <p>The festival will feature family-oriented activities, interactive experiences, creative workshops, and entertainment designed to encourage participation, creativity, and family engagement.</p>
+    <p>Planned experience categories include:</p>
+    <ul class="dots">
+      <li>Creative arts and crafts workshops.</li>
+      <li>Christmas decoration and ornament-making activities.</li>
+      <li>Family participation activities and interactive games.</li>
+      <li>Children's creative and educational workshops.</li>
+      <li>Seasonal activities and festive entertainment.</li>
+      <li>Interactive experiences designed for parents and children.</li>
+    </ul>
+    <p>The aim is to create more than a place to visit, offering families opportunities to participate, learn, create, and make lasting memories together.</p>
+  </div>
+</section>
+
+<section class="page-section section-snow" id="youth" aria-labelledby="youth-title">
+  <div class="column">
+    <h2 class="reveal-heading" id="youth-title"><span class="reveal-line">Youth, creativity &amp; learning</span></h2>
+    <p>Christmas Nights will also provide dedicated opportunities for young people to participate in creative, educational, and interactive experiences.</p>
+    <p>Through youth-oriented workshops and activities, the festival aims to encourage creativity, develop new interests, and provide a platform for young people to explore their talents and abilities.</p>
+    <p>Potential activities include:</p>
+    <ul class="dots">
+      <li>Art, painting, and creative workshops.</li>
+      <li>Photography and content creation sessions.</li>
+      <li>Design and handicraft workshops.</li>
+      <li>Interactive educational activities.</li>
+      <li>Innovation and creative thinking sessions.</li>
+      <li>Youth engagement and talent showcases.</li>
+      <li>Cultural and artistic activities.</li>
+    </ul>
+    <p>These experiences will add an educational and developmental dimension to the festival while giving young people opportunities to connect, express themselves, and discover new interests.</p>
+  </div>
+</section>
+
+<section class="page-section section-dark" id="new-year" aria-labelledby="new-year-title">
+  <div class="column">
+    <h2 class="reveal-heading" id="new-year-title"><span class="reveal-line">New Year celebration</span></h2>
+    <p>One of the major highlights of Christmas Nights will be its New Year celebration.</p>
+    <p>The final night will bring visitors together to welcome the New Year through a special celebration, festive entertainment, and a spectacular fireworks show.</p>
+    <p>Designed to be one of the memorable moments of the festival, the celebration will mark the conclusion of two weeks of activities and festive experiences.</p>
+  </div>
+</section>
+
+<section class="page-section section-snow" id="venue" aria-labelledby="venue-title">
+  <div class="column">
+    <h2 class="reveal-heading" id="venue-title"><span class="reveal-line">The venue – Magma Square</span></h2>
+    <p>Magma Square will serve as the central destination for Christmas Nights, hosting the festival's different experiences and activities.</p>
+    <p>The venue will feature:</p>
+    <ul class="dots">
+      <li>A large open area featuring the Christmas tree.</li>
+      <li>A central stage for entertainment and performances.</li>
+      <li>A main hall.</li>
+      <li>A dedicated children's area.</li>
+      <li>Visitor seating and relaxation areas.</li>
+      <li>Designated parking facilities.</li>
+    </ul>
+    <p>The venue layout is designed to accommodate different activities and provide visitors with an enjoyable festival environment.</p>
+  </div>
+</section>
+
+<section class="page-section section-dark" id="journey" aria-labelledby="journey-title">
+  <div class="column">
+    <h2 class="reveal-heading" id="journey-title"><span class="reveal-line">From SuliFest to Christmas Nights</span></h2>
+    <p class="motto"><span>One Vision.</span> <span>Different Seasons.</span> <span>Endless Experiences.</span></p>
+    <p>Christmas Nights represents the next chapter of the SuliFest journey.</p>
+    <p>Following SuliFest 2026, an eight-day summer festival held at Hawary Shar Park, Christmas Nights continues the same vision of bringing people together through large-scale cultural, entertainment, and community experiences.</p>
+    <p>While SuliFest celebrates the energy of summer, Christmas Nights brings that spirit into the festive season, creating a new destination for celebration in Sulaimani.</p>
+    <p>Both events reflect a shared ambition: developing memorable experiences, supporting community engagement, and positioning Sulaimani as a destination for major festivals and celebrations.</p>
+  </div>
 </section>
 </main>
+
+<footer class="site-footer">
+  <div class="column">
+    <p class="footer-name">Christmas Nights by SuliFest</p>
+    <p>Organized by italk</p>
+    <nav class="footer-langs" aria-label="Language">
+      <a href="#" lang="ckb" dir="rtl">کوردی</a>
+      <a href="#" lang="ar" dir="rtl">العربية</a>
+      <a href="#">English</a>
+    </nav>
+  </div>
+</footer>
 </body>
 </html>

@@ -1,8 +1,10 @@
-# Home hero — stand-alone demo (plan 002, Part 0)
+# Home page demo: hero animation (plan 002, Part 0) + the page under it (plan 004)
 
 A static page that shows the Sulifest home hero with **real scrolling**:
 scene 1 (night, moon, Santa's sleigh, mountains, snow) → scene 2 (card, tree whose lights turn on, gifts).
 Plain HTML + CSS + JavaScript. No framework, no build step, no backend.
+Under the hero: the Home page sections of "Christmas Nights by SuliFest" (plan 004), with the text
+copied word for word from `docs/brief/christmas-nights-brief.md`.
 It is a prototype. **Do not deploy it.**
 
 ## How to open it
@@ -23,6 +25,8 @@ Then open http://127.0.0.1:8765/ and scroll down and up.
 | `index.html` | All layers and both scenes. A real `<h1>`. No `style="..."`, no inline script. |
 | `hero.css` | Layout, phone layout, intro, always-moving parts (stars, snow, clouds, sleigh, reindeer legs), reduced motion |
 | `boot.js` | Tiny script in `<head>`: sets classes on `<html>` before the first paint (so the layout does not jump) |
+| `page.css` | The sections under the hero: one text column, snow and midnight colours, lists, facts, footer, the text reveal look (plan 004) |
+| `reveal.js` | The text reveal: IntersectionObserver adds `.is-revealed` once per section (no GSAP) |
 | `hero.js` | One GSAP timeline with ScrollTrigger (`scrub: 0.6`), `gsap.matchMedia()` for reduced motion |
 | `vendor/` | `gsap.min.js` + `ScrollTrigger.min.js` from npm `gsap@3.15.1` (hashes in `vendor/README.md`) |
 | `assets/*.webp` | Copies of the layers in `docs/design/hero-free-photos/layers/` (licences in `docs/design/hero-free-photos/SOURCES.md`) |
@@ -65,10 +69,31 @@ Then open http://127.0.0.1:8765/ and scroll down and up.
 To tune it, change the numbers in `hero.js` (distances and start times) and look again.
 Add `markers: true` to the `scrollTrigger` object only while testing.
 
+## The page under the hero (plan 004)
+
+| # | Section | Background |
+|---|---|---|
+| 1 | About Christmas Nights (`#about`, with the facts list) | Snow `#EEF2F7` |
+| 2 | The festival experience | Snow |
+| 3 | Family & children's experiences | Snow |
+| 4 | Youth, creativity & learning | Snow |
+| 5 | New Year celebration | Midnight `#0B1430` |
+| 6 | The venue – Magma Square | Snow |
+| 7 | From SuliFest to Christmas Nights | Midnight |
+| 8 | Footer | Midnight |
+
+The snow ground at the end of the hero has the same colour as the About section, so they join without a line.
+The skip link and both "About the festival" buttons go to `#about`.
+
+**Text reveal:** when a section comes into view (once only), its heading slides up from behind a line (0.6 s),
+then its paragraphs, list items and facts fade in and rise 16 px, 80 ms apart (0.5 s each).
+Only `transform` and `opacity`. Text is never split into letters. The text is hidden before the reveal
+only when `<html>` has the `motion` class and `reveal.js` has run (`reveal-on`).
+
 ## Without JavaScript, or with "reduce motion"
 
 No sticky stage, no scrub, no loops: scene 1 and scene 2 are two normal sections, one under the other,
-and scene 2 shows the final state (lights on).
+and scene 2 shows the final state (lights on). All section text is visible at once (no reveal).
 If the GSAP files do not load, the page falls back to the same two sections.
 
 ## No pause button (user decision, 2026-11-26)
@@ -83,7 +108,7 @@ more than 5 seconds. The PM should decide this again before the real site goes l
 - Content-Security-Policy in a `<meta>` tag: `default-src 'self'` (plus stricter `script-src`, `style-src`,
   `img-src`, `font-src`, `connect-src 'none'`, `object-src 'none'`, `base-uri 'none'`, `form-action 'none'`).
 - No CDN and no outside requests: every file comes from this folder.
-- No `eval`, no `innerHTML`, no inline event handlers. The buttons "Book a booth" are links to `#`. No forms.
+- No `eval`, no `innerHTML`, no inline event handlers. All links are `#` anchors inside the page (the "About the festival" buttons go to `#about`). No forms.
 - No files from `docs/plans/refs/` or from the template site.
 
 ## Still different from the real site (Parts 1 and 2 of plan 002)
@@ -91,7 +116,7 @@ more than 5 seconds. The PM should decide this again before the real site goes l
 | Here | Later in the real site |
 |---|---|
 | Plain HTML page | Next.js components (`HomeHero.tsx`, `HeroScrollScene.tsx`, `useGSAP`) |
-| English text only, written in the HTML | Texts from next-intl in `ckb`, `ar`, `en`; RTL (the sleigh flies the other way) |
+| English text only (from the organiser's brief), written in the HTML | Texts from next-intl in `ckb`, `ar`, `en`; RTL (the sleigh flies the other way) |
 | The language links and buttons go to `#` | Real routes |
 | Pictures are the full preview files: **about 855 kB** of WebP for all layers (+ 77 kB fonts) | Smaller phone sizes + AVIF; budget about 350 kB on a phone (plan 002) |
 | Christmas pictures (sleigh, tree, gifts) and US mountains | The team decides the final Sulifest pictures (plan 002, questions 1–2) |

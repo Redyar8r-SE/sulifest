@@ -338,6 +338,13 @@ button:focus-visible {
   color: #FFFFFF;
   text-shadow: 0 2px 24px rgba(6, 9, 20, .6);
 }
+.tagline {
+  margin-top: 4px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #D5DDEC;
+  text-shadow: 0 0 6px rgba(6, 9, 20, .95), 0 1px 14px rgba(6, 9, 20, .8);
+}
 
 .hint {
   position: absolute;
@@ -428,7 +435,7 @@ button:focus-visible {
 .card-dates {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: max(24px, calc(32 * var(--v)));
+  font-size: max(24px, calc(26 * var(--v)));
   line-height: 1.1;
 }
 .card-place {
@@ -437,6 +444,7 @@ button:focus-visible {
   letter-spacing: .14em;
   text-transform: uppercase;
 }
+.card-place span { display: block; }
 .card-line { width: max(24px, calc(28 * var(--v))); height: 2px; background: var(--ink); }
 .btn-card {
   height: max(44px, calc(48 * var(--v)));
@@ -445,7 +453,6 @@ button:focus-visible {
   font-size: max(15px, calc(16 * var(--v)));
 }
 .s-card a:focus-visible { outline-color: var(--ink); }
-.card-note { font-size: max(13px, calc(13 * var(--v))); color: #4A4A45; }
 
 /* The tree: a dark copy under a bright copy. GSAP fades the bright one in = lights on. */
 .s-tent {
@@ -477,19 +484,8 @@ button:focus-visible {
   bottom: 0;
   height: var(--ground-h);
 }
-.ground-fill { position: absolute; left: 0; right: 0; bottom: 0; top: 10%; background: #E9EDF4; }
+.ground-fill { position: absolute; left: 0; right: 0; bottom: 0; top: 10%; background: #EEF2F7; } /* = --snow in page.css */
 .ground-top  { position: absolute; left: 0; right: 0; top: 0; height: 20%; border-radius: 50%; background: #F7F9FC; }
-
-/* ---------- After the hero ---------- */
-.after {
-  padding: 72px 24px 96px;
-  max-width: 720px;
-  margin: 0 auto;
-  color: #C9D3E6;
-  line-height: 1.6;
-}
-.after h2 { margin: 0 0 8px; color: #FFFFFF; font-family: var(--font-display); }
-.after:focus { outline: none; }
 
 /* =====================================================================
    Phone and tall screens (portrait)
@@ -507,8 +503,11 @@ button:focus-visible {
     margin-inline-start: 0;
     gap: 22px;
   }
-  .btn-head { margin-inline-start: auto; height: 44px; padding: 0 18px; font-size: 14px; }
-  .title-block { margin-top: max(24px, 6cqh); }
+  .logo { font-size: 18px; }
+  .btn-head { margin-inline-start: auto; height: 44px; padding: 0 16px; font-size: 14px; }
+  .title { font-size: clamp(48px, 15vw, 72px); }
+  .tagline { font-size: 15px; padding-inline: 20px; }
+  .title-block { margin-top: max(8px, 2cqh); }
   .eyebrow { font-size: 12px; letter-spacing: .28em; }
   .hint { bottom: 80px; }
 
