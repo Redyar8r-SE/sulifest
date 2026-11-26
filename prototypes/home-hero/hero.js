@@ -66,7 +66,7 @@
       .to('.l-moon',      Object.assign({ y: u(-410) }, s1), 0)
       .to('.l-cloudnear', Object.assign({ y: u(-210) }, s1), 0)
       .to('.l-mount',     Object.assign({ y: u(-420) }, s1), 0)
-      .to('.l-front',     Object.assign({ y: u(-680) }, s1), 0)
+      .to('.l-front',     Object.assign({ y: u(-830) }, s1), 0)
       // header + title go up fast and fade out (autoAlpha also removes them from the Tab order)
       .to('.l-top', { y: u(-420), autoAlpha: 0, duration: 0.3, ease: 'power1.in' }, 0)
       .to('.hint',  { autoAlpha: 0, duration: 0.2 }, 0)

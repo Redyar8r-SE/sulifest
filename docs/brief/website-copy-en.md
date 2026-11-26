@@ -4,24 +4,27 @@ This is the English text on the website (Home page demo, `prototypes/home-hero/i
 
 - Source: `docs/brief/christmas-nights-brief.md` (the organiser's brief). The brief is not changed.
 - Changes: 7 small edits for plain, shorter English, accepted by the site owner on 27 November 2026. The list is at the end.
+- Updated for plan 005 (brand design and map, 27 November 2026): the hero card is gone, and there are new short texts for the map, the "From SuliFest" section and the footer. They are marked **(new, plan 005)**.
 - Status: **the organiser (italk) still has to approve this text.**
 - Kurdish (ckb) and Arabic (ar) versions come only from a native speaker.
 
 ## Hero
 
-- Logo: Christmas Nights
-- Small line: by SuliFest
+- Logo: the ring picture + "Christmas Nights" + "by SuliFest" **(new, plan 005: "by SuliFest" in the logo)**
+- Small line under the title: by SuliFest
 - Title: Christmas Nights
 - Tagline: A Season of Lights, Joy & Celebration
 - Button: About the festival
 - Scroll hint: Scroll for a surprise
+- Skip link (only shown to keyboard users): Skip the animation
 
-## Hero card (end of the scroll)
+## Dates and place (end of the scroll)
 
-- Title: See you there!
-- Text: Christmas Nights brings together four parts of the festive season.
-- Dates: 16–31 December 2026
-- Place: Magma Square, Sulaimani
+Since plan 005 there is no card here. "See you there!" and the card sentence were removed.
+
+- Hidden heading, for screen readers only: Dates and place **(new, plan 005)**
+- Inside the ring: 16 – 31 / December 2026
+- Place: Magma Square ◆ Sulaimani
 - Button: About the festival
 
 ## Page sections
@@ -115,7 +118,22 @@ The venue will feature:
 - Visitor seating and relaxation areas.
 - Designated parking facilities.
 
+The map next to this list **(new, plan 005)**. The six items above are its buttons. Then:
+
+- Small heading: Market places
+- Zin Place — 7 places, 4 × 4 m
+- Shirin Place — 21 places, 3 × 3 m
+- Khaj Place — 38 places, 3 × 3 m
+- Entrance — two entrances
+- Button: Show the whole map
+- Note: Each square is one place, marked with its letter and number. Simplified plan.
+- Labels on the map: Entrance, Open Area, Christmas tree, Stage, Main Hall, Sitting area, Kids area, Parking, and the place codes Z1–Z7, S1–S21, K1–K38.
+- For screen readers: map title "Map of Christmas Nights at Magma Square"; description "A simplified plan. Two entrances, the open area with the Christmas tree, the stage, the main hall, the children's area, four sitting areas, parking, and 66 market places: 7 Zin, 21 Shirin and 38 Khaj."; the box around it "Map of Magma Square. On a small screen, move it sideways."
+- Not on the website (owner's decision): prices, room codes, square metres.
+
 ### From SuliFest to Christmas Nights
+
+Small label above the heading: Where it began **(new, plan 005)**
 
 One Vision. Different Seasons. Endless Experiences.
 
@@ -127,17 +145,27 @@ While SuliFest celebrates the energy of summer, Christmas Nights brings that spi
 
 Both events reflect a shared ambition: developing memorable experiences, supporting community engagement, and positioning Sulaimani as a destination for major festivals and celebrations.
 
+### Two small boxes next to this section **(new, plan 005)**
+
+- SuliFest — June 2026, 8 days — Hawary Shar Park
+- Next
+- Christmas Nights — 16 – 31 December 2026 — Magma Square
+
 ## Footer
 
-- Christmas Nights by SuliFest
-- Organized by italk
+- Christmas Nights
+- by SuliFest
+- Organized by italk (the italk mark + the word "italk")
+- Magma Square ◆ 16 – 31 December 2026 **(new, plan 005)**
 - Languages: کوردی · العربية · English
 
 ## Text that is not in the brief (needs approval too)
 
 - Labels under the 16 lights: "16 December" and "31 December / New Year".
 - Screen-reader text for the lights: "16 lights for 16 nights: 16 to 31 December 2026. The last light is the New Year celebration."
-- "See you there!", "Scroll for a surprise" and "About the festival" (buttons and card title).
+- "Scroll for a surprise", "Skip the animation" and "About the festival" (buttons and links).
+- Plan 005: "Dates and place", "Where it began", "June 2026, 8 days", "Next", "Market places", "Zin Place", "Shirin Place", "Khaj Place", "7 places, 4 × 4 m", "21 places, 3 × 3 m", "38 places, 3 × 3 m", "Entrance", "two entrances", "Show the whole map", the map note, the map labels, and the map's title and description for screen readers.
+- Please check one fact: "June 2026" for SuliFest. The brief only says "an eight-day summer festival".
 
 ## The 7 edits (brief → website)
 
@@ -145,7 +173,7 @@ Both events reflect a shared ambition: developing memorable experiences, support
 |---|---|---|---|
 | 1 | About ¶2 | "…offers a diverse range of experiences combining entertainment, …" | "…offers entertainment, …" |
 | 2 | About ¶3 | "More than a Christmas celebration, it is a gathering that brings the community together and creates memorable experiences throughout the holiday season." | "It is a gathering that brings the community together throughout the holiday season." |
-| 3 | Experience intro + hero card | "Christmas Nights brings together different elements of the festive season to create a complete experience for visitors." | "Christmas Nights brings together four parts of the festive season:" (card: ends with a full stop) |
+| 3 | Experience intro | "Christmas Nights brings together different elements of the festive season to create a complete experience for visitors." | "Christmas Nights brings together four parts of the festive season:" (it was also on the hero card, which plan 005 removed) |
 | 4 | Family, last ¶ | "The aim is to create more than a place to visit, offering families opportunities to participate, learn, create, and make lasting memories together." | "The aim is to give families the chance to participate, learn, create, and make memories together." |
 | 5 | Youth, last ¶ | "These experiences will add an educational and developmental dimension to the festival while giving young people opportunities to connect, express themselves, and discover new interests." | "These activities will give young people the chance to learn, connect, express themselves, and discover new interests." |
 | 6 | New Year, last ¶ | "Designed to be one of the memorable moments of the festival, the celebration will mark the conclusion of two weeks of activities and festive experiences." | "The celebration will close two weeks of activities." |

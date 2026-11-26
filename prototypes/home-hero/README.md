@@ -1,11 +1,11 @@
-# Home page demo: hero animation (plan 002, Part 0) + the page under it (plan 004)
+# Home page demo: hero animation (plan 002, Part 0) + the page under it (plans 004 and 005)
 
 A static page that shows the Sulifest home hero with **real scrolling**:
-scene 1 (night, moon, Santa's sleigh, mountains, snow) → scene 2 (card, tree whose lights turn on, gifts).
+scene 1 (night, moon, Santa's sleigh, mountains, snow) → scene 2 (the dates in the brand ring, tree whose lights turn on, gifts).
 Plain HTML + CSS + JavaScript. No framework, no build step, no backend.
-Under the hero: the Home page sections of "Christmas Nights by SuliFest" (plan 004), with the text
-from `docs/brief/website-copy-en.md` (the brief `docs/brief/christmas-nights-brief.md` with 7 small
-edits; the organiser still has to approve them).
+Under the hero: the Home page sections of "Christmas Nights by SuliFest" in the organiser's brand (plan 005),
+with the Magma Square map. The text is in `docs/brief/website-copy-en.md` (the brief
+`docs/brief/christmas-nights-brief.md` with 7 small edits and some new short texts; the organiser still has to approve them).
 It is a prototype. **Do not deploy it.**
 
 ## How to open it
@@ -17,23 +17,26 @@ cd prototypes/home-hero
 python -m http.server 8765 --bind 127.0.0.1
 ```
 
-Then open http://127.0.0.1:8765/ and scroll down and up.
+Then open http://127.0.0.1:8765/ and scroll down and up. Stop the server when you are done.
 
 ## Files
 
 | File | What |
 |---|---|
-| `index.html` | All layers and both scenes. A real `<h1>`. No `style="..."`, no inline script. |
-| `hero.css` | Layout, phone layout, intro, always-moving parts (stars, snow, clouds, sleigh, reindeer legs), reduced motion |
+| `index.html` | All layers, both scenes, the sections, the map (inline SVG). A real `<h1>`. No `style="..."`, no inline script. |
+| `hero.css` | Fonts, brand colours, the hero layout, phone layout, intro, always-moving parts (stars, snow, clouds, sleigh, reindeer legs, whip), reduced motion |
+| `page.css` | The page under the hero: paper and green sections, stamps, lists, facts, 16 lights, the map, footer, the one-moment look |
 | `boot.js` | Tiny script in `<head>`: sets classes on `<html>` before the first paint (so the layout does not jump) |
-| `page.css` | The sections under the hero: one text column, snow and midnight colours, lists, facts, footer, the text reveal look (plan 004) |
-| `reveal.js` | The one moment: IntersectionObserver slides each heading in once and turns on the 16 lights (no GSAP) |
 | `hero.js` | One GSAP timeline with ScrollTrigger (`scrub: 0.6`), `gsap.matchMedia()` for reduced motion |
+| `reveal.js` | The one moment: IntersectionObserver slides each heading in once and turns on the 16 lights (no GSAP) |
+| `map.js` | The map list: a button highlights one part of the map (`data-focus` on `#map`, CSS does the rest) |
 | `vendor/` | `gsap.min.js` + `ScrollTrigger.min.js` from npm `gsap@3.15.1` (hashes in `vendor/README.md`) |
-| `assets/*.webp` | Copies of the layers in `docs/design/hero-free-photos/layers/` (licences in `docs/design/hero-free-photos/SOURCES.md`) |
-| `assets/fonts/` | Great Vibes, Space Grotesk 700, Vazirmatn 500 (Arabic letters) from the `@fontsource` npm packages 5.3.0, SIL Open Font License (licence files next to them) |
+| `assets/*.webp` | The hero layers, from `docs/design/hero-free-photos/layers/` (licences in `docs/design/hero-free-photos/SOURCES.md`). Clouds made smaller (760 px), all re-saved at quality 72 |
+| `assets/santa-sleigh-2.webp` | The sleigh without the short line in front of Santa's hands (the reins are now an SVG) |
+| `assets/brand/` | Cut from the organiser's vendor guide (see `docs/design/brand/README.md`): the ring in 5 sizes, 5 stamps in 2 sizes, the italk mark, the map walls. **italk must confirm the website may use them and send the original files** |
+| `assets/fonts/` | Cinzel Decorative 900, Cinzel 500/700, EB Garamond 400/400 italic/600, Vazirmatn 500 (Arabic letters), from the `@fontsource` npm packages 5.3.0, SIL Open Font License (licence files next to them) |
 | `assets/favicon.svg` | Simple moon icon (made for the demo) |
-| `screenshots/` | Scene 1 and scene 2 at phone and desktop width (for the pull request) |
+| `screenshots/` | Phone and desktop screenshots (for the pull request) |
 
 ## How it works
 
@@ -47,10 +50,16 @@ Then open http://127.0.0.1:8765/ and scroll down and up.
 - Always-moving parts are CSS only: stars twinkle, clouds drift, snow falls (3 layers),
   the sleigh flies forward only (40 s, linear, fades in and out), the reindeer legs move
   (`steps(12)`, 0.72 s, three different start times), the sleigh sways.
+- **Reins and whip (plan 005):** the reins are an inline SVG in the sleigh box, in the same 300 × 90 units,
+  from Santa's hands (56, 35) to the reindeer, so they always touch both. The whip is a second SVG that turns
+  around the hand: still for 80% of 8 seconds, then back 30°, forward 23° over the first reindeer, and back.
 - Moon and mountains use the same timing and almost the same distance (−410 / −420),
-  so the mountains never cover the sleigh. Only the dark front tree layer covers it.
+  so the mountains never cover the sleigh. The dark front tree layer moves −830, so no moon or mountain
+  is left at the top of scene 2.
 - The tree in scene 2 is two copies of the same photo: a dark copy (CSS filter, never animated)
-  and a bright copy on top whose opacity goes 0 → 1 at the end = lights on.
+  and a bright copy on top whose opacity goes 0 → 1 at the end = lights on. A CSS mask fades the sides of the photo.
+- The ground at the end of scene 2 is the brand paper, with the edge of a stamp on top (CSS gradient, no picture),
+  so it joins the About section without a line.
 
 ### Scroll timeline (progress of the scroll inside the hero)
 
@@ -58,48 +67,63 @@ Then open http://127.0.0.1:8765/ and scroll down and up.
 |---|---|---|
 | Header + title | 0 – 0.30 | up −420, fade out |
 | Scroll hint | 0 – 0.20 | fade out |
-| Stars / far clouds / moon + sleigh / near clouds / mountains / front trees | 0 – 0.60 | up −60 / −130 / −410 / −210 / −420 / −680 |
+| Stars / far clouds / moon + sleigh / near clouds / mountains / front trees | 0 – 0.60 | up −60 / −130 / −410 / −210 / −420 / −830 |
 | Mist | 0.55 – 1.00 | fade in, up a little |
-| Card | 0.60 – 0.90 | from below the screen to its place |
-| Tree | 0.70 – 0.90 | from below, faster than the card |
+| Dates in the ring (`.s-card`) | 0.60 – 0.90 | from below the screen to its place |
+| Tree | 0.70 – 0.90 | from below, faster than the dates |
 | Gift boxes | 0.80 – 0.92 | from below |
-| Snow ground | 0.85 – 0.97 | rises from the bottom edge |
+| Paper ground | 0.85 – 0.97 | rises from the bottom edge |
 | Tree lights | 0.92 – 1.00 | on |
 | (hold) | 1.00 – 1.08 | nothing moves, so the lit tree is seen before the page moves on |
 
 To tune it, change the numbers in `hero.js` (distances and start times) and look again.
 Add `markers: true` to the `scrollTrigger` object only while testing.
 
-## The page under the hero (plan 004)
+## The page under the hero (plans 004 and 005)
 
-| # | Section | Background |
-|---|---|---|
-| 1 | About Christmas Nights (`#about`, with the facts list) | Snow `#EEF2F7` |
-| 2 | The festival experience | Snow |
-| 3 | Family & children's experiences | Snow |
-| 4 | Youth, creativity & learning | Snow |
-| 5 | New Year celebration | Midnight `#0B1430` |
-| 6 | The venue – Magma Square | Snow |
-| 7 | From SuliFest to Christmas Nights | Midnight |
-| 8 | Footer | Midnight |
+The design idea is "a letter from Slemani": where the night ends, the paper begins, cut like the edge of a stamp.
+Colours and fonts come from the organiser's vendor guide (`docs/design/brand/README.md`).
 
-The snow ground at the end of the hero has the same colour as the About section, so they join without a line.
-The skip link and both "About the festival" buttons go to `#about`.
+| # | Section | Background | Layout |
+|---|---|---|---|
+| 1 | About Christmas Nights (`#about`) | Paper `#EDDDB3` | Text + tree stamp, then the 16 lights and four facts |
+| 2 | The festival experience | Paper | Heading + gifts stamp, the four experiences in 2 × 2 |
+| 3 | Family & children's experiences | Paper | Carousel stamp + text and list |
+| 4 | Youth, creativity & learning | Paper | Text + the list in a light panel |
+| 5 | New Year celebration | Deep green `#16452E` | Centred, bells stamp |
+| 6 | The venue – Magma Square | Paper | The map + the list of places |
+| 7 | From SuliFest to Christmas Nights | Deep green | Text + statue stamp and two small boxes |
+| 8 | Footer | Paper | Ring, name, italk, languages |
+
+Between two paper sections there is a thin line with a red diamond. The green sections have the stamp edge
+at the top and the bottom. The stamps are turned 3 degrees, like stamps on a letter.
+On screens under 900 px everything is one column; under 700 px the text is a little smaller.
 
 **One moment (design choice of 2026-11-26):** every section heading slides up from behind a line once (0.6 s)
 when its section comes into view. Paragraphs are not animated. In About, a row of **16 lights = 16 nights**
 (16–31 December; the last, bigger red light is the New Year night) turns on one by one when the row itself is
-in view. Only `transform`, `background` and `box-shadow` change; text is never split. Things are "off" before
-the moment only when `<html>` has the `motion` class and `reveal.js` has run (`reveal-on`). Without JavaScript,
-or with "reduce motion", every heading is in place and every light is on.
+in view. Things are "off" before the moment only when `<html>` has the `motion` class and `reveal.js` has run
+(`reveal-on`). Without JavaScript, or with "reduce motion", every heading is in place and every light is on.
 
-Other design choices of 2026-11-26: no ALL-CAPS lines ("by SuliFest", the card place and the scroll hint are
-in normal letters, so the capital F of SuliFest stays), and "English" is marked as the current language.
+### The map (plan 005)
+
+- One inline `<svg>` (view box `38 154 520 574`) with the 66 places (7 Zin, 21 Shirin, 38 Khaj), the rooms,
+  the tree, the stage, the sitting areas, parking and the two entrances, at their real positions from the vendor guide.
+  The walls are one picture (`assets/brand/map-walls.webp`), an `<img>` under the SVG so it can load lazily.
+- **No prices, no room codes, no square metres.**
+- The ten list items are real buttons with `aria-pressed`. A press keeps that part clear and fades the rest to 16%;
+  a second press, or "Show the whole map", shows everything. After "Show the whole map" the keyboard focus goes
+  back to the chosen list item (the button hides itself).
+- On phones the map is 620 px wide inside a box that scrolls sideways (`role="region"`, `tabindex="0"`, with a label).
+  The page itself never scrolls sideways.
+- The map does not flip for right-to-left; the list and the columns do (logical CSS properties).
+- Khaj places and the parking sign use a deeper gold (`#8A6630`) under their small light letters,
+  so the contrast is 5.1:1 (the brand gold `#A07A35` is only 3.9:1).
 
 ## Without JavaScript, or with "reduce motion"
 
-No sticky stage, no scrub, no loops: scene 1 and scene 2 are two normal sections, one under the other,
-and scene 2 shows the final state (lights on). All section text is visible and all 16 lights are on.
+No sticky stage, no scrub, no loops (the whip stands still): scene 1 and scene 2 are two normal sections,
+one under the other, and scene 2 shows the final state (lights on). All section text, all 16 lights and the whole map are visible.
 If the GSAP files do not load, the page falls back to the same two sections.
 
 ## No pause button (user decision, 2026-11-26)
@@ -107,14 +131,16 @@ If the GSAP files do not load, the page falls back to the same two sections.
 The user asked that the hero animations always play, so there is no pause button.
 Visitors with "reduce motion" turned on still get a still page (no loops, no scroll animation).
 Note for later: the accessibility rule WCAG 2.2.2 asks for a way to pause moving content that lasts
-more than 5 seconds. The PM should decide this again before the real site goes live.
+more than 5 seconds. The whip is one more thing that moves. The PM should decide this again before the real site goes live.
 
 ## Security
 
 - Content-Security-Policy in a `<meta>` tag: `default-src 'self'` (plus stricter `script-src`, `style-src`,
   `img-src`, `font-src`, `connect-src 'none'`, `object-src 'none'`, `base-uri 'none'`, `form-action 'none'`).
-- No CDN and no outside requests: every file comes from this folder.
-- No `eval`, no `innerHTML`, no inline event handlers. All links are `#` anchors inside the page (the "About the festival" buttons go to `#about`). No forms.
+- No CDN and no outside requests: every file comes from this folder. No embedded map from another site.
+- No `eval`, no `innerHTML`, no inline event handlers. `map.js` reads nothing from the URL, cookies or storage.
+  All links are `#` anchors inside the page. No forms.
+- The organiser's vendor PDFs are not in the repository (they hold prices and commercial terms).
 - No files from `docs/plans/refs/` or from the template site.
 
 ## Still different from the real site (Parts 1 and 2 of plan 002)
@@ -122,8 +148,10 @@ more than 5 seconds. The PM should decide this again before the real site goes l
 | Here | Later in the real site |
 |---|---|
 | Plain HTML page | Next.js components (`HomeHero.tsx`, `HeroScrollScene.tsx`, `useGSAP`) |
-| English text only (from the organiser's brief), written in the HTML | Texts from next-intl in `ckb`, `ar`, `en`; RTL (the sleigh flies the other way) |
+| English text only, written in the HTML | Texts from next-intl in `ckb`, `ar`, `en`; RTL (the sleigh flies the other way) |
+| Cinzel and EB Garamond have no Kurdish or Arabic letters | `ckb` and `ar` need their own heading and text fonts, and no letter spacing (plan 005) |
 | The language links and buttons go to `#` | Real routes |
-| Pictures are the full preview files: **about 855 kB** of WebP for all layers (+ 77 kB fonts) | Smaller phone sizes + AVIF; budget about 350 kB on a phone (plan 002) |
+| Pictures on the first phone screen (scene 1): about 340 kB of WebP; scene 2 adds about 190 kB (low priority) | AVIF and more phone sizes (plan 002 budget: about 350 kB) |
 | Christmas pictures (sleigh, tree, gifts) and US mountains | The team decides the final Sulifest pictures (plan 002, questions 1–2) |
+| Brand pictures cut from a PDF at screen size | The original files from italk |
 | CSP in a `<meta>` tag | CSP as a real HTTP header from the server |
