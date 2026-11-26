@@ -1,0 +1,34 @@
+# Secrets: never commit these
+.env*
+!.env.example
+.dev.vars*
+*.pem
+*.key
+
+# Dependencies and build output
+node_modules/
+.next/
+.open-next/
+.wrangler/
+dist/
+out/
+coverage/
+
+# Local databases
+*.sqlite
+*.sqlite3
+*.db
+
+# Editor and system files
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Claude Code local settings (personal, may hold permissions)
+.claude/settings.local.json
+
+# Reference screenshots of another designer's paid template.
+# They are for looking only and must stay on the local computer.
+docs/plans/refs/

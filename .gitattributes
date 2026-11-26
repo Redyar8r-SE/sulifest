@@ -1,0 +1,11 @@
+# Same line endings on Windows and WSL
+* text=auto eol=lf
+
+# Binary files
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.woff2 binary
