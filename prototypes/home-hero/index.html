@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex">
+<title>Christmas Nights by SuliFest (demo)</title>
+<link rel="preload" href="assets/fonts/cinzel-decorative-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="hero.css">
+<link rel="stylesheet" href="page.css">
+<!-- boot.js only sets classes on <html> before the first paint (no layout jump). -->
+<script src="boot.js"></script>
+<script src="vendor/gsap.min.js" defer></script>
+<script src="vendor/ScrollTrigger.min.js" defer></script>
+<script src="hero.js" defer></script>
+<script src="reveal.js" defer></script>
+<script src="story.js" defer></script>
+<script src="map.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#about">Skip the animation</a>
+
+<main>
+<div class="hero" id="hero">
+<div class="stage">
+
+  <!-- ===== Scene 1: the night scene ===== -->
+  <div class="scene1">
+    <div class="art" aria-hidden="true">
+
+      <div class="l-stars">
+        <svg class="stars loop twinkle-a" viewBox="0 0 1280 720" preserveAspectRatio="none" focusable="false">
+          <g fill="#FFFFFF">
+            <circle cx="48" cy="92" r="1.6"/><circle cx="160" cy="58" r="1.3"/><circle cx="262" cy="290" r="1.1"/>
+            <circle cx="352" cy="196" r="1.5"/><circle cx="436" cy="318" r="1.3"/><circle cx="528" cy="66" r="1.1"/>
+            <circle cx="650" cy="96" r="1"/><circle cx="770" cy="128" r="1.2"/><circle cx="846" cy="76" r="1"/>
+            <circle cx="930" cy="176" r="1.9"/><circle cx="1016" cy="224" r="1.4"/><circle cx="1110" cy="262" r="1.6"/>
+            <circle cx="1204" cy="238" r="1.3"/><circle cx="76" cy="340" r="1.4"/><circle cx="330" cy="400" r="1.3"/>
+            <circle cx="1090" cy="420" r="1"/>
+          </g>
+        </svg>
+        <svg class="stars loop twinkle-b" viewBox="0 0 1280 720" preserveAspectRatio="none" focusable="false">
+          <g fill="#FFFFFF">
+            <circle cx="112" cy="210" r="1.1"/><circle cx="214" cy="148" r="2"/><circle cx="300" cy="84" r="1.2"/>
+            <circle cx="398" cy="40" r="1"/><circle cx="470" cy="118" r="1.8"/><circle cx="586" cy="24" r="1.4"/>
+            <circle cx="704" cy="52" r="1.7"/><circle cx="812" cy="250" r="1.5"/><circle cx="890" cy="338" r="1.2"/>
+            <circle cx="978" cy="300" r="1.1"/><circle cx="1064" cy="330" r="1"/><circle cx="1158" cy="352" r="1.2"/>
+            <circle cx="1248" cy="310" r="1"/><circle cx="186" cy="380" r="1"/><circle cx="960" cy="410" r="1.2"/>
+            <circle cx="1226" cy="404" r="1.5"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="l-cloudfar">
+        <div class="fill intro-fade">
+          <div class="fill loop drift-a">
+            <img class="cloud-far" src="assets/cloud-1.webp" width="760" height="321" alt="" decoding="async">
+          </div>
+        </div>
+      </div>
+
+      <div class="l-moon">
+        <div class="fill intro-fade">
+          <div class="moon-glow"></div>
+          <img class="moon" src="assets/moon.webp" width="560" height="560" alt="" decoding="async">
+          <div class="sleigh loop">
+            <img class="santa loop sway" src="assets/santa-sleigh-2.webp" width="346" height="240" alt="" decoding="async">
+            <svg class="reins" viewBox="0 0 300 90" preserveAspectRatio="none" focusable="false"><path d="M56 35 Q 102 42 147.5 38 L 207.5 35 L 267.5 32"/><path d="M56 36.5 Q 104 47 150 41"/></svg>
+            <svg class="whip loop" viewBox="0 0 70 40" preserveAspectRatio="none" focusable="false"><path d="M0 40 Q 26 12 68 5"/></svg>
+            <div class="deer loop deer-1"></div>
+            <div class="deer loop deer-2"></div>
+            <div class="deer loop deer-3"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="l-cloudnear">
+        <div class="fill intro-fade">
+          <div class="fill loop drift-b">
+            <img class="cloud-near-a" src="assets/cloud-3.webp" width="760" height="286" alt="" decoding="async">
+            <img class="cloud-near-b" src="assets/cloud-2.webp" width="760" height="243" alt="" decoding="async">
+          </div>
+        </div>
+      </div>
+
+      <div class="l-mount">
+        <div class="fill intro-fade">
+          <img class="mountains" src="assets/mountains.webp" width="2000" height="442" alt="" decoding="async">
+        </div>
+      </div>
+
+      <div class="l-front">
+        <img class="front-trees" src="assets/trees.webp" width="1632" height="483" alt="" decoding="async">
+        <div class="front-fill"></div>
+      </div>
+    </div>
+
+    <div class="snow-wrap loop drift-a" aria-hidden="true">
+      <div class="snow loop snow-c"></div>
+      <div class="snow loop snow-a"></div>
+      <div class="snow loop snow-b"></div>
+    </div>
+
+    <div class="l-top">
+      <div class="top-in">
+        <header class="site-header">
+          <a class="logo" href="#"><img src="assets/brand/wreath-104.webp" width="104" height="102" alt=""><span class="logo-text"><span class="logo-name">Christmas Nights</span><span class="logo-by">by SuliFest</span></span></a>
+          <nav class="langs" aria-label="Language">
+            <a href="#" lang="ckb" dir="rtl">کوردی</a>
+            <a href="#" lang="ar" dir="rtl">العربية</a>
+            <a href="#" aria-current="true">English</a>
+          </nav>
+        </header>
+        <div class="title-block">
+          <h1 class="title"><span>Christmas</span> <span>Nights</span></h1>
+          <p class="eyebrow">by SuliFest</p>
+          <p class="tagline">A Season of Lights, Joy &amp; Celebration</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="hint">
+      <span>Scroll for a surprise</span>
+      <svg class="loop bob" aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7 L9 12 L14 7"/></svg>
+    </p>
+  </div>
+
+  <!-- ===== Scene 2: the card and the tree ===== -->
+  <section class="scene2" id="dates" aria-labelledby="dates-title">
+    <div class="s-mist" aria-hidden="true">
+      <div class="mist mist-1"></div>
+      <div class="mist mist-2"></div>
+      <div class="mist mist-3"></div>
+    </div>
+
+    <div class="s2-box">
+      <div class="s-card">
+        <h2 class="visually-hidden" id="dates-title">Dates and place</h2>
+        <div class="ring">
+          <img src="assets/brand/wreath-540.webp" fetchpriority="low" srcset="assets/brand/wreath-380.webp 380w, assets/brand/wreath-540.webp 540w, assets/brand/wreath-760.webp 760w" sizes="(max-aspect-ratio: 1/1) 270px, (max-width: 700px) 270px, min(28.125vw, 50vh)" width="760" height="745" alt="" loading="lazy" decoding="async">
+          <p class="ring-in"><span class="ring-days">16 – 31</span><span class="ring-month">December 2026</span></p>
+        </div>
+        <p class="card-place"><span>Magma Square</span><i class="diamond" aria-hidden="true"></i><span>Sulaimani</span></p>
+      </div>
+
+      <div class="s-tent" aria-hidden="true">
+        <img class="tree-dark" src="assets/night-tree.webp" width="495" height="1000" alt="" loading="lazy" fetchpriority="low" decoding="async">
+        <img class="tree-lit" src="assets/night-tree.webp" width="495" height="1000" alt="" loading="lazy" fetchpriority="low" decoding="async">
+      </div>
+
+      <div class="s-boxes" aria-hidden="true">
+        <img src="assets/gifts.webp" width="590" height="255" alt="" loading="lazy" fetchpriority="low" decoding="async">
+      </div>
+    </div>
+
+    <div class="s-ground" aria-hidden="true">
+      <div class="ground-glow"></div>
+      <svg class="ground-hills" viewBox="0 0 1440 160" preserveAspectRatio="none" focusable="false">
+        <path class="hill hill-far" d="M0 34 C 220 8, 460 6, 680 30 S 1120 58, 1440 16 V160 H0 Z"/>
+        <path class="hill hill-mid" d="M0 50 C 260 30, 540 56, 790 42 S 1220 22, 1440 44 V160 H0 Z"/>
+        <path class="hill hill-front" d="M0 58 C 200 46, 440 44, 720 56 S 1200 62, 1440 50 V160 H0 Z"/>
+        <path class="hill-edge" d="M0 58 C 200 46, 440 44, 720 56 S 1200 62, 1440 50"/>
+      </svg>
+    </div>
+  </section>
+
+
+</div>
+</div>
+
+<!-- ===== The rest of the Home page (plans 004 and 005). Text from docs/brief/website-copy-en.md ===== -->
+
+<section class="page-section section-paper story" id="about" aria-label="SuliFest, italk and Christmas Nights" tabindex="-1">
+  <div class="wrap story-wrap">
+
+    <div class="step">
+      <i class="step-mark" aria-hidden="true"></i>
+      <div class="step-text">
+        <p class="kicker">The brand</p>
+        <h2 class="reveal-heading" id="sulifest-title"><span class="reveal-line">SuliFest</span></h2>
+        <p class="lead">SuliFest takes its name from &ldquo;Suli&rdquo;, the short, loving name people use for Sulaimani.</p>
+        <p>The first SuliFest opened on 26 June 2026 at Hawary Shar Park: eight days of culture, music, food, family entertainment and local business in one place.</p>
+        <p>It is a celebration of the city&rsquo;s energy and culture, made for locals and for visitors.</p>
+        <div class="stats">
+          <p class="stat"><strong><span data-count="8">8</span></strong> days</p>
+          <p class="stat"><strong><span data-count="100">100</span>+</strong> activities</p>
+          <p class="stat"><strong><span data-count="200">200</span>+</strong> brands</p>
+          <p class="stat"><strong><span data-count="60">60</span></strong> sponsors and partners</p>
+        </div>
+      </div>
+      <div class="step-art" aria-hidden="true">
+        <div class="stamp-drop">
+          <div class="paper-stamp paper-stamp-suli tilt-r">
+            <img src="assets/brand/wreath-240.webp" srcset="assets/brand/wreath-240.webp 240w, assets/brand/wreath-380.webp 380w" sizes="(max-width: 900px) 92px, 125px" width="240" height="235" alt="" loading="lazy" decoding="async">
+            <p class="ps-suli">Suli</p>
+            <p class="ps-fest">Fest</p>
+            <i class="ps-rule"></i>
+            <p class="ps-line">Sulaimani, since 2026</p>
+          </div>
+          <i class="postmark"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="step step-rev">
+      <i class="step-mark" aria-hidden="true"></i>
+      <div class="step-text">
+        <p class="kicker">The organizer</p>
+        <h2 class="reveal-heading" id="italk-title"><span class="reveal-line">italk</span></h2>
+        <p class="lead">italk is a youth-led, non-profit organization from Sulaimani, founded in 2019.</p>
+        <p>It began with small gatherings in coffee shops. Today it runs conferences, seminars and workshops where people share knowledge and ideas.</p>
+        <p>italk organizes SuliFest, and now Christmas Nights.</p>
+        <div class="stats">
+          <p class="stat"><strong><span data-count="2019">2019</span></strong> founded</p>
+          <p class="stat"><strong>Youth-led</strong> team</p>
+          <p class="stat"><strong>Non-profit</strong> organization</p>
+        </div>
+      </div>
+      <div class="step-art" aria-hidden="true">
+        <div class="stamp-drop">
+          <div class="paper-stamp paper-stamp-italk tilt-l">
+            <img src="assets/brand/italk-mark-160.webp" srcset="assets/brand/italk-mark-80.webp 80w, assets/brand/italk-mark-160.webp 160w" sizes="(max-width: 900px) 78px, 112px" width="160" height="167" alt="" loading="lazy" decoding="async">
+            <p class="ps-name ps-italk">italk</p>
+            <p class="ps-line">Organizer, since 2019</p>
+          </div>
+          <i class="postmark"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="step step-last">
+      <i class="step-mark" aria-hidden="true"></i>
+      <div class="step-text">
+        <p class="kicker">The festival</p>
+        <h2 class="reveal-heading" id="about-title"><span class="reveal-line">About Christmas Nights</span></h2>
+        <p class="lead">Christmas Nights is a large-scale Christmas and New Year festival organized by italk under the SuliFest brand. Taking place from 16 to 31 December 2026 at Magma Square, the festival aims to transform Sulaimani into a vibrant festive destination filled with lights, entertainment, creativity, and celebration.</p>
+        <p>Bringing together families, young people, children, businesses, artists, and visitors, Christmas Nights offers entertainment, culture, food, shopping, educational activities, and seasonal celebrations.</p>
+        <p>It is a gathering that brings the community together throughout the holiday season.</p>
+        <div class="stats">
+          <p class="stat"><strong><span data-count="16">16</span></strong> nights</p>
+          <p class="stat"><strong><span data-count="66">66</span></strong> market places</p>
+          <p class="stat"><strong><span data-count="1">1</span></strong> New Year fireworks show</p>
+        </div>
+      </div>
+      <div class="step-art">
+        <div class="stamp-drop">
+          <img class="stamp tilt-r" src="assets/brand/stamp-tree-420.webp" srcset="assets/brand/stamp-tree-240.webp 240w, assets/brand/stamp-tree-420.webp 420w" sizes="(max-width: 900px) 230px, 310px" width="420" height="576" alt="" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+
+    <div class="story-end">
+      <div class="nights" role="img" aria-label="16 lights for 16 nights: 16 to 31 December 2026. The last light is the New Year celebration.">
+        <div class="lights" aria-hidden="true"><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb"></span><span class="bulb bulb-last"></span></div>
+        <div class="nights-labels" aria-hidden="true"><span>16 December</span><span class="nights-end">31 December<br>New Year</span></div>
+      </div>
+      <dl class="facts">
+        <div class="fact"><dt>Dates</dt><dd>16–31 December 2026</dd></div>
+        <div class="fact"><dt>Location</dt><dd>Magma Square</dd></div>
+        <div class="fact"><dt>City</dt><dd>Sulaimani, Kurdistan Region, Iraq</dd></div>
+        <div class="fact"><dt>Organizer</dt><dd>italk</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="page-section section-paper" id="experience" aria-labelledby="experience-title">
+  <div class="wrap"><div class="rule" aria-hidden="true"><i class="diamond"></i></div></div>
+  <div class="wrap split split-items">
+    <div class="split-text">
+      <h2 class="reveal-heading" id="experience-title"><span class="reveal-line">The festival experience</span></h2>
+      <p>Christmas Nights brings together four parts of the festive season:</p>
+      <img class="stamp tilt-l stamp-small" src="assets/brand/stamp-gifts-420.webp" srcset="assets/brand/stamp-gifts-240.webp 240w, assets/brand/stamp-gifts-420.webp 420w" sizes="(max-width: 700px) 180px, 230px" width="420" height="526" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="items">
+    <div class="item">
+      <h3>Christmas Atmosphere &amp; Decorations</h3>
+      <p>A festive environment featuring Christmas lights, seasonal decorations, illuminated installations, a Christmas tree, and dedicated spaces for photography and celebration.</p>
+    </div>
+    <div class="item">
+      <h3>Live Entertainment &amp; Performances</h3>
+      <p>A central stage and entertainment program featuring live music, artistic performances, cultural presentations, and special entertainment throughout the festival.</p>
+    </div>
+    <div class="item">
+      <h3>Food &amp; Seasonal Experiences</h3>
+      <p>A variety of food experiences, seasonal treats, festive refreshments, and dining opportunities that complement the atmosphere of Christmas Nights.</p>
+    </div>
+    <div class="item">
+      <h3>Shopping &amp; Christmas Gifts</h3>
+      <p>A seasonal shopping experience where visitors can discover Christmas gifts, decorations, seasonal products, and unique offerings.</p>
+    </div></div>
+  </div>
+</section>
+
+<section class="page-section section-paper" id="family" aria-labelledby="family-title">
+  <div class="wrap"><div class="rule" aria-hidden="true"><i class="diamond"></i></div></div>
+  <div class="wrap split split-rev">
+    <div class="split-art"><img class="stamp tilt-l" src="assets/brand/stamp-carousel-420.webp" srcset="assets/brand/stamp-carousel-240.webp 240w, assets/brand/stamp-carousel-420.webp 420w" sizes="(max-width: 700px) 240px, 330px" width="420" height="576" alt="" loading="lazy" decoding="async"></div>
+    <div class="split-text">
+      <h2 class="reveal-heading" id="family-title"><span class="reveal-line">Family &amp; children's experiences</span></h2>
+      <p>Christmas Nights places special importance on creating experiences that families and children can enjoy together.</p>
+    <p>The festival will feature family-oriented activities, interactive experiences, creative workshops, and entertainment designed to encourage participation, creativity, and family engagement.</p>
+    <p>Planned experience categories include:</p>
+    <ul class="dots">
+      <li>Creative arts and crafts workshops.</li>
+      <li>Christmas decoration and ornament-making activities.</li>
+      <li>Family participation activities and interactive games.</li>
+      <li>Children's creative and educational workshops.</li>
+      <li>Seasonal activities and festive entertainment.</li>
+      <li>Interactive experiences designed for parents and children.</li>
+    </ul>
+    <p>The aim is to give families the chance to participate, learn, create, and make memories together.</p>
+    </div>
+  </div>
+</section>
+
+<section class="page-section section-paper" id="youth" aria-labelledby="youth-title">
+  <div class="wrap"><div class="rule" aria-hidden="true"><i class="diamond"></i></div></div>
+  <div class="wrap split">
+    <div class="split-text">
+      <h2 class="reveal-heading" id="youth-title"><span class="reveal-line">Youth, creativity &amp; learning</span></h2>
+      <p>Christmas Nights will also provide dedicated opportunities for young people to participate in creative, educational, and interactive experiences.</p>
+    <p>Through youth-oriented workshops and activities, the festival aims to encourage creativity, develop new interests, and provide a platform for young people to explore their talents and abilities.</p>
+    <p>These activities will give young people the chance to learn, connect, express themselves, and discover new interests.</p>
+    </div>
+    <div class="panel">
+      <p class="panel-title">Potential activities include:</p>
+      <ul class="dots">
+      <li>Art, painting, and creative workshops.</li>
+      <li>Photography and content creation sessions.</li>
+      <li>Design and handicraft workshops.</li>
+      <li>Interactive educational activities.</li>
+      <li>Innovation and creative thinking sessions.</li>
+      <li>Youth engagement and talent showcases.</li>
+      <li>Cultural and artistic activities.</li>
+    </ul>
+    </div>
+  </div>
+</section>
+
+<section class="page-section section-green perforated" id="new-year" aria-labelledby="new-year-title">
+  <div class="wrap centered">
+    <img class="stamp tilt-r stamp-small" src="assets/brand/stamp-bells-420.webp" srcset="assets/brand/stamp-bells-240.webp 240w, assets/brand/stamp-bells-420.webp 420w" sizes="(max-width: 700px) 180px, 230px" width="420" height="576" alt="" loading="lazy" decoding="async">
+    <h2 class="reveal-heading" id="new-year-title"><span class="reveal-line">New Year celebration</span></h2>
+    <p>One of the major highlights of Christmas Nights will be its New Year celebration.</p>
+    <p>The final night will bring visitors together to welcome the New Year through a special celebration, festive entertainment, and a spectacular fireworks show.</p>
+    <p>The celebration will close two weeks of activities.</p>
+  </div>
+</section>
+
+<section class="page-section section-paper" id="venue" aria-labelledby="venue-title">
+  <div class="wrap"><div class="rule" aria-hidden="true"><i class="diamond"></i></div></div>
+  <div class="wrap">
+    <h2 class="reveal-heading" id="venue-title"><span class="reveal-line">The venue – Magma Square</span></h2>
+    <div class="venue-intro"><p>Magma Square will serve as the central destination for Christmas Nights, hosting the festival's different experiences and activities.</p></div>
+  </div>
+  <div class="wrap map" id="map">
+    <div class="map-panel">
+      <div class="map-scroll" tabindex="0" role="region" aria-label="Map of Magma Square. On a small screen, move it sideways.">
+<div class="map-art">
+<img class="map-walls" src="assets/brand/map-walls.webp" width="992" height="1089" alt="" loading="lazy" decoding="async">
+<svg class="map-svg" viewBox="38 154 520 574" role="img" aria-labelledby="map-title map-desc">
+<title id="map-title">Map of Christmas Nights at Magma Square</title>
+<desc id="map-desc">A simplified plan. Two entrances, the open area with the Christmas tree, the stage, the main hall, the children's area, four sitting areas, parking, and 66 market places: 7 Zin, 21 Shirin and 38 Khaj.</desc>
+<path class="m-wall" fill="none" stroke="#A88A5C" stroke-width="1.3" d="M134.9 188.8L134.9 328.5"/>
+<path class="m-wall" fill="none" stroke="#A88A5C" stroke-width="1.3" d="M205 188.8L205 328.5"/>
+<path class="m-block" fill="#FFFDF7" stroke="#1D5A3C" stroke-width="1.1" d="M85.5 189.9H106.9V368.7H85.5ZZ"/>
+<path class="m-block" fill="#FFFDF7" stroke="#1D5A3C" stroke-width="1.1" d="M127.9 327.4H212.7V393.5H127.9ZZ"/>
+<path class="m-block" fill="#FFFDF7" stroke="#1D5A3C" stroke-width="1.1" d="M222.8 333.3H278V413.8H222.8ZZ"/>
+<path class="m-block" fill="#FFFDF7" stroke="#1D5A3C" stroke-width="1.1" d="M278 333.3H333.2V413.8H278ZZ"/>
+<path class="m-block" fill="#FFFDF7" stroke="#1D5A3C" stroke-width="1.1" d="M365.7 363.7H429.6V415.1H365.7ZZ"/>
+<path class="m-block" fill="#FFFDF7" stroke="#1D5A3C" stroke-width="1.1" d="M222.8 448.7H278V531.6H222.8ZZ"/>
+<path class="m-block" fill="#FFFDF7" stroke="#1D5A3C" stroke-width="1.1" d="M278 448.7H333.2V531.6H278ZZ"/>
+<path class="m-block" fill="#FFFDF7" stroke="#1D5A3C" stroke-width="1.1" d="M60.8 494H108.7V563.8H60.8ZZ"/>
+<path class="m-block m g-hall" fill="#FFFDF7" stroke="#1D5A3C" stroke-width="1.1" d="M107.9 583H231.6V696.3H107.9ZZ"/>
+<path class="m g-tree" fill="#E3E8D2" stroke="#A8B48A" stroke-width="0.7" d="M137.8 427.1L202.3 427.1C202.6 427.1 203 427.2 203.3 427.3C203.6 427.4 203.9 427.6 204.2 427.9C204.4 428.1 204.6 428.4 204.7 428.7C204.9 429.1 205 429.4 205 429.8L205 545.7C205 546.1 204.9 546.4 204.7 546.7C204.6 547 204.4 547.3 204.2 547.6C203.9 547.8 203.6 548 203.3 548.2C203 548.3 202.6 548.4 202.3 548.4L137.8 548.4C137.4 548.4 137.1 548.3 136.8 548.2C136.4 548 136.1 547.8 135.9 547.6C135.6 547.3 135.5 547 135.3 546.7C135.2 546.4 135.1 546.1 135.1 545.7L135.1 429.8C135.1 429.4 135.2 429.1 135.3 428.7C135.5 428.4 135.6 428.1 135.9 427.9C136.1 427.6 136.4 427.4 136.8 427.3C137.1 427.2 137.4 427.1 137.8 427.1Z"/>
+<path class="m g-tree" fill="#7A5230" d="M166.6 507.6H173.5V515.6H166.6ZZ"/>
+<path class="m g-tree" fill="#A07A35" d="M154.6 515.6L185.5 515.6L182.8 519.8L157.2 519.8L154.6 515.6Z"/>
+<path class="m g-tree" fill="#1D5A3C" d="M170 442.5L183.9 465.7C174.7 463.3 165.4 463.3 156.2 465.7L170 442.5Z"/>
+<path class="m g-tree" fill="#1D5A3C" d="M170 456.4L190.8 484.4C177 481.9 163.1 481.9 149.2 484.4L170 456.4Z"/>
+<path class="m g-tree" fill="#1D5A3C" d="M170 473.7L197.8 508.4C179.3 505.9 160.8 505.9 142.3 508.4L170 473.7Z"/>
+<path class="m g-tree" fill="#BE3428" d="M166.2 462.3C166.2 462.5 166.1 462.8 166 463C165.9 463.3 165.8 463.5 165.6 463.7C165.4 463.9 165.2 464 164.9 464.1C164.7 464.2 164.4 464.3 164.2 464.3C163.9 464.3 163.7 464.2 163.4 464.1C163.2 464 162.9 463.9 162.8 463.7C162.6 463.5 162.4 463.3 162.3 463C162.2 462.8 162.2 462.5 162.2 462.3C162.2 462 162.2 461.8 162.3 461.5C162.4 461.3 162.6 461 162.8 460.9C162.9 460.7 163.2 460.5 163.4 460.4C163.7 460.3 163.9 460.3 164.2 460.3C164.4 460.3 164.7 460.3 164.9 460.4C165.2 460.5 165.4 460.7 165.6 460.9C165.8 461 165.9 461.3 166 461.5C166.1 461.8 166.2 462 166.2 462.3Z"/>
+<path class="m g-tree" fill="#D9A441" d="M179 477.7C179 478 178.9 478.3 178.8 478.5C178.7 478.7 178.6 479 178.4 479.1C178.2 479.3 178 479.5 177.7 479.6C177.5 479.7 177.2 479.7 177 479.7C176.7 479.7 176.4 479.7 176.2 479.6C176 479.5 175.7 479.3 175.6 479.1C175.4 479 175.2 478.7 175.1 478.5C175 478.3 175 478 175 477.7C175 477.5 175 477.2 175.1 477C175.2 476.7 175.4 476.5 175.6 476.3C175.7 476.1 176 476 176.2 475.9C176.4 475.8 176.7 475.7 177 475.7C177.2 475.7 177.5 475.8 177.7 475.9C178 476 178.2 476.1 178.4 476.3C178.6 476.5 178.7 476.7 178.8 477C178.9 477.2 179 477.5 179 477.7Z"/>
+<path class="m g-tree" fill="#D9A441" d="M161.4 480.4C161.4 480.7 161.3 480.9 161.2 481.2C161.1 481.4 161 481.6 160.8 481.8C160.6 482 160.4 482.1 160.1 482.2C159.9 482.3 159.6 482.4 159.4 482.4C159.1 482.4 158.9 482.3 158.6 482.2C158.4 482.1 158.1 482 158 481.8C157.8 481.6 157.6 481.4 157.5 481.2C157.4 480.9 157.4 480.7 157.4 480.4C157.4 480.1 157.4 479.9 157.5 479.6C157.6 479.4 157.8 479.2 158 479C158.1 478.8 158.4 478.7 158.6 478.6C158.9 478.4 159.1 478.4 159.4 478.4C159.6 478.4 159.9 478.4 160.1 478.6C160.4 478.7 160.6 478.8 160.8 479C161 479.2 161.1 479.4 161.2 479.6C161.3 479.9 161.4 480.1 161.4 480.4Z"/>
+<path class="m g-tree" fill="#BE3428" d="M174.2 469.7C174.2 470 174.1 470.3 174 470.5C173.9 470.7 173.8 471 173.6 471.1C173.4 471.3 173.2 471.5 172.9 471.6C172.7 471.7 172.4 471.7 172.2 471.7C171.9 471.7 171.6 471.7 171.4 471.6C171.2 471.5 170.9 471.3 170.8 471.1C170.6 471 170.4 470.7 170.3 470.5C170.2 470.3 170.2 470 170.2 469.7C170.2 469.5 170.2 469.2 170.3 469C170.4 468.7 170.6 468.5 170.8 468.3C170.9 468.1 171.2 468 171.4 467.9C171.6 467.8 171.9 467.7 172.2 467.7C172.4 467.7 172.7 467.8 172.9 467.9C173.2 468 173.4 468.1 173.6 468.3C173.8 468.5 173.9 468.7 174 469C174.1 469.2 174.2 469.5 174.2 469.7Z"/>
+<path class="m g-tree" fill="#BE3428" d="M185.9 501.7C185.9 502 185.8 502.2 185.7 502.5C185.6 502.7 185.5 502.9 185.3 503.1C185.1 503.3 184.9 503.5 184.7 503.6C184.4 503.7 184.2 503.7 183.9 503.7C183.6 503.7 183.4 503.7 183.1 503.6C182.9 503.5 182.7 503.3 182.5 503.1C182.3 502.9 182.1 502.7 182 502.5C181.9 502.2 181.9 502 181.9 501.7C181.9 501.5 181.9 501.2 182 501C182.1 500.7 182.3 500.5 182.5 500.3C182.7 500.1 182.9 500 183.1 499.9C183.4 499.8 183.6 499.7 183.9 499.7C184.2 499.7 184.4 499.8 184.7 499.9C184.9 500 185.1 500.1 185.3 500.3C185.5 500.5 185.6 500.7 185.7 501C185.8 501.2 185.9 501.5 185.9 501.7Z"/>
+<path class="m g-tree" fill="#BE3428" d="M156 501.2C156 501.5 156 501.7 155.9 502C155.8 502.2 155.6 502.4 155.5 502.6C155.3 502.8 155.1 502.9 154.8 503C154.6 503.1 154.3 503.2 154 503.2C153.8 503.2 153.5 503.1 153.3 503C153 502.9 152.8 502.8 152.6 502.6C152.4 502.4 152.3 502.2 152.2 502C152.1 501.7 152 501.5 152 501.2C152 500.9 152.1 500.7 152.2 500.4C152.3 500.2 152.4 500 152.6 499.8C152.8 499.6 153 499.4 153.3 499.3C153.5 499.2 153.8 499.2 154 499.2C154.3 499.2 154.6 499.2 154.8 499.3C155.1 499.4 155.3 499.6 155.5 499.8C155.6 500 155.8 500.2 155.9 500.4C156 500.7 156 500.9 156 501.2Z"/>
+<path class="m g-tree" fill="#D9A441" d="M170.4 492.4C170.4 492.7 170.4 492.9 170.3 493.2C170.2 493.4 170 493.6 169.8 493.8C169.7 494 169.4 494.1 169.2 494.2C169 494.3 168.7 494.4 168.4 494.4C168.2 494.4 167.9 494.3 167.7 494.2C167.4 494.1 167.2 494 167 493.8C166.8 493.6 166.7 493.4 166.6 493.2C166.5 492.9 166.4 492.7 166.4 492.4C166.4 492.1 166.5 491.9 166.6 491.6C166.7 491.4 166.8 491.2 167 491C167.2 490.8 167.4 490.6 167.7 490.5C167.9 490.4 168.2 490.4 168.4 490.4C168.7 490.4 169 490.4 169.2 490.5C169.4 490.6 169.7 490.8 169.8 491C170 491.2 170.2 491.4 170.3 491.6C170.4 491.9 170.4 492.1 170.4 492.4Z"/>
+<path class="m g-tree" fill="#D9A441" d="M180 459.1C180 459.3 180 459.6 179.9 459.8C179.8 460.1 179.6 460.3 179.4 460.5C179.3 460.7 179 460.8 178.8 460.9C178.6 461 178.3 461.1 178 461.1C177.8 461.1 177.5 461 177.3 460.9C177 460.8 176.8 460.7 176.6 460.5C176.4 460.3 176.3 460.1 176.2 459.8C176.1 459.6 176 459.3 176 459.1C176 458.8 176.1 458.6 176.2 458.3C176.3 458.1 176.4 457.8 176.6 457.7C176.8 457.5 177 457.3 177.3 457.2C177.5 457.1 177.8 457.1 178 457.1C178.3 457.1 178.6 457.1 178.8 457.2C179 457.3 179.3 457.5 179.4 457.7C179.6 457.8 179.8 458.1 179.9 458.3C180 458.6 180 458.8 180 459.1Z"/>
+<path class="m g-tree" fill="#D9A441" d="M170 432.4L171.9 436.4L176.2 437L173 439.9L173.8 444.1L170 442L166.3 444.1L167.1 439.9L163.9 437L168.2 436.4L170 432.4Z"/>
+<path class="m g-stage" fill="#3B2A1C" stroke="#D9A441" stroke-width="0.8" d="M213.2 533.7L224.4 533.7C224.7 533.7 225 533.8 225.2 533.9C225.5 534 225.7 534.1 225.9 534.3C226.1 534.5 226.3 534.8 226.4 535C226.5 535.3 226.5 535.6 226.5 535.8L226.5 560.9C226.5 561.2 226.5 561.4 226.4 561.7C226.3 562 226.1 562.2 225.9 562.4C225.7 562.6 225.5 562.8 225.2 562.9C225 563 224.7 563 224.4 563L213.2 563C212.9 563 212.7 563 212.4 562.9C212.1 562.8 211.9 562.6 211.7 562.4C211.5 562.2 211.4 562 211.2 561.7C211.1 561.4 211.1 561.2 211.1 560.9L211.1 535.8C211.1 535.6 211.1 535.3 211.2 535C211.4 534.8 211.5 534.5 211.7 534.3C211.9 534.1 212.1 534 212.4 533.9C212.7 533.8 212.9 533.7 213.2 533.7Z"/>
+<path class="m g-entrance" fill="#BE3428" stroke="#FFFDF7" stroke-width="1.1" d="M110.1 159L132.5 159L132.5 226.7L138.9 226.7L121.3 244.2L103.7 226.7L110.1 226.7L110.1 159Z"/>
+<path class="m g-entrance" fill="#BE3428" stroke="#FFFDF7" stroke-width="1.1" d="M355.3 635.5L377.7 635.5L377.7 565.2L384.1 565.2L366.5 547.6L348.9 565.2L355.3 565.2L355.3 635.5Z"/>
+<rect class="m g-sitting m-zone" x="142.6" y="345.2" width="56" height="15" rx="7.5"/><rect class="m g-sitting m-zone" x="249.7" y="368.7" width="56" height="15" rx="7.5"/><rect class="m g-sitting m-zone" x="249.7" y="478" width="56" height="15" rx="7.5"/><rect class="m g-sitting m-zone" x="141.5" y="613.1" width="56" height="15" rx="7.5"/>
+<circle class="m g-kids m-ring" cx="85.3" cy="432.3" r="31.5"/>
+<text class="m g-parking fc" x="436" y="606.7" font-size="8" fill="#5F4A33" text-anchor="middle">Parking</text>
+<text class="m g-hall fc" x="169.8" y="635.5" font-size="10.1" fill="#1D5A3C" text-anchor="middle">Main Hall</text>
+<text class="m g-sitting fc" x="170.6" y="355.1" font-size="5.9" fill="#1D5A3C" text-anchor="middle">Sitting area</text>
+<text class="m g-sitting fc" x="277.7" y="378.6" font-size="5.9" fill="#1D5A3C" text-anchor="middle">Sitting area</text>
+<text class="m g-sitting fc" x="277.7" y="487.9" font-size="5.9" fill="#1D5A3C" text-anchor="middle">Sitting area</text>
+<text class="m g-sitting fc" x="169.5" y="623" font-size="5.9" fill="#1D5A3C" text-anchor="middle">Sitting area</text>
+<text class="m g-kids fc" x="84.5" y="437.7" font-size="6.9" fill="#1D5A3C" text-anchor="middle">Kids area</text>
+<text class="m g-entrance fc" x="121.3" y="194" font-size="8" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" transform="rotate(90 121.3 194)">Entrance</text>
+<text class="m g-entrance fc" x="366.5" y="599" font-size="8" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" transform="rotate(-90 366.5 599)">Entrance</text>
+<text class="m g-tree fc" x="170" y="532.1" font-size="7.5" fill="#5E6B3F" text-anchor="middle">Open Area</text>
+<text class="m g-tree fg" x="170" y="540.6" font-size="5.9" fill="#5E6B3F" text-anchor="middle">Christmas tree</text>
+<text class="m g-stage fc" x="218.4" y="548" font-size="5.9" fill="#F6EBCC" text-anchor="middle" dominant-baseline="central" transform="rotate(90 218.4 548)">Stage</text>
+<g class="m g-parking"><rect x="403" y="598.5" width="12" height="12" rx="2.2" fill="#8A6630"/><text class="fc" x="409" y="607.6" font-size="7.5" fill="#F6EBCC" text-anchor="middle">P</text></g>
+<g class="m g-k"><rect x="251.3" y="396.4" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="257.5" y="404.2" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K1</text></g>
+<g class="m g-k"><rect x="264.7" y="396.4" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="270.8" y="404.2" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K2</text></g>
+<g class="m g-k"><rect x="278" y="396.4" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="284.1" y="404.2" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K3</text></g>
+<g class="m g-k"><rect x="291.3" y="396.4" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="297.4" y="404.2" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K4</text></g>
+<g class="m g-k"><rect x="304.6" y="396.4" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="310.8" y="404.2" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K5</text></g>
+<g class="m g-k"><rect x="318" y="369.8" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="324.1" y="377.5" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K6</text></g>
+<g class="m g-k"><rect x="318" y="383.1" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="324.1" y="390.8" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K7</text></g>
+<g class="m g-k"><rect x="251.3" y="454.3" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="257.5" y="462" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K8</text></g>
+<g class="m g-k"><rect x="264.7" y="454.3" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="270.8" y="462" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K9</text></g>
+<g class="m g-k"><rect x="278" y="454.3" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="284.1" y="462" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K10</text></g>
+<g class="m g-k"><rect x="291.3" y="454.3" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="297.4" y="462" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K11</text></g>
+<g class="m g-k"><rect x="304.6" y="454.3" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="310.8" y="462" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K12</text></g>
+<g class="m g-k"><rect x="318" y="467.6" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="324.1" y="475.3" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K13</text></g>
+<g class="m g-k"><rect x="318" y="480.9" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="324.1" y="488.7" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K14</text></g>
+<g class="m g-k"><rect x="371" y="369.8" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="377.1" y="377.5" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K15</text></g>
+<g class="m g-k"><rect x="371" y="383.1" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="377.1" y="390.8" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K16</text></g>
+<g class="m g-k"><rect x="384.3" y="396.4" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="390.5" y="404.2" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K17</text></g>
+<g class="m g-k"><rect x="397.7" y="396.4" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="403.8" y="404.2" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K18</text></g>
+<g class="m g-k"><rect x="411" y="396.4" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="417.1" y="404.2" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K19</text></g>
+<g class="m g-k"><rect x="117" y="611.8" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="123.1" y="619.5" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K20</text></g>
+<g class="m g-k"><rect x="117" y="625.1" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="123.1" y="632.9" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K21</text></g>
+<g class="m g-k"><rect x="117" y="638.5" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="123.1" y="646.2" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K22</text></g>
+<g class="m g-k"><rect x="117" y="651.8" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="123.1" y="659.5" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K23</text></g>
+<g class="m g-k"><rect x="210.3" y="611.8" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="216.4" y="619.5" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K24</text></g>
+<g class="m g-k"><rect x="210.3" y="625.1" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="216.4" y="632.9" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K25</text></g>
+<g class="m g-k"><rect x="210.3" y="638.5" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="216.4" y="646.2" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K26</text></g>
+<g class="m g-k"><rect x="210.3" y="651.8" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="216.4" y="659.5" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K27</text></g>
+<g class="m g-k"><rect x="130.3" y="665.1" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="136.5" y="672.8" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K28</text></g>
+<g class="m g-k"><rect x="143.6" y="665.1" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="149.8" y="672.8" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K29</text></g>
+<g class="m g-k"><rect x="157" y="665.1" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="163.1" y="672.8" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K30</text></g>
+<g class="m g-k"><rect x="170.3" y="665.1" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="176.4" y="672.8" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K31</text></g>
+<g class="m g-k"><rect x="183.6" y="665.1" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="189.8" y="672.8" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K32</text></g>
+<g class="m g-k"><rect x="197" y="665.1" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="203.1" y="672.8" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K33</text></g>
+<g class="m g-k"><rect x="157" y="588.3" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="163.1" y="596.1" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K34</text></g>
+<g class="m g-k"><rect x="170.3" y="588.3" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="176.4" y="596.1" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K35</text></g>
+<g class="m g-k"><rect x="198" y="331.7" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="204.2" y="339.4" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K36</text></g>
+<g class="m g-k"><rect x="198" y="345" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="204.2" y="352.7" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K37</text></g>
+<g class="m g-k"><rect x="198" y="358.3" width="12.3" height="12.3" rx="2.4" fill="#8A6630" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="204.2" y="366.1" font-size="4.6" fill="#FFFDF7" text-anchor="middle">K38</text></g>
+<g class="m g-s"><rect x="90.1" y="329.3" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="96.2" y="337" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S1</text></g>
+<g class="m g-s"><rect x="90.1" y="342.6" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="96.2" y="350.3" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S2</text></g>
+<g class="m g-s"><rect x="90.1" y="355.9" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="96.2" y="363.7" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S3</text></g>
+<g class="m g-s"><rect x="131.4" y="331.7" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="137.5" y="339.4" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S4</text></g>
+<g class="m g-s"><rect x="131.4" y="345" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="137.5" y="352.7" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S5</text></g>
+<g class="m g-s"><rect x="131.4" y="358.3" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="137.5" y="366.1" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S6</text></g>
+<g class="m g-s"><rect x="144.7" y="371.7" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="150.8" y="379.4" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S7</text></g>
+<g class="m g-s"><rect x="158" y="371.7" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="164.2" y="379.4" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S8</text></g>
+<g class="m g-s"><rect x="171.4" y="371.7" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="177.5" y="379.4" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S9</text></g>
+<g class="m g-s"><rect x="184.7" y="371.7" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="190.8" y="379.4" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S10</text></g>
+<g class="m g-s"><rect x="224.7" y="356.5" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="230.8" y="364.2" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S11</text></g>
+<g class="m g-s"><rect x="224.7" y="369.8" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="230.8" y="377.5" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S12</text></g>
+<g class="m g-s"><rect x="224.7" y="383.1" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="230.8" y="390.8" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S13</text></g>
+<g class="m g-s"><rect x="224.7" y="467.6" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="230.8" y="475.3" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S14</text></g>
+<g class="m g-s"><rect x="224.7" y="480.9" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="230.8" y="488.7" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S15</text></g>
+<g class="m g-s"><rect x="224.7" y="494.3" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="230.8" y="502" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S16</text></g>
+<g class="m g-s"><rect x="91.7" y="502.3" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="97.8" y="510" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S17</text></g>
+<g class="m g-s"><rect x="91.7" y="522.8" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="97.8" y="530.5" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S18</text></g>
+<g class="m g-s"><rect x="91.7" y="543.3" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="97.8" y="551" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S19</text></g>
+<g class="m g-s"><rect x="238" y="396.4" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="244.1" y="404.2" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S20</text></g>
+<g class="m g-s"><rect x="238" y="454.3" width="12.3" height="12.3" rx="2.4" fill="#1D5A3C" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="244.1" y="462" font-size="4.6" fill="#FFFDF7" text-anchor="middle">S21</text></g>
+<g class="m g-z"><rect x="88.2" y="207.5" width="16" height="16" rx="2.8" fill="#BE3428" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="96.2" y="217.1" font-size="5.6" fill="#FFFDF7" text-anchor="middle">Z1</text></g>
+<g class="m g-z"><rect x="88.2" y="224.8" width="16" height="16" rx="2.8" fill="#BE3428" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="96.2" y="234.4" font-size="5.6" fill="#FFFDF7" text-anchor="middle">Z2</text></g>
+<g class="m g-z"><rect x="88.2" y="242.1" width="16" height="16" rx="2.8" fill="#BE3428" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="96.2" y="251.7" font-size="5.6" fill="#FFFDF7" text-anchor="middle">Z3</text></g>
+<g class="m g-z"><rect x="88.2" y="259.4" width="16" height="16" rx="2.8" fill="#BE3428" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="96.2" y="269" font-size="5.6" fill="#FFFDF7" text-anchor="middle">Z4</text></g>
+<g class="m g-z"><rect x="88.2" y="276.8" width="16" height="16" rx="2.8" fill="#BE3428" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="96.2" y="286.4" font-size="5.6" fill="#FFFDF7" text-anchor="middle">Z5</text></g>
+<g class="m g-z"><rect x="88.2" y="294.1" width="16" height="16" rx="2.8" fill="#BE3428" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="96.2" y="303.7" font-size="5.6" fill="#FFFDF7" text-anchor="middle">Z6</text></g>
+<g class="m g-z"><rect x="88.2" y="311.4" width="16" height="16" rx="2.8" fill="#BE3428" stroke="#F3E3BE" stroke-width=".6"/><text class="fc" x="96.2" y="321" font-size="5.6" fill="#FFFDF7" text-anchor="middle">Z7</text></g>
+</svg>
+</div>
+      </div>
+    </div>
+    <div class="map-side">
+      <p class="map-intro">The venue will feature:</p>
+      <ul class="map-list">
+        <li><button type="button" class="map-btn" data-map="tree" aria-pressed="false"><i class="key key-tree" aria-hidden="true"></i><span>A large open area featuring the Christmas tree.</span></button></li>
+        <li><button type="button" class="map-btn" data-map="stage" aria-pressed="false"><i class="key key-stage" aria-hidden="true"></i><span>A central stage for entertainment and performances.</span></button></li>
+        <li><button type="button" class="map-btn" data-map="hall" aria-pressed="false"><i class="key key-hall" aria-hidden="true"></i><span>A main hall.</span></button></li>
+        <li><button type="button" class="map-btn" data-map="kids" aria-pressed="false"><i class="key key-kids" aria-hidden="true"></i><span>A dedicated children's area.</span></button></li>
+        <li><button type="button" class="map-btn" data-map="sitting" aria-pressed="false"><i class="key key-sitting" aria-hidden="true"></i><span>Visitor seating and relaxation areas.</span></button></li>
+        <li><button type="button" class="map-btn" data-map="parking" aria-pressed="false"><i class="key key-parking" aria-hidden="true"></i><span>Designated parking facilities.</span></button></li>
+      </ul>
+      <p class="map-sub">Market places</p>
+      <ul class="map-list">
+        <li><button type="button" class="map-btn" data-map="z" aria-pressed="false"><i class="key key-z" aria-hidden="true">Z</i><span>Zin Place <small>7 places, 4 × 4 m</small></span></button></li>
+        <li><button type="button" class="map-btn" data-map="s" aria-pressed="false"><i class="key key-s" aria-hidden="true">S</i><span>Shirin Place <small>21 places, 3 × 3 m</small></span></button></li>
+        <li><button type="button" class="map-btn" data-map="k" aria-pressed="false"><i class="key key-k" aria-hidden="true">K</i><span>Khaj Place <small>38 places, 3 × 3 m</small></span></button></li>
+        <li><button type="button" class="map-btn" data-map="entrance" aria-pressed="false"><i class="key key-entrance" aria-hidden="true"></i><span>Entrance <small>two entrances</small></span></button></li>
+      </ul>
+      <button type="button" class="map-all" data-map="" hidden>Show the whole map</button>
+      <p class="map-note">Each square is one place, marked with its letter and number. Simplified plan.</p>
+    </div>
+  </div>
+</section>
+
+<section class="page-section section-green perforated" id="journey" aria-labelledby="journey-title">
+  <div class="wrap split">
+    <div class="split-text">
+      <p class="kicker">Where it began</p>
+      <h2 class="reveal-heading" id="journey-title"><span class="reveal-line">From SuliFest to Christmas Nights</span></h2>
+      <p class="motto"><span>One Vision.</span> <span>Different Seasons.</span> <span>Endless Experiences.</span></p>
+    <p>Christmas Nights represents the next chapter of the SuliFest journey. Christmas Nights continues the same vision of bringing people together through large-scale cultural, entertainment, and community experiences.</p>
+    <p>While SuliFest celebrates the energy of summer, Christmas Nights brings that spirit into the festive season, creating a new destination for celebration in Sulaimani.</p>
+    <p>Both events reflect a shared ambition: developing memorable experiences, supporting community engagement, and positioning Sulaimani as a destination for major festivals and celebrations.</p>
+    </div>
+    <div class="split-art chapters">
+      <img class="stamp tilt-r stamp-small" src="assets/brand/stamp-statue-420.webp" srcset="assets/brand/stamp-statue-240.webp 240w, assets/brand/stamp-statue-420.webp 420w" sizes="(max-width: 700px) 180px, 230px" width="420" height="553" alt="" loading="lazy" decoding="async">
+      <div class="chapter"><p class="chapter-name">SuliFest</p><p>June 2026, 8 days</p><p>Hawary Shar Park</p></div>
+      <p class="chapter-next">Next</p>
+      <div class="chapter chapter-now"><p class="chapter-name">Christmas Nights</p><p>16 – 31 December 2026</p><p>Magma Square</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap centered">
+    <img class="footer-wreath" src="assets/brand/wreath-240.webp" width="240" height="235" alt="" loading="lazy" decoding="async">
+    <p class="footer-name">Christmas Nights</p>
+    <p class="footer-by">by SuliFest</p>
+    <p class="footer-org">Organized by <img src="assets/brand/italk-mark-80.webp" width="80" height="84" alt="" loading="lazy" decoding="async"> <strong>italk</strong></p>
+    <p class="footer-line"><span>Magma Square</span><i class="diamond" aria-hidden="true"></i><span>16 – 31 December 2026</span></p>
+    <nav class="footer-langs" aria-label="Language">
+      <a href="#" lang="ckb" dir="rtl">کوردی</a>
+      <a href="#" lang="ar" dir="rtl">العربية</a>
+      <a href="#" aria-current="true">English</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,658 @@
+/* =====================================================================
+   Sulifest home hero – stand-alone demo (plan 002, Part 0)
+
+   Numbers like calc(540 * var(--u)) are the positions of the moving
+   preview (docs/design/hero-preview/preview-source.html, a 1280 x 720
+   stage). They are scaled to the real screen:
+     --u  "cover" unit: the night picture always fills the screen
+     --v  "contain" unit: scene 2 and the texts always fit on the screen
+   Both use container units of .scene1 / .scene2 (container-type: size).
+
+   Layouts:
+     default (no JavaScript, or "reduce motion"): two normal sections
+     html.motion (set by boot.js): 300svh wrapper + sticky stage,
+                                   GSAP moves the layers (hero.js)
+   ===================================================================== */
+
+/* ---------- Fonts: our own files only (OFL, see assets/fonts) ---------- */
+/* The brand fonts (plan 005): Cinzel Decorative for the name, Cinzel for headings
+   and labels, EB Garamond for text. Vazirmatn only for the language names. */
+@font-face { font-family: "Cinzel Decorative"; font-style: normal; font-weight: 900; font-display: swap;
+  src: url("assets/fonts/cinzel-decorative-latin-900-normal.woff2") format("woff2"); }
+@font-face { font-family: "Cinzel"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("assets/fonts/cinzel-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Cinzel"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("assets/fonts/cinzel-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "EB Garamond"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("assets/fonts/eb-garamond-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "EB Garamond"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("assets/fonts/eb-garamond-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "EB Garamond"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("assets/fonts/eb-garamond-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Vazirmatn"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("assets/fonts/vazirmatn-arabic-500-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+200C-200F, U+FB50-FDFF, U+FE70-FEFF; }
+
+/* Brand colours: docs/design/brand/README.md */
+:root {
+  --paper: #EDDDB3;        /* the SuliFest paper: page background */
+  --paper-light: #FCF6E8;  /* panels, the map */
+  --ivory: #FFFDF7;        /* text on red */
+  --green: #1D5A3C;        /* headings, Shirin places */
+  --green-deep: #16452E;   /* dark sections */
+  --red: #BE3428;          /* buttons, ornaments, Zin places */
+  --red-text: #A32B20;     /* small red text on paper (5:1) */
+  --gold: #A07A35;         /* Khaj places, ornaments (never text on paper) */
+  --gold-deep: #8A6630;    /* under small light letters (Khaj places, parking): 5.1:1 with Ivory */
+  --gold-bright: #D9A441;  /* lights, text on green and on the night sky */
+  --tan: #C9AE78;          /* thin lines */
+  --ink: #3A2A1B;          /* text */
+  --ink-soft: #5F4A33;     /* second-level text */
+  --cream: #F6EBCC;        /* text on the night sky and on green */
+  --cream-soft: #E4D9BD;   /* small text on the night sky */
+  --night: #05070F;
+
+  --u: max(calc(100cqw / 1280), calc(100cqh / 720));
+  --v: min(calc(100cqw / 1280), calc(100cqh / 720));
+  --font-word: "Cinzel Decorative", "Cinzel", Georgia, serif;
+  --font-caps: "Cinzel", Georgia, serif;
+  --font-text: "EB Garamond", Georgia, "Times New Roman", serif;
+  --font-arabic: Vazirmatn, "Noto Sans Arabic", Tahoma, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html { background: var(--night); }
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--cream);
+  font-family: var(--font-text);
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; }
+p { margin: 0; }
+
+a { color: var(--cream); }
+a:hover { color: var(--ivory); }
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--gold-bright);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* A small red diamond, as in the brand guide */
+.diamond {
+  display: inline-block;
+  flex: none;
+  width: .5em;
+  height: .5em;
+  background: var(--red);
+  transform: rotate(45deg);
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -80px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: var(--gold-bright);
+  color: var(--ink);
+  font-family: var(--font-caps);
+  font-weight: 700;
+  text-decoration: none;
+}
+.skip-link:focus { top: 12px; color: var(--ink); }
+
+/* =====================================================================
+   Wrapper, stage and the two scenes
+   ===================================================================== */
+.hero { position: relative; }
+.stage { position: relative; }
+
+.scene1,
+.scene2 {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+  container-type: size;
+}
+.scene1 { background: linear-gradient(180deg, #060914 0%, #0E1830 50%, #20355A 100%); }
+.scene2 { background: var(--night); }
+
+/* Scroll mode (motion allowed + JavaScript) */
+.motion .hero { height: 300vh; height: 300svh; }
+.motion .stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+.motion .scene1,
+.motion .scene2 {
+  position: absolute;
+  inset: 0;
+  height: auto;
+  min-height: 0;
+}
+.motion .scene2 { background: transparent; pointer-events: none; }
+/* Scene 2 waits until GSAP has put its parts below the screen. */
+.motion .hero:not(.is-ready) .scene2 { visibility: hidden; }
+
+/* Only the layers that GSAP really moves */
+.motion .l-stars, .motion .l-cloudfar, .motion .l-moon, .motion .l-cloudnear,
+.motion .l-mount, .motion .l-front, .motion .l-top,
+.motion .s-mist, .motion .s-card, .motion .s-tent, .motion .s-boxes, .motion .s-ground {
+  will-change: transform;
+}
+
+/* =====================================================================
+   Scene 1 – the night picture (all in preview pixels x --u)
+   ===================================================================== */
+.art {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(1280 * var(--u));
+  height: calc(720 * var(--u));
+  margin-left: calc(-640 * var(--u));
+  margin-top: calc(-360 * var(--u));
+  pointer-events: none;
+}
+.art img { position: absolute; max-width: none; height: auto; }
+
+.l-stars, .l-cloudfar, .l-moon, .l-cloudnear, .fill {
+  position: absolute;
+  inset: 0;
+}
+.stars { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.cloud-far   { left: calc(760 * var(--u));  top: calc(-70 * var(--u)); width: calc(640 * var(--u)); opacity: .8; }
+.cloud-near-a{ left: calc(-120 * var(--u)); top: calc(300 * var(--u)); width: calc(700 * var(--u)); opacity: .85; }
+.cloud-near-b{ left: calc(60 * var(--u));   top: calc(250 * var(--u)); width: calc(420 * var(--u)); opacity: .8; }
+
+.moon-glow {
+  position: absolute;
+  left: calc(540 * var(--u));
+  top: calc(254 * var(--u));
+  width: calc(200 * var(--u));
+  height: calc(200 * var(--u));
+  border-radius: 50%;
+  box-shadow: 0 0 calc(90 * var(--u)) calc(10 * var(--u)) rgba(246, 225, 190, .34);
+}
+.art .moon {
+  left: calc(536 * var(--u));
+  top: calc(250 * var(--u));
+  width: calc(208 * var(--u));
+  height: calc(208 * var(--u));
+}
+
+/* Santa's sleigh: flies forward only, 40 s, linear, fades in and out */
+.sleigh {
+  position: absolute;
+  left: calc(495 * var(--u));
+  top: calc(286 * var(--u));
+  width: calc(300 * var(--u));
+  height: calc(90 * var(--u));
+}
+.art .santa { left: 0; top: calc(16 * var(--u)); width: calc(104 * var(--u)); }
+/* The reins start in Santa's hands (56, 35) and end at the reindeer: an SVG in
+   the same 300 x 90 units as the sleigh box, so they always touch both. */
+.reins, .whip { position: absolute; overflow: visible; pointer-events: none; }
+.reins { left: 0; top: 0; width: 100%; height: 100%; }
+.reins path, .whip path { fill: none; stroke: #060A14; stroke-linecap: round; }
+.reins path { stroke-width: 1.15; }
+/* The whip turns around the hand (its bottom-left corner) */
+.whip {
+  left: calc(57 * var(--u));
+  top: calc(-5 * var(--u));
+  width: calc(70 * var(--u));
+  height: calc(40 * var(--u));
+  transform-origin: 0 100%;
+}
+.whip path { stroke-width: .9; }
+/* Reindeer: 12-frame strip (2772 x 200), one frame visible at a time */
+.deer {
+  position: absolute;
+  width: calc(69 * var(--u));
+  height: calc(60 * var(--u));
+  background: url("assets/reindeer-sprite.webp") 0 0 / 1200% 100% no-repeat;
+}
+.deer-1 { left: calc(104 * var(--u)); top: calc(8 * var(--u)); }
+.deer-2 { left: calc(164 * var(--u)); top: calc(5 * var(--u)); }
+.deer-3 { left: calc(224 * var(--u)); top: calc(2 * var(--u)); }
+
+.l-mount {
+  position: absolute;
+  left: 0;
+  top: calc(415 * var(--u));
+  width: 100%;
+  height: calc(310 * var(--u));
+}
+.mountains { left: calc(-60 * var(--u)); top: 0; width: calc(1400 * var(--u)); }
+
+.l-front {
+  position: absolute;
+  left: 0;
+  top: calc(420 * var(--u));
+  width: 100%;
+  height: calc(1200 * var(--u));
+}
+.front-trees { left: calc(-40 * var(--u)); top: 0; width: calc(1360 * var(--u)); }
+.front-fill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(380 * var(--u));
+  height: calc(820 * var(--u));
+  background: var(--night);
+}
+
+/* Falling snow: three CSS layers, 720px = a multiple of every tile size */
+.snow-wrap { position: absolute; inset: 0; pointer-events: none; }
+.snow {
+  position: absolute;
+  left: -40px;
+  top: -720px;
+  width: calc(100% + 80px);
+  height: calc(100% + 720px);
+  background-repeat: repeat;
+}
+.snow-a {
+  background-size: 240px 240px;
+  opacity: .85;
+  background-image:
+    radial-gradient(circle at 22px 34px, #fff 0 1.3px, transparent 2px),
+    radial-gradient(circle at 96px 12px, #fff 0 1px, transparent 1.7px),
+    radial-gradient(circle at 168px 88px, #fff 0 1.4px, transparent 2.1px),
+    radial-gradient(circle at 60px 150px, #fff 0 1.1px, transparent 1.8px),
+    radial-gradient(circle at 204px 196px, #fff 0 1.2px, transparent 1.9px),
+    radial-gradient(circle at 128px 222px, #fff 0 1px, transparent 1.7px);
+}
+.snow-b {
+  background-size: 360px 360px;
+  opacity: .6;
+  background-image:
+    radial-gradient(circle at 48px 70px, #fff 0 2px, transparent 3.4px),
+    radial-gradient(circle at 210px 30px, #fff 0 2.4px, transparent 4px),
+    radial-gradient(circle at 310px 170px, #fff 0 1.9px, transparent 3.2px),
+    radial-gradient(circle at 130px 250px, #fff 0 2.6px, transparent 4.4px),
+    radial-gradient(circle at 268px 322px, #fff 0 2.1px, transparent 3.6px);
+}
+.snow-c {
+  background-size: 180px 180px;
+  opacity: .5;
+  background-image:
+    radial-gradient(circle at 16px 20px, #fff 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 104px 58px, #fff 0 .9px, transparent 1.5px),
+    radial-gradient(circle at 150px 132px, #fff 0 .8px, transparent 1.4px),
+    radial-gradient(circle at 58px 164px, #fff 0 .9px, transparent 1.5px);
+}
+
+/* ---------- Header + title ---------- */
+.l-top { position: absolute; left: 0; right: 0; top: 0; }
+
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 22px 44px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.logo img { width: 52px; height: auto; }
+.logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.logo-name { font-family: var(--font-word); font-weight: 900; font-size: 20px; color: var(--cream); }
+.logo-by { font-family: var(--font-caps); font-weight: 700; font-size: 11px; letter-spacing: .22em; color: var(--gold-bright); }
+.langs {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-inline-start: auto;
+  font-size: 17px;
+}
+.langs a { color: var(--cream-soft); text-decoration: none; }
+.langs a[lang="ckb"], .langs a[lang="ar"] { font-family: var(--font-arabic); font-size: 15px; }
+.langs a[aria-current="true"] {
+  color: var(--ivory);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: max(10px, calc(26 * var(--v)));
+  text-align: center;
+}
+.title {
+  margin: 0;
+  font-family: var(--font-word);
+  font-weight: 900;
+  font-size: clamp(44px, calc(76 * var(--v)), 124px);
+  line-height: 1.02;
+  letter-spacing: .01em;
+  color: var(--cream);
+  text-shadow: 0 2px 22px rgba(6, 9, 20, .7);
+}
+.eyebrow {
+  font-family: var(--font-caps);
+  font-weight: 700;
+  font-size: clamp(13px, calc(15 * var(--v)), 20px);
+  letter-spacing: .34em;
+  margin-inline-end: -.34em; /* keeps the spaced word centred */
+  color: var(--gold-bright);
+}
+.tagline {
+  margin-top: 2px;
+  font-style: italic;
+  font-size: clamp(18px, calc(21 * var(--v)), 28px);
+  color: #EFE4C8;
+  text-shadow: 0 0 6px rgba(6, 9, 20, .95), 0 1px 14px rgba(6, 9, 20, .8);
+}
+
+.hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: max(14px, calc(14 * var(--v)));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--cream-soft);
+  text-align: center;
+}
+
+/* =====================================================================
+   Scene 2 – dates in the ring, tree, gifts, ground (preview pixels x --v)
+   ===================================================================== */
+.scene2 { --ground-h: max(56px, calc(78 * var(--v))); }
+
+.s-mist { position: absolute; inset: 0; pointer-events: none; }
+.mist { position: absolute; border-radius: 50%; }
+/* Soft "blur" made with gradients (cheaper than filter: blur on phones) */
+.mist-1 {
+  left: calc(50% + 72 * var(--u));  top: calc(50% - 78 * var(--u));
+  width: calc(716 * var(--u));      height: calc(356 * var(--u));
+  background: radial-gradient(closest-side, rgba(124, 143, 181, .2) 50%, rgba(124, 143, 181, 0));
+}
+.mist-2 {
+  left: calc(50% - 808 * var(--u)); top: calc(50% - 28 * var(--u));
+  width: calc(616 * var(--u));      height: calc(316 * var(--u));
+  background: radial-gradient(closest-side, rgba(124, 143, 181, .16) 50%, rgba(124, 143, 181, 0));
+}
+.mist-3 {
+  left: calc(50% + 310 * var(--u)); top: calc(50% + 30 * var(--u));
+  width: calc(320 * var(--u));      height: calc(180 * var(--u));
+  background: radial-gradient(closest-side, rgba(201, 211, 230, .16) 50%, rgba(201, 211, 230, 0));
+}
+
+/* Desktop: the preview's 1280 x 720 layout, scaled to fit, standing on the ground */
+.s2-box {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: calc(1280 * var(--v));
+  height: calc(720 * var(--v));
+  margin-left: calc(-640 * var(--v));
+}
+
+/* No box (plan 005): the ring holds the dates, straight on the night sky.
+   The class name .s-card stays, because the GSAP timeline moves it. */
+.s-card {
+  position: absolute;
+  z-index: 1;
+  left: calc(430 * var(--v));
+  top: calc(56 * var(--v));
+  width: calc(420 * var(--v));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: max(12px, calc(18 * var(--v)));
+  color: var(--cream);
+  text-align: center;
+}
+.ring { position: relative; width: max(250px, calc(360 * var(--v))); }
+.ring img { width: 100%; height: auto; filter: drop-shadow(0 0 26px rgba(246, 235, 204, .16)); }
+.ring-in {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: max(4px, calc(6 * var(--v)));
+  padding-top: 2%;
+}
+.ring-days {
+  font-family: var(--font-caps);
+  font-weight: 700;
+  font-size: max(36px, calc(54 * var(--v)));
+  line-height: 1;
+  color: var(--cream);
+}
+.ring-month {
+  font-family: var(--font-caps);
+  font-weight: 700;
+  font-size: max(12px, calc(16 * var(--v)));
+  letter-spacing: .2em;
+  margin-inline-end: -.2em;
+  color: var(--gold-bright);
+}
+.card-place {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-caps);
+  font-weight: 700;
+  font-size: max(15px, calc(19 * var(--v)));
+  letter-spacing: .12em;
+}
+
+/* The tree: a dark copy under a bright copy. GSAP fades the bright one in = lights on. */
+.s-tent {
+  position: absolute;
+  z-index: 2;
+  left: calc(232 * var(--v));
+  top: calc(216 * var(--v));
+  width: calc(222 * var(--v));
+  height: calc(448 * var(--v));
+}
+.s-tent img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  /* the photo has a dark background: fade its sides so no dark shape shows on the sky */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 22%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 22%, #000 78%, transparent 100%);
+}
+.tree-dark { filter: brightness(.16) saturate(.3); }
+.tree-lit  { filter: brightness(1.12) saturate(1.1) drop-shadow(0 0 16px rgba(255, 200, 120, .5)); }
+
+.s-boxes {
+  position: absolute;
+  z-index: 3;
+  left: calc(792 * var(--v));
+  top: calc(552 * var(--v));
+  width: calc(250 * var(--v));
+}
+.s-boxes img { width: 100%; height: auto; }
+
+.s-ground {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(var(--ground-h) * 1.6); /* in the hills drawing, y = 60 is the line the tree and the gifts stand on */
+}
+/* Where the night meets the paper (plan 006): three snow hills in the paper colour.
+   The far ones are thin, so the night shows through; the front one is the paper itself,
+   so the page under the hero starts with no line. In the drawing (view box 0 0 1440 160)
+   the front hill stays between y 44 and 62: it covers the bottom edges of the tree and the gifts.
+   A warm glow rises above the hills, so the night and the paper share a tone. */
+.ground-glow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 30%;
+  height: 420%;
+  background: linear-gradient(to top, rgba(237, 221, 179, .22) 0%, rgba(217, 164, 65, .1) 30%, rgba(217, 164, 65, 0) 100%);
+  pointer-events: none;
+}
+.ground-hills { position: absolute; left: 0; bottom: -1px; width: 100%; height: 100%; }
+.hill { fill: var(--paper); }
+.hill-far { opacity: .16; }
+.hill-mid { opacity: .42; }
+.hill-edge { fill: none; stroke: var(--ivory); stroke-width: 2; opacity: .75; vector-effect: non-scaling-stroke; }
+
+/* =====================================================================
+   Phone and tall screens (portrait)
+   ===================================================================== */
+@media (max-aspect-ratio: 1/1), (max-width: 700px) {
+  .site-header {
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    padding: 14px 18px;
+  }
+  .langs { gap: 18px; font-size: 16px; }
+  .logo img { width: 40px; }
+  .logo-name { font-size: 15px; }
+  .logo-by { font-size: 9px; }
+  .title-block { gap: 6px; }
+  .eyebrow { text-shadow: 0 0 6px rgba(6, 9, 20, .95), 0 1px 14px rgba(6, 9, 20, .8); }
+  .title-block { margin-top: max(8px, 2cqh); }
+  .title { font-size: clamp(40px, 12.4vw, 64px); }
+  .title span { display: block; } /* "Christmas" / "Nights" */
+  .eyebrow { font-size: 12px; }
+  .tagline { font-size: 18px; padding-inline: 20px; }
+  .hint { bottom: 80px; }
+
+  .s2-box { inset: 0; width: auto; height: auto; margin: 0; }
+  .s-card {
+    left: 0;
+    right: 0;
+    top: max(16px, 4cqh);
+    width: auto;
+    margin-inline: auto;
+    gap: 12px;
+  }
+  .ring { width: min(270px, 68cqw); }
+  .card-place { font-size: 14px; gap: 10px; }
+  .s-tent {
+    z-index: 0;
+    left: 4%;
+    top: auto;
+    bottom: calc(var(--ground-h) - 14px);
+    width: clamp(80px, calc((100cqh - 470px) * .495), 150px);
+    height: auto;
+  }
+  .s-tent .tree-dark { position: relative; }
+  .s-boxes {
+    left: auto;
+    right: 4%;
+    top: auto;
+    bottom: calc(var(--ground-h) - 12px);
+    width: min(170px, 40cqw);
+  }
+}
+
+/* Narrow phones: the ring alone is the logo, so the logo and the language links fit on one row.
+   The name stays in the link for screen readers, and the big title says it right below. */
+@media (max-width: 460px) {
+  .logo-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+/* =====================================================================
+   Movement
+   ===================================================================== */
+
+/* Intro at page load. The title and the sky are visible at once (LCP);
+   the title only rises a little, the other layers fade in. */
+.intro-fade { animation: k-fadein .8s ease-out both; }
+.top-in { animation: k-rise 1.1s cubic-bezier(.45, 0, .25, 1) both; }
+@keyframes k-fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes k-rise { from { transform: translateY(36px); } to { transform: none; } }
+
+/* Always-moving parts: only in motion mode, they always play */
+.motion .twinkle-a { animation: k-twinkle 3.2s ease-in-out infinite alternate; }
+.motion .twinkle-b { animation: k-twinkle 4.6s ease-in-out infinite alternate-reverse; }
+.motion .drift-a   { animation: k-drift 13s ease-in-out infinite alternate; }
+.motion .drift-b   { animation: k-drift 17s ease-in-out infinite alternate-reverse; }
+.motion .sleigh    { animation: k-sleigh 40s linear -12s infinite; }
+.motion .sway      { animation: k-sway 1.44s ease-in-out infinite alternate; }
+.motion .deer      { animation: k-run .72s steps(12) infinite; }
+.motion .deer-1    { animation-delay: -.1s; }
+.motion .deer-2    { animation-delay: -.36s; }
+.motion .deer-3    { animation-delay: -.6s; }
+.motion .bob       { animation: k-bob 1.6s ease-in-out infinite alternate; }
+.motion .whip      { animation: k-whip 8s ease-in-out infinite; }
+.motion .snow-a    { animation: k-snow 13s linear infinite; }
+.motion .snow-b    { animation: k-snow 8.5s linear infinite; }
+.motion .snow-c    { animation: k-snow 21s linear infinite; }
+
+@keyframes k-twinkle { from { opacity: .25; } to { opacity: 1; } }
+@keyframes k-drift { from { transform: translateX(-16px); } to { transform: translateX(18px); } }
+@keyframes k-bob { from { transform: translateY(0); } to { transform: translateY(5px); } }
+/* Forward only (no alternate). Opacity 0 at both ends hides the restart. */
+@keyframes k-sleigh {
+  0%   { transform: translate(calc(-260 * var(--u)), calc(16 * var(--u))); opacity: 0; }
+  6%   { opacity: 1; }
+  94%  { opacity: 1; }
+  100% { transform: translate(calc(300 * var(--u)), calc(-22 * var(--u))); opacity: 0; }
+}
+@keyframes k-sway {
+  from { transform: translateY(-1.5px) rotate(-1deg); }
+  to   { transform: translateY(1.5px) rotate(1deg); }
+}
+/* 12 frames: frame k is at k/11 = 100%; steps(12) over 0..12/11 hits each one */
+@keyframes k-run { from { background-position: 0 0; } to { background-position: 109.0909% 0; } }
+/* Still for 80% of the time, then back, then forward so the tip comes down over the first reindeer */
+@keyframes k-whip {
+  0%, 80% { transform: rotate(0deg); }
+  86%     { transform: rotate(-30deg); }
+  89%     { transform: rotate(23deg); }
+  93%     { transform: rotate(5deg); }
+  100%    { transform: rotate(0deg); }
+}
+@keyframes k-snow { from { transform: translateY(0); } to { transform: translateY(720px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-fade, .top-in, .loop { animation: none !important; }
+}

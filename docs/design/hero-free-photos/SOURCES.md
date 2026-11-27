@@ -1,20 +1,19 @@
 # Free photos for the home hero
 
-Downloaded on 2026-11-26 from Wikimedia Commons. Every picture here is **public domain** or **CC0**.
+Downloaded on 2026-11-26 from Wikimedia Commons and from rawpixel (found through Openverse). Every picture here is **public domain** or **CC0**.
 That means free to use, also for commercial sites, with no payment. Giving credit is not required, but it is polite.
 
 None of these files come from the Slider Revolution template. That template's pictures are not free and are not used.
 
 Before launch, a person on the team should open each link below once and check that the licence on the page is still the same.
 
-| Layer file (`layers/`) | Made from (`originals/`) | Original title on Wikimedia Commons | Licence | Author | Link |
+| Layer file (`layers/`) | Made from (`originals/`) | Original title at the source | Licence | Author | Link |
 |---|---|---|---|---|---|
 | `moon.webp` | `moon.jpg` | Full Moon on Buddha purnima.jpg | CC0 | Kasyap | https://commons.wikimedia.org/wiki/File:Full_Moon_on_Buddha_purnima.jpg |
 | `mountains.webp` | `mountains.jpg` | Teton Range Light Dusting of Spring Snow (52097499112).jpg | Public domain | Grand Teton National Park (US National Park Service) | https://commons.wikimedia.org/wiki/File:Teton_Range_Light_Dusting_of_Spring_Snow_(52097499112).jpg |
 | `cloud-1.webp`, `cloud-2.webp`, `cloud-3.webp` | `clouds-a.jpg` | The sky is beautiful with cumulus clouds.jpg | CC0 | Nana Hemaa N.A | https://commons.wikimedia.org/wiki/File:The_sky_is_beautiful_with_cumulus_clouds.jpg |
 | `trees.webp` | `trees-a.jpg` | Red spruce silhouetted against sunset sky at Twitchell Lake (NARA 554397) | Public domain | Anne LaBastille (US National Archives) | https://commons.wikimedia.org/wiki/File:RED_SPRUCE_SILHOUETTED_AGAINST_SUNSET_SKY_AT_TWITCHELL_LAKE_NORTHEAST_OF_OLD_FORGE_VILLAGE_-_NARA_-_554397.jpg |
 | `sleigh.webp` | `sleigh.png` | Santa Claus and his sleigh, 1924.svg | Public domain | Unknown author, 1924 | https://commons.wikimedia.org/wiki/File:Santa_Claus_and_his_sleigh,_1924.svg |
-
 | `xmas-tree.webp`, `gifts.webp` | `xmas-tree.jpg` | Christmas tree png sticker, transparent (found through Openverse) | CC0 | rawpixel | https://www.rawpixel.com/image/9246467/png-white-background-plant |
 | `night-tree.webp` | `night-tree.jpg` | The National Christmas Tree Illuminated at Night with the White House Visible in the Background | Public domain | White House Photo Office (US government, 1969–1974) | https://commons.wikimedia.org/wiki/File:The_National_Christmas_Tree_Illuminated_at_Night_with_the_White_House_Visible_in_the_Background_-_DPLA_-_ed36660fe14a155520a41cd40982eed6.jpg |
 | `deer-sprite.webp` | `deer-run.jpg` | Deer, running (Library of Congress 2009630502) | Public domain | Eadweard Muybridge, 1880s | https://commons.wikimedia.org/wiki/File:Deer,_running_LCCN2009630502.jpg |
