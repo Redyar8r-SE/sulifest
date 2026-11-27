@@ -115,7 +115,7 @@ The About section tells three things, in this order: **SuliFest** (the brand), *
 
 - A thin green wire runs down the start side, with a red diamond at each step. After step 3 it goes down into the
   row of 16 lights and ends in the middle of the row (padding + half the tallest light), so the join holds at every width.
-- Each step is text + a stamp. Step 1's stamp is letters only ("Suli" / "Fest"), so the ring is not shown twice. Steps 1 and 2 have a stamp made in CSS: a cream card with a cut edge (`mask`, two layers,
+- Each step is text + a stamp. Step 1's stamp shows the logo ring (smaller than in scene 2) over "Suli" / "Fest" (site owner's request). Steps 1 and 2 have a stamp made in CSS: a cream card with a cut edge (`mask`, two layers,
   `round`), a thin inner line and a red postmark. Without mask support it is a plain card. Step 3 uses the tree stamp picture.
   The stamps are decoration (`aria-hidden`); the three step headings are `<h2>`.
 - Under each text: short facts with a big green number (`tabular-nums`, so the row does not jump while counting).

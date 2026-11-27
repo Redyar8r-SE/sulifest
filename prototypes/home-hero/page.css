@@ -275,13 +275,15 @@ body { background: var(--paper); }
   line-height: 1.15;
   color: var(--green);
 }
-/* Step 1: a stamp of letters only (the name comes from "Suli"), so the ring is not shown twice */
-.paper-stamp-suli { padding-block: 52px 44px; }
+/* Step 1: the logo ring (smaller than in scene 2) over the name, with "Suli" big:
+   the name comes from "Suli" (site owner's request, 27 Nov 2026: the logo stays on this stamp) */
+.paper-stamp-suli { padding-block: 40px 36px; }
+.paper-stamp-suli img { width: 48%; }
 .page-section .ps-suli {
-  margin: 0;
+  margin: 10px 0 0;
   font-family: var(--font-word);
   font-weight: 900;
-  font-size: 76px;
+  font-size: 60px;
   line-height: 1;
   color: var(--green);
 }
@@ -629,7 +631,7 @@ body { background: var(--paper); }
   .stamp-drop { max-width: 230px; }
   .page-section .ps-name { font-size: 26px; }
   .page-section .ps-italk { font-size: 42px; }
-  .page-section .ps-suli { font-size: 56px; }
+  .page-section .ps-suli { font-size: 46px; }
   .stat strong { font-size: 26px; }
 }
 @media (max-width: 700px) {
