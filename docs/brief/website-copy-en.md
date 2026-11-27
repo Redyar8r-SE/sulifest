@@ -15,7 +15,7 @@ This is the English text on the website (Home page demo, `prototypes/home-hero/i
 - Small line under the title: by SuliFest
 - Title: Christmas Nights
 - Tagline: A Season of Lights, Joy & Celebration
-- (The "About the festival" button in the header was removed on 27 November 2026, at the site owner's request. The same button at the end of the scroll stays.)
+- (The "About the festival" buttons in the header and at the end of the scroll were removed on 27 November 2026, at the site owner's request.)
 - Scroll hint: Scroll for a surprise
 - Skip link (only shown to keyboard users): Skip the animation
 
@@ -26,7 +26,6 @@ Since plan 005 there is no card here. "See you there!" and the card sentence wer
 - Hidden heading, for screen readers only: Dates and place **(new, plan 005)**
 - Inside the ring: 16 – 31 / December 2026
 - Place: Magma Square ◆ Sulaimani
-- Button: About the festival
 
 ## Page sections
 
@@ -194,7 +193,7 @@ Both events reflect a shared ambition: developing memorable experiences, support
 
 - Labels under the 16 lights: "16 December" and "31 December / New Year".
 - Screen-reader text for the lights: "16 lights for 16 nights: 16 to 31 December 2026. The last light is the New Year celebration."
-- "Scroll for a surprise", "Skip the animation" and "About the festival" (buttons and links).
+- "Scroll for a surprise" and "Skip the animation" (hint and link).
 - Plan 005: "Dates and place", "Where it began", "June 2026, 8 days", "Next", "Market places", "Zin Place", "Shirin Place", "Khaj Place", "7 places, 4 × 4 m", "21 places, 3 × 3 m", "38 places, 3 × 3 m", "Entrance", "two entrances", "Show the whole map", the map note, the map labels, and the map's title and description for screen readers.
 - Plan 006: the whole story text above (steps 1 and 2, the small labels, the numbers, the stamp text). No visitor number for SuliFest until italk gives the final one.
 - Please check one fact: "June 2026" for SuliFest. The brief only says "an eight-day summer festival".

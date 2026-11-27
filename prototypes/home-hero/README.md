@@ -61,8 +61,8 @@ Then open http://127.0.0.1:8765/ and scroll down and up. Stop the server when yo
   and a bright copy on top whose opacity goes 0 → 1 at the end = lights on. A CSS mask fades the sides of the photo.
 - The end of scene 2 is three snow hills in the paper colour (16%, 42% and 100%), with a thin Ivory line on the
   front hill and a warm glow above them (one inline SVG, plan 006). So the night fades into the paper with no hard line,
-  and the front hill covers the bottom edges of the tree and the gifts. The header has no button (removed at the
-  site owner's request); the "About the festival" button at the end of the scroll stays.
+  and the front hill covers the bottom edges of the tree and the gifts. There are no "About the festival" buttons
+  any more (header and end of the scroll, removed at the site owner's request); the skip link still goes to `#about`.
 
 ### Scroll timeline (progress of the scroll inside the hero)
 

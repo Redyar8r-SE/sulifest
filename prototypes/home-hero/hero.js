@@ -84,21 +84,16 @@
 
     hero.classList.add('is-ready');
 
-    /* Keyboard: if focus goes into a scene that is not on screen, scroll to it. */
-    function onFocusScene2() {
-      var st = tl.scrollTrigger;
-      if (st && st.progress < 0.99) window.scrollTo(0, st.end);
-    }
-    function onFocusScene1(event) {
+    /* Keyboard: if focus goes back into scene 1 (header links) while it is not on screen, scroll to it.
+       Scene 2 has nothing to focus since the "About the festival" button was removed. */
+    function onFocusScene1() {
       var st = tl.scrollTrigger;
       if (st && st.progress > 0) window.scrollTo(0, st.start);
     }
-    scene2.addEventListener('focusin', onFocusScene2);
     scene1.addEventListener('focusin', onFocusScene1);
 
     return function () {
       /* "reduce motion" was turned on: GSAP removes its styles, we go back to two sections */
-      scene2.removeEventListener('focusin', onFocusScene2);
       scene1.removeEventListener('focusin', onFocusScene1);
       hero.classList.remove('is-ready');
       root.classList.remove('motion');
