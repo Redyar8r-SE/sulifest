@@ -4,6 +4,8 @@ Website and booking system for Sulifest, a festival in Sulaymaniyah (Kurdistan R
 
 The project is in the planning stage. There is no application code yet.
 
+**Live demo (prototype):** https://redyar8r-se.github.io/sulifest/prototypes/home-hero/ — start page: https://redyar8r-se.github.io/sulifest/
+
 ## What is here
 
 | Path | What |

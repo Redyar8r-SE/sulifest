@@ -178,3 +178,18 @@ to
 Join it with the first sentence in one paragraph. It is a cut only, with no new words. Record it in `website-copy-en.md` as edit 8, waiting for italk's approval like the others. The statue stamp and the two boxes stay.
 
 Done when: the ring is seen once in the scroll from scene 2 to step 1 (plus the small logo in the header); the facts "eight days" and "Hawary Shar Park" are each said once in sentences (step 1) and once in the box; contrast and no-sideways-scroll checks still pass.
+
+## Changed by the user after Addition 2 (2026-11-27)
+
+The user gave two more changes directly to the Worker. They replace what is written above.
+
+| The user said | What was done | Commit |
+|---|---|---|
+| About the letters-only SuliFest stamp: "where is a logo if the suli fest" | The logo ring is back on the step 1 stamp, small, above "Suli" / "Fest" / line / "Sulaimani, since 2026". Part 1 of Addition 2 is undone. The text cut (edit 8) stays | `38cf4e2` |
+| About the "About the festival" button at the end of the scroll: "delete this" | Removed. The page has no "About the festival" button now (the header one was removed before). The skip link still goes to `#about` | `15a3f9a` |
+
+Lesson for later plans: the SuliFest logo ring must be shown wherever SuliFest is named as the brand. Do not replace it with letters.
+
+## Open (2026-11-27): the user does not like the paper look
+
+After seeing the built page the user said: "I don't like the paper page… you made it like paper, why". The PM made three other looks for the page under the animation in a private design canvas (A: the night goes on, B: green and gold, C: the colours of the ring). The user has to pick one. Until then the look of plan 005 stays in the demo, and no new look is sent to the Worker.
